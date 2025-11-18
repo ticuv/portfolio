@@ -1,0 +1,145 @@
+{
+  "posters": [
+    {
+      "image": "https://i.imgur.com/example1.jpg",
+      "title": "Kinetic Typography",
+      "thumbnail": "https://i.imgur.com/example1.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/example2.jpg",
+      "title": "Brutalist Forms",
+      "thumbnail": "https://i.imgur.com/example2.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/example3.jpg",
+      "title": "Swiss Modern",
+      "thumbnail": "https://i.imgur.com/example3.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/example4.jpg",
+      "title": "Geometric Patterns",
+      "thumbnail": "https://i.imgur.com/example4.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/example5.jpg",
+      "title": "Abstract Waves",
+      "thumbnail": "https://i.imgur.com/example5.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/example6.jpg",
+      "title": "Minimal Lines",
+      "thumbnail": "https://i.imgur.com/example6.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/example7.jpg",
+      "title": "Bold Typography",
+      "thumbnail": "https://i.imgur.com/example7.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/example8.jpg",
+      "title": "Color Study",
+      "thumbnail": "https://i.imgur.com/example8.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/example9.jpg",
+      "title": "Urban Photography",
+      "thumbnail": "https://i.imgur.com/example9.jpg"
+    }
+  ],
+  "3d": [
+    {
+      "image": "https://i.imgur.com/3d-example1.jpg",
+      "title": "Abstract Glass",
+      "thumbnail": "https://i.imgur.com/3d-example1.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/3d-example2.jpg",
+      "title": "Cloth Simulation",
+      "thumbnail": "https://i.imgur.com/3d-example2.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/3d-example3.jpg",
+      "title": "Metallic Forms",
+      "thumbnail": "https://i.imgur.com/3d-example3.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/3d-example4.jpg",
+      "title": "Crystal Structures",
+      "thumbnail": "https://i.imgur.com/3d-example4.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/3d-example5.jpg",
+      "title": "Organic Shapes",
+      "thumbnail": "https://i.imgur.com/3d-example5.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/3d-example6.jpg",
+      "title": "Liquid Metal",
+      "thumbnail": "https://i.imgur.com/3d-example6.jpg"
+    }
+  ],
+  "generative": [
+    {
+      "image": "https://i.imgur.com/gen-example1.jpg",
+      "title": "Algorithmic Flora",
+      "thumbnail": "https://i.imgur.com/gen-example1.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/gen-example2.jpg",
+      "title": "Particle Systems",
+      "thumbnail": "https://i.imgur.com/gen-example2.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/gen-example3.jpg",
+      "title": "Neural Networks",
+      "thumbnail": "https://i.imgur.com/gen-example3.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/gen-example4.jpg",
+      "title": "Fractal Patterns",
+      "thumbnail": "https://i.imgur.com/gen-example4.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/gen-example5.jpg",
+      "title": "Noise Fields",
+      "thumbnail": "https://i.imgur.com/gen-example5.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/gen-example6.jpg",
+      "title": "Cellular Automata",
+      "thumbnail": "https://i.imgur.com/gen-example6.jpg"
+    }
+  ],
+  "logos": [
+    {
+      "image": "https://i.imgur.com/logo-example1.jpg",
+      "title": "Aperture Labs",
+      "thumbnail": "https://i.imgur.com/logo-example1.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/logo-example2.jpg",
+      "title": "Monolith",
+      "thumbnail": "https://i.imgur.com/logo-example2.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/logo-example3.jpg",
+      "title": "Quantum",
+      "thumbnail": "https://i.imgur.com/logo-example3.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/logo-example4.jpg",
+      "title": "Nexus",
+      "thumbnail": "https://i.imgur.com/logo-example4.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/logo-example5.jpg",
+      "title": "Velocity",
+      "thumbnail": "https://i.imgur.com/logo-example5.jpg"
+    },
+    {
+      "image": "https://i.imgur.com/logo-example6.jpg",
+      "title": "Eclipse",
+      "thumbnail": "https://i.imgur.com/logo-example6.jpg"
+    }
+  ]
+}
