@@ -2,35 +2,39 @@
    ANIMATIONS.CSS - All Animations
    ========================================== */
 
-/* Loader Logo Animation */
+/* Loader Logo Animation - Updated for image logo */
 @keyframes slideToCenter {
     0% {
         opacity: 0;
         left: -20%;
         top: 50%;
         transform: translateY(-50%);
-        font-size: clamp(3rem, 8vw, 5rem);
+        height: clamp(3rem, 8vw, 5rem);
+        width: auto;
     }
     40% {
         opacity: 1;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        font-size: clamp(3rem, 8vw, 5rem);
+        height: clamp(3rem, 8vw, 5rem);
+        width: auto;
     }
     70% {
         opacity: 1;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        font-size: clamp(3rem, 8vw, 5rem);
+        height: clamp(3rem, 8vw, 5rem);
+        width: auto;
     }
     100% {
         opacity: 1;
         left: 50%;
         top: 2rem;
         transform: translateX(-50%);
-        font-size: 2.25rem;
+        height: 2.25rem;
+        width: auto;
     }
 }
 
