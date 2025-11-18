@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ticuv — Visual Designer</title>
+    <meta name="description" content="Personal design portfolio showcasing posters, 3D art, generative design, and branding work.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <h1 class="loader-logo">ticuv</h1>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <a class="logo" data-nav="home">ticuv</a>
+    </header>
+
+    <!-- Hamburger Button -->
+    <button class="hamburger-btn" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Side Navigation -->
+    <nav class="side-nav" id="sideNav">
+        <a class="nav-link active" data-nav="home">Home</a>
+        <a class="nav-link" data-nav="posters">Posters</a>
+        <a class="nav-link" data-nav="3d">3D Art</a>
+        <a class="nav-link" data-nav="generative">Generative</a>
+        <a class="nav-link" data-nav="logos">Logos</a>
+        <a class="nav-link" data-nav="about">About</a>
+        <a class="nav-link" data-nav="contact">Contact</a>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a class="footer-link" data-nav="about">About</a>
+            <a class="footer-link" data-nav="contact">Contact</a>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="social-links">
+            <a href="https://instagram.com/YOUR_USERNAME" class="social-link" target="_blank" aria-label="Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+            </a>
+            <a href="https://twitter.com/YOUR_USERNAME" class="social-link" target="_blank" aria-label="Twitter">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Home Section -->
+        <section id="home" class="section active" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0;">
+            <div style="text-align: center;">
+                <h1 class="hero-title">Clarity in Form.</h1>
+                <p class="hero-subtitle">Click below to experience the work.</p>
+                <div class="bounce-arrow" style="margin-top: 1rem;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <polyline points="19 12 12 19 5 12"></polyline>
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="marquee-container" style="margin-top: 3rem;">
+                <div class="marquee-track">
+                    <div class="marquee-content">
+                        <a class="marquee-link" data-nav="posters">POSTERS</a>
+                        <a class="marquee-link" data-nav="3d">3D VISUALS</a>
+                        <a class="marquee-link" data-nav="generative">GENERATIVE ART</a>
+                        <a class="marquee-link" data-nav="logos">LOGOS</a>
+                    </div>
+                    <div class="marquee-content" aria-hidden="true">
+                        <a class="marquee-link" data-nav="posters">POSTERS</a>
+                        <a class="marquee-link" data-nav="3d">3D VISUALS</a>
+                        <a class="marquee-link" data-nav="generative">GENERATIVE ART</a>
+                        <a class="marquee-link" data-nav="logos">LOGOS</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Posters Section -->
+        <section id="posters" class="section">
+            <h2 class="hero-title">Posters</h2>
+            <p class="scroll-hint">← Scroll to explore →</p>
+            <div class="project-marquee">
+                <div class="project-marquee-track">
+                    <div class="project-card" data-lightbox="https://placehold.co/800x1000/1a1a1a/666666?text=Poster+01" data-title="Kinetic Typography">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x1000/1a1a1a/666666?text=Poster+01" alt="Poster 1">
+                        </div>
+                        <p class="project-title">Kinetic Typography</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x1000/1a1a1a/666666?text=Poster+02" data-title="Brutalist Forms">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x1000/1a1a1a/666666?text=Poster+02" alt="Poster 2">
+                        </div>
+                        <p class="project-title">Brutalist Forms</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x1000/1a1a1a/666666?text=Poster+03" data-title="Swiss Modern">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x1000/1a1a1a/666666?text=Poster+03" alt="Poster 3">
+                        </div>
+                        <p class="project-title">Swiss Modern</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x1000/1a1a1a/666666?text=Poster+01" data-title="Kinetic Typography">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x1000/1a1a1a/666666?text=Poster+01" alt="Poster 1">
+                        </div>
+                        <p class="project-title">Kinetic Typography</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x1000/1a1a1a/666666?text=Poster+02" data-title="Brutalist Forms">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x1000/1a1a1a/666666?text=Poster+02" alt="Poster 2">
+                        </div>
+                        <p class="project-title">Brutalist Forms</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x1000/1a1a1a/666666?text=Poster+03" data-title="Swiss Modern">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x1000/1a1a1a/666666?text=Poster+03" alt="Poster 3">
+                        </div>
+                        <p class="project-title">Swiss Modern</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3D Art Section -->
+        <section id="3d" class="section">
+            <h2 class="hero-title">3D Art</h2>
+            <p class="scroll-hint">← Scroll to explore →</p>
+            <div class="project-marquee">
+                <div class="project-marquee-track">
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=3D+01" data-title="Abstract Glass">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=3D+01" alt="3D 1">
+                        </div>
+                        <p class="project-title">Abstract Glass</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=3D+02" data-title="Cloth Simulation">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=3D+02" alt="3D 2">
+                        </div>
+                        <p class="project-title">Cloth Simulation</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=3D+03" data-title="Metallic Forms">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=3D+03" alt="3D 3">
+                        </div>
+                        <p class="project-title">Metallic Forms</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=3D+01" data-title="Abstract Glass">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=3D+01" alt="3D 1">
+                        </div>
+                        <p class="project-title">Abstract Glass</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=3D+02" data-title="Cloth Simulation">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=3D+02" alt="3D 2">
+                        </div>
+                        <p class="project-title">Cloth Simulation</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=3D+03" data-title="Metallic Forms">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=3D+03" alt="3D 3">
+                        </div>
+                        <p class="project-title">Metallic Forms</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Generative Section -->
+        <section id="generative" class="section">
+            <h2 class="hero-title">Generative Art</h2>
+            <p class="scroll-hint">← Scroll to explore →</p>
+            <div class="project-marquee">
+                <div class="project-marquee-track">
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=Gen+01" data-title="Algorithmic Flora">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=Gen+01" alt="Gen 1">
+                        </div>
+                        <p class="project-title">Algorithmic Flora</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=Gen+02" data-title="Particle Systems">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=Gen+02" alt="Gen 2">
+                        </div>
+                        <p class="project-title">Particle Systems</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=Gen+03" data-title="Neural Networks">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=Gen+03" alt="Gen 3">
+                        </div>
+                        <p class="project-title">Neural Networks</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=Gen+01" data-title="Algorithmic Flora">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=Gen+01" alt="Gen 1">
+                        </div>
+                        <p class="project-title">Algorithmic Flora</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=Gen+02" data-title="Particle Systems">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=Gen+02" alt="Gen 2">
+                        </div>
+                        <p class="project-title">Particle Systems</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=Gen+03" data-title="Neural Networks">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=Gen+03" alt="Gen 3">
+                        </div>
+                        <p class="project-title">Neural Networks</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Logos Section -->
+        <section id="logos" class="section">
+            <h2 class="hero-title">Logos</h2>
+            <p class="scroll-hint">← Scroll to explore →</p>
+            <div class="project-marquee">
+                <div class="project-marquee-track">
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=Logo+01" data-title="Aperture Labs">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=Logo+01" alt="Logo 1">
+                        </div>
+                        <p class="project-title">Aperture Labs</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=Logo+02" data-title="Monolith">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=Logo+02" alt="Logo 2">
+                        </div>
+                        <p class="project-title">Monolith</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=Logo+03" data-title="Quantum">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=Logo+03" alt="Logo 3">
+                        </div>
+                        <p class="project-title">Quantum</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=Logo+01" data-title="Aperture Labs">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=Logo+01" alt="Logo 1">
+                        </div>
+                        <p class="project-title">Aperture Labs</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=Logo+02" data-title="Monolith">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=Logo+02" alt="Logo 2">
+                        </div>
+                        <p class="project-title">Monolith</p>
+                    </div>
+                    <div class="project-card" data-lightbox="https://placehold.co/800x800/1a1a1a/666666?text=Logo+03" data-title="Quantum">
+                        <div class="project-image">
+                            <img src="https://placehold.co/800x800/1a1a1a/666666?text=Logo+03" alt="Logo 3">
+                        </div>
+                        <p class="project-title">Quantum</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div style="max-width: 1400px; margin: 0 auto; height: 100%; display: flex; align-items: center;">
+                <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center; width: 100%;">
+                    <div>
+                        <h2 style="font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em;">
+                            Multidisciplinary designer<br>creating impactful visuals.
+                        </h2>
+                        
+                        <div style="border-left: 2px solid var(--text-primary); padding-left: 1.5rem; margin: 2rem 0;">
+                            <p style="font-size: 1.125rem; line-height: 1.6; color: var(--text-primary); margin-bottom: 1rem; font-weight: 400;">
+                                Hi, I'm ticuv. At 24, design is more than a career for me—it's the passion that fuels my everyday.
+                            </p>
+                            <p style="font-size: 1rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 1rem;">
+                                With a solid foundation in photography, I've dedicated my energy since 2022 to mastering the digital arts.
+                            </p>
+                            <p style="font-size: 1rem; line-height: 1.6; color: var(--text-secondary);">
+                                My approach combines discipline and order with the creative energy of an artistic escape.
+                            </p>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin: 2.5rem 0;">
+                            <div style="padding: 1.25rem; border: 1px solid rgba(136, 136, 136, 0.2); border-radius: 8px; transition: border-color 0.3s ease;">
+                                <h4 style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Foundation</h4>
+                                <p style="font-size: 1rem; color: var(--text-primary); font-weight: 500;">Photography</p>
+                            </div>
+                            <div style="padding: 1.25rem; border: 1px solid rgba(136, 136, 136, 0.2); border-radius: 8px; transition: border-color 0.3s ease;">
+                                <h4 style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Since</h4>
+                                <p style="font-size: 1rem; color: var(--text-primary); font-weight: 500;">2022</p>
+                            </div>
+                            <div style="padding: 1.25rem; border: 1px solid rgba(136, 136, 136, 0.2); border-radius: 8px; transition: border-color 0.3s ease;">
+                                <h4 style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Approach</h4>
+                                <p style="font-size: 1rem; color: var(--text-primary); font-weight: 500;">Discipline + Creativity</p>
+                            </div>
+                            <div style="padding: 1.25rem; border: 1px solid rgba(136, 136, 136, 0.2); border-radius: 8px; transition: border-color 0.3s ease;">
+                                <h4 style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Location</h4>
+                                <p style="font-size: 1rem; color: var(--text-primary); font-weight: 500;">Romania</p>
+                            </div>
+                        </div>
+
+                        <div style="padding-top: 2rem; border-top: 1px solid rgba(136, 136, 136, 0.2);">
+                            <h3 style="font-size: 1rem; margin-bottom: 1.25rem; color: var(--text-primary); font-weight: 500;">What I Do</h3>
+                            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                                <span style="padding: 0.625rem 1.25rem; background: rgba(245, 245, 245, 0.05); border: 1px solid rgba(245, 245, 245, 0.1); border-radius: 50px; color: var(--text-primary); font-size: 0.8125rem;">
+                                    Graphics & Posters
+                                </span>
+                                <span style="padding: 0.625rem 1.25rem; background: rgba(245, 245, 245, 0.05); border: 1px solid rgba(245, 245, 245, 0.1); border-radius: 50px; color: var(--text-primary); font-size: 0.8125rem;">
+                                    Logo Design & Branding
+                                </span>
+                                <span style="padding: 0.625rem 1.25rem; background: rgba(245, 245, 245, 0.05); border: 1px solid rgba(245, 245, 245, 0.1); border-radius: 50px; color: var(--text-primary); font-size: 0.8125rem;">
+                                    3D Design
+                                </span>
+                                <span style="padding: 0.625rem 1.25rem; background: rgba(245, 245, 245, 0.05); border: 1px solid rgba(245, 245, 245, 0.1); border-radius: 50px; color: var(--text-primary); font-size: 0.8125rem;">
+                                    Generative Art
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div style="width: 100%; aspect-ratio: 3/4; border-radius: 12px; overflow: hidden; background: var(--bg-secondary); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);">
+                            <img src="https://placehold.co/600x800/1a1a1a/666666?text=ticuv" alt="ticuv" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <h2 class="hero-title">Let's create something.</h2>
+                <p class="hero-subtitle">Open for new projects and collaborations.</p>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                    <a href="mailto:hello@ticuv.com" style="color: var(--text-primary); text-decoration: none; border-bottom: 1px solid var(--text-primary); transition: opacity 0.3s ease;">hello@ticuv.com</a>
+                </p>
+                
+                <form id="contactForm" style="margin-top: 3rem;">
+                    <div style="margin-bottom: 1.5rem;">
+                        <input type="text" id="name" class="form-input" placeholder="Your Name" required style="width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--text-secondary); border-radius: 4px; color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem;">
+                        <p class="form-message" id="nameError"></p>
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <input type="email" id="email" class="form-input" placeholder="Your Email" required style="width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--text-secondary); border-radius: 4px; color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem;">
+                        <p class="form-message" id="emailError"></p>
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <textarea id="message" class="form-textarea" placeholder="Your Message" required style="width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--text-secondary); border-radius: 4px; color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem; resize: vertical; min-height: 150px;"></textarea>
+                        <p class="form-message" id="messageError"></p>
+                    </div>
+                    <button type="submit" class="submit-btn" style="width: 100%; padding: 1rem; background: var(--text-primary); color: var(--bg-primary); border: none; border-radius: 4px; font-size: 1rem; font-weight: 500; cursor: pointer;">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">×</button>
+        <button class="lightbox-nav prev" id="lightboxPrev">‹</button>
+        <button class="lightbox-nav next" id="lightboxNext">›</button>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="">
+        </div>
+        <p class="lightbox-title" id="lightboxTitle"></p>
+        <p class="lightbox-counter" id="lightboxCounter"></p>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/loader.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/lightbox.js"></script>
+    <script src="js/forms.js"></script>
+
+</body>
+</html>
