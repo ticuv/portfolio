@@ -1,0 +1,34 @@
+# ==========================================
+# .GITIGNORE - Files to ignore in Git
+# ==========================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.log
+*.tmp
+.cache/
+
+# Don't commit large source files (keep optimized versions only)
+*.psd
+*.ai
+*.sketch
+*.fig
+
+# Node modules (if you add build tools later)
+node_modules/
