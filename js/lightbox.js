@@ -1,0 +1,104 @@
+/* ==========================================
+   LIGHTBOX.JS - Image Viewer with Navigation
+   Full-screen image viewer with prev/next navigation
+   ========================================== */
+
+// Get lightbox elements
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxTitle = document.getElementById('lightboxTitle');
+const lightboxCounter = document.getElementById('lightboxCounter');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+
+let currentProjectIndex = 0;
+let currentProjects = [];
+
+// Get all unique projects from a section (exclude duplicates)
+function getProjectsFromSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    const cards = Array.from(section.querySelectorAll('.project-card'));
+    // Get only first half (original items, not duplicates)
+    const uniqueCards = cards.slice(0, Math.floor(cards.length / 2));
+    return uniqueCards.map(card => ({
+        img: card.getAttribute('data-lightbox'),
+        title: card.getAttribute('data-title')
+    }));
+}
+
+// Display a project in the lightbox
+function showProject(index) {
+    if (currentProjects.length === 0) return;
+    
+    // Loop around if out of bounds
+    currentProjectIndex = (index + currentProjects.length) % currentProjects.length;
+    const project = currentProjects[currentProjectIndex];
+    
+    lightboxImg.src = project.img;
+    lightboxTitle.textContent = project.title;
+    lightboxCounter.textContent = `${currentProjectIndex + 1} / ${currentProjects.length}`;
+}
+
+// Open lightbox when clicking a project card
+document.querySelectorAll('.project-card[data-lightbox]').forEach((card, index) => {
+    card.addEventListener('click', () => {
+        // Find which section we're in
+        const section = card.closest('.section');
+        const sectionId = section.id;
+        
+        // Get all projects from this section
+        currentProjects = getProjectsFromSection(sectionId);
+        
+        // Find the index in the unique items
+        const allCards = Array.from(section.querySelectorAll('.project-card'));
+        const cardIndex = allCards.indexOf(card);
+        const uniqueIndex = cardIndex % (allCards.length / 2);
+        
+        currentProjectIndex = uniqueIndex;
+        showProject(currentProjectIndex);
+        
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+// Previous button
+lightboxPrev.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showProject(currentProjectIndex - 1);
+});
+
+// Next button
+lightboxNext.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showProject(currentProjectIndex + 1);
+});
+
+// Close button
+lightboxClose.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+});
+
+// Close when clicking background
+lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+    
+    if (e.key === 'Escape') {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    } else if (e.key === 'ArrowLeft') {
+        showProject(currentProjectIndex - 1);
+    } else if (e.key === 'ArrowRight') {
+        showProject(currentProjectIndex + 1);
+    }
+});
