@@ -134,7 +134,7 @@
         <a class="nav-link" data-nav="privacy" role="button" tabindex="0">Privacy</a>
     </nav>
 
-    <footer class="footer">
+    <footer class="footer" id="mainFooter">
         <div class="footer-links">
             <a class="footer-link" data-nav="about">About</a>
             <a class="footer-link" data-nav="contact">Contact</a>
@@ -185,13 +185,10 @@
             <p>Țicu Vlad is an emerging designer from Romania, offering affordable graphic design services, professional logo design, startup branding, small business logo design, and brand refresh services. As an independent creative with agency-quality standards, ticuv provides design consultation, visual storytelling, and conceptual design for clients worldwide.</p>
         </article>
 
-        <!-- HOME SECTION - IMPROVED -->
+        <!-- HOME SECTION -->
         <section id="home" class="section active" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0;">
             <div style="text-align: center; max-width: 900px; padding: 0 2rem;">
-                <h1 class="hero-title" style="margin-bottom: 1rem;">Clarity in Form.</h1>
-                <h2 class="hero-subtitle" style="font-size: 1.25rem; line-height: 1.5; margin-bottom: 0.5rem;">
-                    Visual Designer crafting bold <strong>Posters</strong>, immersive <strong>3D Art</strong>, algorithmic <strong>Generative Design</strong>, and memorable <strong>Brand Identities</strong>
-                </h2>
+                <h1 class="hero-title" style="margin-bottom: 1.5rem;">Clarity in Form.</h1>
                 <p style="color: var(--text-secondary); font-size: 1rem; margin-top: 1.5rem; opacity: 0.8;">
                     Click any category below to explore the work
                 </p>
@@ -383,11 +380,18 @@
                     </p>
                 </div>
                 
-                <div>
+                <div style="margin-bottom: 3rem;">
                     <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-primary);">Contact</h3>
                     <p style="color: var(--text-secondary); line-height: 1.6;">
                         For questions about this privacy policy, contact: <a href="mailto:vladticu100@gmail.com" style="color: var(--text-primary); text-decoration: none; border-bottom: 1px solid var(--text-primary);">vladticu100@gmail.com</a>
                     </p>
+                </div>
+
+                <!-- Back to Home Button -->
+                <div style="text-align: center; margin-top: 4rem;">
+                    <a data-nav="home" style="display: inline-block; padding: 1rem 2.5rem; background: var(--text-primary); color: var(--bg-primary); border-radius: 4px; font-weight: 500; transition: all 0.3s ease; text-decoration: none; cursor: pointer;">
+                        ← Back to Home
+                    </a>
                 </div>
             </div>
         </section>
@@ -415,6 +419,31 @@
     <script src="js/projects.js"></script>
     <script src="js/lightbox.js"></script>
     <script src="js/forms.js"></script>
+
+    <!-- Hide Footer on Home Page -->
+    <script>
+        // Hide footer on home page, show on all other sections
+        function updateFooterVisibility() {
+            const mainFooter = document.getElementById('mainFooter');
+            const activeSection = document.querySelector('.section.active');
+            
+            if (activeSection && activeSection.id === 'home') {
+                mainFooter.style.display = 'none';
+            } else {
+                mainFooter.style.display = 'flex';
+            }
+        }
+
+        // Run on page load
+        updateFooterVisibility();
+
+        // Run whenever navigation changes
+        document.querySelectorAll('[data-nav]').forEach(link => {
+            link.addEventListener('click', () => {
+                setTimeout(updateFooterVisibility, 100);
+            });
+        });
+    </script>
 
 </body>
 </html>
