@@ -418,30 +418,32 @@
    ============================================ */
 
 @media (max-width: 768px) {
-    /* Fix header alignment */
+    /* Reset body and sections */
+    body {
+        overflow-x: hidden !important;
+    }
+    
+    /* Fix header */
     .header {
-        padding: 1.25rem 1.5rem !important;
-        height: auto !important;
+        padding: 1rem !important;
         z-index: 1000 !important;
         position: fixed !important;
         top: 0 !important;
         left: 0 !important;
         right: 0 !important;
+        width: 100% !important;
         background: var(--bg-primary) !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
     }
     
     .header .logo img {
         height: 1.5rem !important;
     }
     
-    /* Align hamburger with logo */
+    /* Hamburger menu */
     .hamburger-btn {
         position: fixed !important;
         top: 1.25rem !important;
-        right: 1.5rem !important;
+        right: 1.25rem !important;
         width: 40px !important;
         height: 40px !important;
         z-index: 1001 !important;
@@ -457,38 +459,46 @@
         margin-bottom: 1.5rem !important;
     }
     
-    /* All sections padding */
+    /* All sections base */
     .section {
-        padding-top: 5rem !important;
-        padding-bottom: 5rem !important;
+        padding: 5rem 1.5rem 7rem !important;
+        width: 100% !important;
+        overflow-x: hidden !important;
     }
     
-    /* Home page */
+    /* HOME PAGE */
     #home {
-        padding: 6rem 1.5rem 5rem !important;
+        padding: 6rem 1.5rem 7rem !important;
+        display: flex !important;
+        flex-direction: column !important;
         justify-content: flex-start !important;
+        align-items: center !important;
     }
     
     #home .hero-title {
         font-size: 2rem !important;
         margin-bottom: 1rem !important;
+        text-align: center !important;
     }
     
     #home p {
         font-size: 0.875rem !important;
+        text-align: center !important;
     }
     
     .bounce-arrow {
         margin-top: 1.5rem !important;
     }
     
+    .marquee-container {
+        margin-top: 2rem !important;
+        width: 100vw !important;
+        margin-left: -1.5rem !important;
+    }
+    
     .marquee-link {
         font-size: 2.5rem !important;
         padding: 0 1rem !important;
-    }
-    
-    .marquee-container {
-        margin-top: 2rem !important;
     }
     
     #home a[data-nav="contact"] {
@@ -497,9 +507,9 @@
         font-size: 0.9rem !important;
     }
     
-    /* About section - COMPLETE FIX */
+    /* ABOUT SECTION - COMPLETE REDESIGN */
     #about {
-        padding: 5rem 1.5rem 5rem !important;
+        padding: 5rem 1.5rem 7rem !important;
         overflow-y: auto !important;
     }
     
@@ -507,6 +517,7 @@
         display: flex !important;
         flex-direction: column !important;
         max-width: 100% !important;
+        width: 100% !important;
         height: auto !important;
         align-items: flex-start !important;
     }
@@ -516,8 +527,8 @@
         font-size: 1.75rem !important;
         line-height: 1.2 !important;
         margin-bottom: 1.5rem !important;
-        order: 1 !important;
         width: 100% !important;
+        order: 1 !important;
     }
     
     /* Photo second - smaller and centered */
@@ -530,10 +541,10 @@
     }
     
     #about > div > div:last-child > div {
-        width: 200px !important;
-        height: 267px !important;
+        width: 220px !important;
         aspect-ratio: 3/4 !important;
-        margin: 0 !important;
+        border-radius: 12px !important;
+        overflow: hidden !important;
     }
     
     #about > div > div:last-child img {
@@ -548,11 +559,11 @@
         width: 100% !important;
     }
     
-    /* Text with border */
+    /* Bio text */
     #about div[style*="border-left"] {
         padding-left: 1rem !important;
         margin: 1.5rem 0 !important;
-        border-left-width: 2px !important;
+        border-left: 2px solid var(--text-primary) !important;
     }
     
     #about p {
@@ -561,7 +572,7 @@
         margin-bottom: 0.875rem !important;
     }
     
-    /* Info grid - 2 columns */
+    /* Info grid */
     #about > div > div:first-child > div:nth-of-type(2) {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
@@ -571,10 +582,13 @@
     
     #about > div > div:first-child > div:nth-of-type(2) > div {
         padding: 0.875rem !important;
+        border: 1px solid rgba(136, 136, 136, 0.2) !important;
+        border-radius: 8px !important;
     }
     
     #about > div > div:first-child > div:nth-of-type(2) h4 {
         font-size: 0.625rem !important;
+        margin-bottom: 0.375rem !important;
     }
     
     #about > div > div:first-child > div:nth-of-type(2) p {
@@ -582,9 +596,20 @@
     }
     
     /* What I Do section */
+    #about > div > div:first-child > div:nth-of-type(3) {
+        padding-top: 1.5rem !important;
+        border-top: 1px solid rgba(136, 136, 136, 0.2) !important;
+    }
+    
     #about h3 {
         font-size: 0.875rem !important;
         margin-bottom: 1rem !important;
+    }
+    
+    #about > div > div:first-child > div:nth-of-type(3) > div {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 0.625rem !important;
     }
     
     #about span {
@@ -592,80 +617,12 @@
         font-size: 0.7rem !important;
     }
     
-    /* Contact section */
-    #contact {
-        padding: 5rem 1.5rem 5rem !important;
-    }
-    
-    #contact > div {
-        max-width: 100% !important;
-    }
-    
-    #contact .hero-title {
-        font-size: 1.75rem !important;
-        margin-bottom: 0.75rem !important;
-    }
-    
-    #contact .hero-subtitle {
-        font-size: 0.875rem !important;
-    }
-    
-    #contact p {
-        font-size: 0.875rem !important;
-        margin-bottom: 1.5rem !important;
-    }
-    
-    #contact input,
-    #contact textarea {
-        padding: 0.875rem !important;
-        font-size: 16px !important;
-    }
-    
-    #contact textarea {
-        min-height: 120px !important;
-    }
-    
-    #contact button {
-        padding: 0.875rem !important;
-        font-size: 0.9rem !important;
-    }
-    
-    /* Privacy section */
-    #privacy {
-        padding: 5rem 1.5rem 5rem !important;
-    }
-    
-    #privacy > div {
-        max-width: 100% !important;
-    }
-    
-    #privacy h2 {
-        font-size: 1.75rem !important;
-        margin-bottom: 1rem !important;
-    }
-    
-    #privacy h3 {
-        font-size: 1rem !important;
-        margin-bottom: 0.875rem !important;
-    }
-    
-    #privacy p {
-        font-size: 0.875rem !important;
-        line-height: 1.6 !important;
-    }
-    
-    #privacy a[data-nav="home"] {
-        padding: 0.875rem 2rem !important;
-        font-size: 0.9rem !important;
-        margin-top: 2rem !important;
-    }
-    
-    /* Project sections */
+    /* PROJECT SECTIONS */
     #posters,
     #3d,
     #generative,
     #logos {
-        padding: 5rem 0 5rem !important;
+        padding: 5rem 0 7rem !important;
     }
     
     #posters h2,
@@ -673,24 +630,16 @@
     #generative h2,
     #logos h2 {
         font-size: 1.75rem !important;
-        margin-bottom: 1.5rem !important;
-        padding: 0 1.5rem !important;
+        padding: 0 1.5rem 1.5rem !important;
+        margin-bottom: 0 !important;
     }
     
-    /* Fix scroll hint - move it UP away from footer */
+    /* Hide scroll hint or move it higher */
     .scroll-hint {
-        font-size: 0.75rem !important;
-        position: fixed !important;
-        bottom: 4.5rem !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        z-index: 50 !important;
-        background: rgba(0, 0, 0, 0.8) !important;
-        padding: 0.5rem 1rem !important;
-        border-radius: 20px !important;
+        display: none !important;
     }
     
-    /* Project cards - smaller */
+    /* Project cards */
     .project-card {
         width: 240px !important;
         margin: 0 0.625rem !important;
@@ -703,30 +652,116 @@
     .project-title {
         font-size: 0.875rem !important;
         padding: 0.75rem !important;
+        background: var(--bg-primary) !important;
+        z-index: 2 !important;
     }
     
-    /* FOOTER - COMPLETELY FIXED */
+    /* CONTACT SECTION */
+    #contact {
+        padding: 5rem 1.5rem 7rem !important;
+    }
+    
+    #contact > div {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    #contact .hero-title {
+        font-size: 1.75rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    #contact .hero-subtitle {
+        font-size: 0.875rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    #contact p {
+        font-size: 0.875rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    #contact form {
+        margin-top: 2rem !important;
+    }
+    
+    #contact input,
+    #contact textarea {
+        padding: 0.875rem !important;
+        font-size: 16px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    #contact textarea {
+        min-height: 120px !important;
+    }
+    
+    #contact button {
+        padding: 0.875rem !important;
+        font-size: 0.9rem !important;
+        width: 100% !important;
+    }
+    
+    /* PRIVACY SECTION */
+    #privacy {
+        padding: 5rem 1.5rem 7rem !important;
+    }
+    
+    #privacy > div {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    #privacy h2 {
+        font-size: 1.75rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    #privacy h3 {
+        font-size: 1rem !important;
+        margin-bottom: 0.875rem !important;
+        margin-top: 1.5rem !important;
+    }
+    
+    #privacy p {
+        font-size: 0.875rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    #privacy > div > div:last-child {
+        text-align: center !important;
+        margin-top: 2.5rem !important;
+    }
+    
+    #privacy a[data-nav="home"] {
+        padding: 0.875rem 2rem !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* FOOTER - FINAL FIX */
     .footer {
         position: fixed !important;
         bottom: 0 !important;
         left: 0 !important;
         right: 0 !important;
         width: 100% !important;
-        padding: 1rem 1.5rem !important;
+        padding: 0.875rem 1rem !important;
         background: var(--bg-primary) !important;
-        border-top: 1px solid rgba(136, 136, 136, 0.15) !important;
-        z-index: 100 !important;
+        border-top: 1px solid rgba(136, 136, 136, 0.1) !important;
+        z-index: 99 !important;
         display: flex !important;
         flex-direction: row !important;
         justify-content: center !important;
         align-items: center !important;
-        gap: 1.5rem !important;
+        gap: 1rem !important;
         box-sizing: border-box !important;
     }
     
     .footer-links {
         display: flex !important;
-        gap: 1.25rem !important;
+        gap: 0.875rem !important;
         align-items: center !important;
     }
     
@@ -737,14 +772,13 @@
     
     .footer-divider {
         width: 1px !important;
-        height: 16px !important;
+        height: 14px !important;
         background: rgba(136, 136, 136, 0.3) !important;
-        flex-shrink: 0 !important;
     }
     
     .social-links {
         display: flex !important;
-        gap: 1.25rem !important;
+        gap: 0.875rem !important;
         align-items: center !important;
     }
     
@@ -759,17 +793,17 @@
         height: 16px !important;
     }
     
-    /* Back to top button - position above footer */
+    /* Back to top button */
     #backToTop {
         position: fixed !important;
         bottom: 4.5rem !important;
         right: 1rem !important;
         width: 44px !important;
         height: 44px !important;
-        z-index: 99 !important;
+        z-index: 98 !important;
     }
     
-    /* Lightbox improvements */
+    /* Lightbox */
     .lightbox-content img {
         max-width: 90vw !important;
         max-height: 70vh !important;
@@ -777,17 +811,25 @@
     
     .lightbox-title {
         font-size: 0.875rem !important;
-        bottom: 4.5rem !important;
+        bottom: 5.5rem !important;
     }
     
     .lightbox-counter {
         font-size: 0.75rem !important;
-        bottom: 3.5rem !important;
+        bottom: 4.5rem !important;
     }
     
     .lightbox-nav {
         width: 44px !important;
         height: 44px !important;
+    }
+    
+    .lightbox-nav.prev {
+        left: 0.75rem !important;
+    }
+    
+    .lightbox-nav.next {
+        right: 0.75rem !important;
     }
     
     .lightbox-close {
@@ -813,21 +855,15 @@
     }
     
     #about > div > div:last-child > div {
-        width: 180px !important;
-        height: 240px !important;
+        width: 200px !important;
     }
     
     .footer {
-        padding: 0.875rem 1rem !important;
-        gap: 1rem !important;
+        padding: 0.75rem 0.75rem !important;
     }
     
     .footer-link {
         font-size: 0.7rem !important;
-    }
-    
-    .social-links {
-        gap: 1rem !important;
     }
 }
 
@@ -837,6 +873,5 @@
     button:active {
         opacity: 0.7 !important;
         transform: scale(0.98) !important;
-        transition: all 0.1s ease !important;
     }
 }
