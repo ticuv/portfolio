@@ -100,7 +100,8 @@
 .lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(10, 10, 10, 0.95);
+    /* CHANGED: Updated to Pure Black with opacity */
+    background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(20px);
     z-index: 2000;
     display: none;
