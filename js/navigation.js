@@ -79,3 +79,24 @@ navLinks.forEach(link => {
         }
     });
 });
+// Back to top button
+const backToTop = document.getElementById('backToTop');
+
+document.querySelectorAll('.section').forEach(section => {
+    section.addEventListener('scroll', () => {
+        if (section.scrollTop > 500) {
+            backToTop.style.opacity = '1';
+            backToTop.style.visibility = 'visible';
+        } else {
+            backToTop.style.opacity = '0';
+            backToTop.style.visibility = 'hidden';
+        }
+    });
+});
+
+backToTop.addEventListener('click', () => {
+    document.querySelector('.section.active').scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
