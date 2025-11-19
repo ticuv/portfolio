@@ -1,3 +1,3 @@
 # portfolio
 Personal design portfolio showcasing posters, 3D art, generative design, and branding work.
-Done with ai and passion.
+Done with ai and passion. I hope you enjoy it.
