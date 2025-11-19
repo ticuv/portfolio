@@ -8,9 +8,10 @@ const contactForm = document.getElementById('contactForm');
 const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
 const messageInput = document.getElementById('message');
+const formStatus = document.getElementById('formStatus');
 
 // Form submission handler
-contactForm.addEventListener('submit', (e) => {
+contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
     let isValid = true;
@@ -49,9 +50,52 @@ contactForm.addEventListener('submit', (e) => {
     }
     
     if (isValid) {
-        // Success - show confirmation
-        alert('Message sent successfully! (This is a demo - connect to your backend)');
-        contactForm.reset();
+        // Disable button during submission
+        const submitBtn = contactForm.querySelector('.submit-btn');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Send to Formspree
+        try {
+            const formData = new FormData(contactForm);
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                formStatus.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
+                formStatus.style.color = '#4ade80';
+                contactForm.reset();
+                
+                // Track form submission in Google Analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'form_submission', {
+                        'event_category': 'Contact',
+                        'event_label': 'Contact Form'
+                    });
+                }
+            } else {
+                formStatus.textContent = '✗ Something went wrong. Please try again or email directly.';
+                formStatus.style.color = '#ef4444';
+            }
+        } catch (error) {
+            formStatus.textContent = '✗ Network error. Please try again or email me directly.';
+            formStatus.style.color = '#ef4444';
+        }
+        
+        // Re-enable button
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        
+        // Clear status after 8 seconds
+        setTimeout(() => {
+            formStatus.textContent = '';
+        }, 8000);
     }
 });
 
