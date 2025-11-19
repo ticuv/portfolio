@@ -413,3 +413,201 @@
         background: rgba(0, 0, 0, 0.98);
     }
 }
+/* ============================================
+   MOBILE-ONLY IMPROVEMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Improve Home Page on Mobile */
+    #home .hero-title {
+        font-size: 2.5rem !important;
+        line-height: 1.1 !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    #home p {
+        font-size: 0.9rem !important;
+    }
+    
+    /* Make marquee text more visible on mobile */
+    .marquee-link {
+        font-size: 3rem !important;
+        padding: 0 1.5rem !important;
+    }
+    
+    /* Improve CTA button spacing */
+    #home a[data-nav="contact"] {
+        margin-top: 2.5rem !important;
+        padding: 0.875rem 2rem !important;
+        font-size: 0.95rem !important;
+    }
+    
+    /* Better About section on mobile */
+    #about h2 {
+        font-size: 2rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    #about p {
+        font-size: 0.95rem !important;
+    }
+    
+    /* Make "What I Do" tags more readable */
+    #about span {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.75rem !important;
+    }
+    
+    /* Improve Contact form on mobile */
+    #contact .hero-title {
+        font-size: 2rem !important;
+    }
+    
+    #contact input,
+    #contact textarea {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+    }
+    
+    /* Privacy section readability */
+    #privacy h2 {
+        font-size: 2rem !important;
+    }
+    
+    #privacy h3 {
+        font-size: 1.1rem !important;
+    }
+    
+    #privacy p {
+        font-size: 0.95rem !important;
+        line-height: 1.7 !important;
+    }
+    
+    /* Back to Home button on mobile */
+    #privacy a[data-nav="home"] {
+        padding: 0.875rem 2rem !important;
+        font-size: 0.95rem !important;
+    }
+    
+    /* Project cards better size on mobile */
+    .project-card {
+        width: 280px !important;
+    }
+    
+    .project-image {
+        height: 380px !important;
+    }
+    
+    /* Footer improvements on mobile */
+    .footer {
+        padding: 1.5rem 1rem !important;
+    }
+    
+    .footer-link {
+        font-size: 0.8rem !important;
+    }
+    
+    .social-link svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+    
+    /* Back to top button mobile positioning */
+    #backToTop {
+        bottom: 1.5rem !important;
+        right: 1.5rem !important;
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    /* Hamburger menu touch target */
+    .hamburger-btn {
+        width: 48px !important;
+        height: 48px !important;
+    }
+    
+    /* Side nav better spacing */
+    .nav-link {
+        font-size: 1.75rem !important;
+        margin-bottom: 1.25rem !important;
+    }
+    
+    /* Lightbox improvements on mobile */
+    .lightbox-content img {
+        max-width: 95vw !important;
+        max-height: 80vh !important;
+    }
+    
+    .lightbox-title {
+        font-size: 0.95rem !important;
+        padding: 0 1rem !important;
+    }
+    
+    .lightbox-nav {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    .lightbox-nav.prev {
+        left: 1rem !important;
+    }
+    
+    .lightbox-nav.next {
+        right: 1rem !important;
+    }
+    
+    /* Scroll hint more visible */
+    .scroll-hint {
+        font-size: 0.8rem !important;
+        bottom: 5rem !important;
+    }
+    
+    /* Improve touch targets */
+    a, button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Prevent text from being too small */
+    body {
+        -webkit-text-size-adjust: 100%;
+    }
+}
+
+/* Ultra-small phones (iPhone SE, etc) */
+@media (max-width: 375px) {
+    #home .hero-title {
+        font-size: 2rem !important;
+    }
+    
+    .marquee-link {
+        font-size: 2.5rem !important;
+    }
+    
+    .project-card {
+        width: 260px !important;
+    }
+    
+    .project-image {
+        height: 350px !important;
+    }
+}
+
+/* Landscape mode on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    #home {
+        padding: 2rem 1rem !important;
+    }
+    
+    #home .hero-title {
+        font-size: 1.75rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .bounce-arrow {
+        margin-top: 0.5rem !important;
+    }
+    
+    .marquee-container {
+        margin-top: 1.5rem !important;
+    }
+}
