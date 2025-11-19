@@ -38,6 +38,9 @@ function showProject(index) {
     lightboxImg.src = project.img;
     lightboxTitle.textContent = project.title;
     lightboxCounter.textContent = `${currentProjectIndex + 1} / ${currentProjects.length}`;
+    
+    // Remove zoom class when changing images
+    lightboxImg.classList.remove('zoomed');
 }
 
 // Open lightbox when clicking a project card
@@ -60,6 +63,14 @@ document.querySelectorAll('.project-card[data-lightbox]').forEach((card, index) 
         
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
+        
+        // Track lightbox open in Google Analytics
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'lightbox_open', {
+                'event_category': 'Engagement',
+                'event_label': currentProjects[currentProjectIndex].title
+            });
+        }
     });
 });
 
@@ -79,6 +90,7 @@ lightboxNext.addEventListener('click', (e) => {
 lightboxClose.addEventListener('click', () => {
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
+    lightboxImg.classList.remove('zoomed');
 });
 
 // Close when clicking background
@@ -86,6 +98,7 @@ lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) {
         lightbox.classList.remove('active');
         document.body.style.overflow = '';
+        lightboxImg.classList.remove('zoomed');
     }
 });
 
@@ -96,9 +109,24 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         lightbox.classList.remove('active');
         document.body.style.overflow = '';
+        lightboxImg.classList.remove('zoomed');
     } else if (e.key === 'ArrowLeft') {
         showProject(currentProjectIndex - 1);
     } else if (e.key === 'ArrowRight') {
         showProject(currentProjectIndex + 1);
+    }
+});
+
+// Image zoom on click
+lightboxImg.addEventListener('click', (e) => {
+    e.stopPropagation();
+    lightboxImg.classList.toggle('zoomed');
+    
+    // Track zoom interaction in Google Analytics
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'image_zoom', {
+            'event_category': 'Engagement',
+            'event_label': lightboxTitle.textContent
+        });
     }
 });
