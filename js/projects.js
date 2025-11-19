@@ -4,7 +4,7 @@
    ========================================== */
 
 // Configuration
-const MARQUEE_ROWS = 3; // Number of marquee rows per section
+const MARQUEE_ROWS = 1; // CHANGED: Set to 1 to show only the first row. Change back to 3 later!
 const ITEMS_PER_ROW = 6; // How many items to show per row
 
 // Load projects from JSON
@@ -15,11 +15,9 @@ async function loadProjects() {
         
         // Initialize each section
         initializeSection('posters', data.posters);
-        
-        // HIDDEN SECTIONS (Uncomment when ready)
-        // initializeSection('3d', data['3d']);
-        // initializeSection('generative', data.generative);
-        // initializeSection('logos', data.logos);
+        initializeSection('3d', data['3d']);
+        initializeSection('generative', data.generative);
+        initializeSection('logos', data.logos);
         
     } catch (error) {
         console.error('Error loading projects:', error);
@@ -37,16 +35,29 @@ function initializeSection(sectionId, projects) {
         existingMarquee.remove();
     }
     
+    const existingContainer = section.querySelector('.multi-marquee-container');
+    if (existingContainer) {
+        existingContainer.remove();
+    }
+    
     // Create container for multiple rows
     const container = document.createElement('div');
     container.className = 'multi-marquee-container';
     container.style.cssText = 'margin-top: 3rem; display: flex; flex-direction: column; gap: 2rem;';
     
     // Distribute projects across rows
+    // If MARQUEE_ROWS is 1, it takes all projects and puts them in one row
     const projectsPerRow = Math.ceil(projects.length / MARQUEE_ROWS);
     
     for (let row = 0; row < MARQUEE_ROWS; row++) {
-        const rowProjects = projects.slice(row * projectsPerRow, (row + 1) * projectsPerRow);
+        // If we only have 1 row, we want to use all projects, not slice them
+        let rowProjects;
+        if (MARQUEE_ROWS === 1) {
+            rowProjects = projects;
+        } else {
+            rowProjects = projects.slice(row * projectsPerRow, (row + 1) * projectsPerRow);
+        }
+
         if (rowProjects.length === 0) continue;
         
         const marqueeRow = createMarqueeRow(rowProjects, row, sectionId);
@@ -65,7 +76,7 @@ function createMarqueeRow(projects, rowIndex, sectionId) {
     const track = document.createElement('div');
     track.className = 'project-marquee-track';
     
-    // Alternate direction for each row
+    // Alternate direction for each row (if you eventually have more than 1)
     const direction = rowIndex % 2 === 0 ? 'normal' : 'reverse';
     
     // Different speeds for visual interest
@@ -81,7 +92,11 @@ function createMarqueeRow(projects, rowIndex, sectionId) {
     `;
     
     // Duplicate projects for seamless loop
-    const allProjects = [...projects, ...projects];
+    // If we don't have enough items to fill the screen, duplicate them more times
+    let allProjects = [...projects, ...projects];
+    if (projects.length < 4) {
+         allProjects = [...allProjects, ...projects, ...projects];
+    }
     
     allProjects.forEach((project, index) => {
         const card = createProjectCard(project, sectionId);
