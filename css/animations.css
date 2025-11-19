@@ -2,23 +2,44 @@
    ANIMATIONS.CSS - All Animations
    ========================================== */
 
-/* Loader Logo Animation - Matches exact header position */
+/* Loader Logo Animation */
 @keyframes slideToCenter {
     0% {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(1);
+        left: -20%;
+        top: 50%;
+        transform: translateY(-50%);
+        /* CHANGED: font-size -> height */
+        height: clamp(3rem, 8vw, 5rem);
     }
-    50% {
+    40% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        /* CHANGED: font-size -> height */
+        height: clamp(3rem, 8vw, 5rem);
     }
-    80% {
+    70% {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        /* CHANGED: font-size -> height */
+        height: clamp(3rem, 8vw, 5rem);
     }
     100% {
         opacity: 1;
-        transform: translate(-50%, calc(-50vh + 3.125rem)) scale(1);
+        left: 50%;
+        
+        /* PLACEMENT: Matches header padding exactly (2rem) */
+        top: 2rem; 
+        
+        /* TRANSFORM: Only center horizontally, remove vertical shift */
+        transform: translateX(-50%);
+        
+        /* SIZE: Matches the static header logo height (2.25rem) */
+        height: 2.25rem; 
     }
 }
 
