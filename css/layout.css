@@ -272,7 +272,7 @@
 }
 
 /* ============================================
-   MOBILE OPTIMIZATIONS - COMPLETE & FINAL
+   MOBILE OPTIMIZATIONS - COMPLETE
    ============================================ */
 
 @media (max-width: 768px) {
@@ -380,29 +380,30 @@
         max-width: 100% !important;
         width: 100% !important;
         height: auto !important;
+        align-items: flex-start !important;
     }
     
-    /* Title - Order 1 */
-    #about h2:first-of-type {
-        order: 1 !important;
+    /* Title first */
+    #about h2 {
         font-size: 1.75rem !important;
         line-height: 1.2 !important;
-        margin-bottom: 2rem !important;
+        margin-bottom: 1.5rem !important;
         width: 100% !important;
+        order: 1 !important;
     }
     
-    /* Photo - Order 2, smaller and centered */
+    /* Photo second - smaller and centered */
     #about > div > div:last-child {
         order: 2 !important;
         width: 100% !important;
-        margin: 0 0 2rem 0 !important;
-        text-align: center !important;
+        margin: 0 0 1.5rem 0 !important;
+        display: flex !important;
+        justify-content: center !important;
     }
     
     #about > div > div:last-child > div {
-        width: 200px !important;
-        height: 267px !important;
-        margin: 0 auto !important;
+        width: 220px !important;
+        aspect-ratio: 3/4 !important;
         border-radius: 12px !important;
         overflow: hidden !important;
     }
@@ -413,7 +414,7 @@
         object-fit: cover !important;
     }
     
-    /* Content - Order 3 */
+    /* Content third */
     #about > div > div:first-child {
         order: 3 !important;
         width: 100% !important;
@@ -432,7 +433,7 @@
         margin-bottom: 0.875rem !important;
     }
     
-    /* Info grid - 2 columns */
+    /* Info grid */
     #about > div > div:first-child > div:nth-of-type(2) {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
@@ -459,7 +460,6 @@
     #about > div > div:first-child > div:nth-of-type(3) {
         padding-top: 1.5rem !important;
         border-top: 1px solid rgba(136, 136, 136, 0.2) !important;
-        margin-top: 1.5rem !important;
     }
     
     #about h3 {
@@ -713,8 +713,7 @@
     }
     
     #about > div > div:last-child > div {
-        width: 180px !important;
-        height: 240px !important;
+        width: 200px !important;
     }
 }
 
