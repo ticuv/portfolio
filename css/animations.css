@@ -6,7 +6,7 @@
 @keyframes slideToCenter {
     0% {
         opacity: 0;
-        transform: translateX(-100vw) translateY(-50%);
+        transform: translate(-150%, -50%);
     }
     40% {
         opacity: 1;
@@ -18,7 +18,7 @@
     }
     100% {
         opacity: 1;
-        transform: translate(-50%, 0) scale(0.45);
+        transform: translate(-50%, -2rem) scale(0.45);
     }
 }
 
