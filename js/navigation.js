@@ -11,13 +11,22 @@ let currentSection = 'home';
 
 // Toggle hamburger menu
 hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
+    const isActive = hamburger.classList.toggle('active');
     sideNav.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isActive);
 });
 
 // Navigate between sections with smooth transitions
 function navigate(target) {
     if (target === currentSection) return;
+    
+    // Track page view in Google Analytics
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'page_view', {
+            'page_title': target,
+            'page_location': window.location.href + '#' + target
+        });
+    }
     
     // Add leaving state to current section
     const currentSectionEl = document.getElementById(currentSection);
@@ -50,6 +59,7 @@ function navigate(target) {
     // Close menu
     hamburger.classList.remove('active');
     sideNav.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
 }
 
 // Add click handlers to all navigation links
@@ -58,5 +68,14 @@ navLinks.forEach(link => {
         e.preventDefault();
         const target = link.getAttribute('data-nav');
         navigate(target);
+    });
+    
+    // Add keyboard support
+    link.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const target = link.getAttribute('data-nav');
+            navigate(target);
+        }
     });
 });
