@@ -3,8 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ticuv — Visual Designer</title>
-    <meta name="description" content="Personal design portfolio showcasing posters, 3D art, generative design, and branding work.">
+    <title>ticuv — Visual Designer | Posters, 3D Art, Generative Design & Branding</title>
+    <meta name="description" content="Multidisciplinary designer creating impactful visuals. Specializing in poster design, 3D art, generative design, and brand identity. Based in Romania.">
+    <meta name="keywords" content="graphic design, poster design, 3D art, generative art, branding, logo design, visual designer, Romania designer">
+    <meta name="author" content="ticuv">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/">
+    <meta property="og:title" content="ticuv — Visual Designer">
+    <meta property="og:description" content="Multidisciplinary designer creating impactful visuals. Posters, 3D Art, Generative Design & Branding.">
+    <meta property="og:image" content="https://yourwebsite.com/ticuv.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourwebsite.com/">
+    <meta property="twitter:title" content="ticuv — Visual Designer">
+    <meta property="twitter:description" content="Multidisciplinary designer creating impactful visuals. Posters, 3D Art, Generative Design & Branding.">
+    <meta property="twitter:image" content="https://yourwebsite.com/ticuv.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,6 +35,15 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/layout.css">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7K503SBY5S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-7K503SBY5S');
+    </script>
 </head>
 <body>
 
@@ -32,21 +60,21 @@
     </header>
 
     <!-- Hamburger Button -->
-    <button class="hamburger-btn" id="hamburger" aria-label="Menu">
+    <button class="hamburger-btn" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
     </button>
 
     <!-- Side Navigation -->
-    <nav class="side-nav" id="sideNav">
-        <a class="nav-link active" data-nav="home">Home</a>
-        <a class="nav-link" data-nav="posters">Posters</a>
-        <a class="nav-link" data-nav="3d">3D Art</a>
-        <a class="nav-link" data-nav="generative">Generative</a>
-        <a class="nav-link" data-nav="logos">Logos</a>
-        <a class="nav-link" data-nav="about">About</a>
-        <a class="nav-link" data-nav="contact">Contact</a>
+    <nav class="side-nav" id="sideNav" role="navigation" aria-label="Main navigation">
+        <a class="nav-link active" data-nav="home" role="button" tabindex="0">Home</a>
+        <a class="nav-link" data-nav="posters" role="button" tabindex="0">Posters</a>
+        <a class="nav-link" data-nav="3d" role="button" tabindex="0">3D Art</a>
+        <a class="nav-link" data-nav="generative" role="button" tabindex="0">Generative</a>
+        <a class="nav-link" data-nav="logos" role="button" tabindex="0">Logos</a>
+        <a class="nav-link" data-nav="about" role="button" tabindex="0">About</a>
+        <a class="nav-link" data-nav="contact" role="button" tabindex="0">Contact</a>
     </nav>
 
     <!-- Footer -->
@@ -211,22 +239,23 @@
                     <a href="mailto:vladticu100@gmail.com" style="color: var(--text-primary); text-decoration: none; border-bottom: 1px solid var(--text-primary); transition: opacity 0.3s ease;">vladticu100@gmail.com</a>
                 </p>
                 
-                <form id="contactForm" style="margin-top: 3rem;">
+                <form id="contactForm" action="https://formspree.io/f/xblwgoly" method="POST" style="margin-top: 3rem;">
                     <div style="margin-bottom: 1.5rem;">
-                        <input type="text" id="name" class="form-input" placeholder="Your Name" required style="width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--text-secondary); border-radius: 4px; color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem;">
+                        <input type="text" name="name" id="name" class="form-input" placeholder="Your Name" required style="width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--text-secondary); border-radius: 4px; color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem;">
                         <p class="form-message" id="nameError"></p>
                     </div>
                     <div style="margin-bottom: 1.5rem;">
-                        <input type="email" id="email" class="form-input" placeholder="Your Email" required style="width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--text-secondary); border-radius: 4px; color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem;">
+                        <input type="email" name="email" id="email" class="form-input" placeholder="Your Email" required style="width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--text-secondary); border-radius: 4px; color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem;">
                         <p class="form-message" id="emailError"></p>
                     </div>
                     <div style="margin-bottom: 1.5rem;">
-                        <textarea id="message" class="form-textarea" placeholder="Your Message" required style="width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--text-secondary); border-radius: 4px; color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem; resize: vertical; min-height: 150px;"></textarea>
+                        <textarea name="message" id="message" class="form-textarea" placeholder="Your Message" required style="width: 100%; padding: 1rem; background: transparent; border: 1px solid var(--text-secondary); border-radius: 4px; color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 1rem; resize: vertical; min-height: 150px;"></textarea>
                         <p class="form-message" id="messageError"></p>
                     </div>
                     <button type="submit" class="submit-btn" style="width: 100%; padding: 1rem; background: var(--text-primary); color: var(--bg-primary); border: none; border-radius: 4px; font-size: 1rem; font-weight: 500; cursor: pointer;">
                         Send Message
                     </button>
+                    <p id="formStatus" style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.875rem;"></p>
                 </form>
             </div>
         </section>
@@ -235,9 +264,9 @@
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightboxClose">×</button>
-        <button class="lightbox-nav prev" id="lightboxPrev">‹</button>
-        <button class="lightbox-nav next" id="lightboxNext">›</button>
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">×</button>
+        <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous image">‹</button>
+        <button class="lightbox-nav next" id="lightboxNext" aria-label="Next image">›</button>
         <div class="lightbox-content">
             <img id="lightboxImg" src="" alt="">
         </div>
