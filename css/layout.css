@@ -368,114 +368,138 @@
         font-size: 0.9rem !important;
     }
     
-    /* ABOUT SECTION - COMPLETE REDESIGN */
+    /* =========================================
+       FIXED ABOUT SECTION (Mobile Only)
+       ========================================= */
     #about {
-        padding: 5rem 1.5rem 7rem !important;
-        overflow-y: auto !important;
+        /* Allow the section to grow naturally so text isn't cut off */
+        height: auto !important;
+        min-height: 100vh !important;
+        padding: 7rem 1.5rem 8rem !important;
+        overflow-y: visible !important;
+        display: block !important;
     }
-    
+
+    /* The main container holding text and image */
     #about > div {
         display: flex !important;
         flex-direction: column !important;
+        gap: 2rem !important; /* Adds space between image and text so they don't overlap */
         max-width: 100% !important;
         width: 100% !important;
         height: auto !important;
-        align-items: flex-start !important;
+        transform: none !important;
     }
-    
-    /* Title first */
-    #about h2 {
-        font-size: 1.75rem !important;
-        line-height: 1.2 !important;
-        margin-bottom: 1.5rem !important;
-        width: 100% !important;
-        order: 1 !important;
-    }
-    
-    /* Photo second - smaller and centered */
+
+    /* 1. IMAGE CONTAINER - Fixes "Misplaced" and "Not Full Frame" */
     #about > div > div:last-child {
-        order: 2 !important;
+        order: 1 !important; /* Puts image at the very top */
         width: 100% !important;
-        margin: 0 0 1.5rem 0 !important;
-        display: flex !important;
-        justify-content: center !important;
+        margin: 0 0 1rem 0 !important;
+        display: block !important;
+        position: static !important;
     }
-    
+
+    /* The Image Wrapper */
     #about > div > div:last-child > div {
-        width: 220px !important;
-        aspect-ratio: 3/4 !important;
+        width: 100% !important; /* Full Frame width */
+        max-width: 100% !important;
+        aspect-ratio: 4/5 !important; /* Nice portrait ratio for mobile */
+        height: auto !important;
         border-radius: 12px !important;
+        margin: 0 !important;
         overflow: hidden !important;
     }
-    
+
+    /* The Image Itself */
     #about > div > div:last-child img {
         width: 100% !important;
         height: 100% !important;
         object-fit: cover !important;
     }
-    
-    /* Content third */
+
+    /* 2. TEXT CONTENT - Fixes hidden objects */
     #about > div > div:first-child {
-        order: 3 !important;
+        order: 2 !important; /* Puts text below the image */
         width: 100% !important;
+        height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
     }
-    
-    /* Bio text */
+
+    /* The Main Title */
+    #about h2 {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 1.5rem !important;
+        width: 100% !important;
+        order: 0 !important;
+    }
+
+    /* The Bio Text (border-left part) */
     #about div[style*="border-left"] {
         padding-left: 1rem !important;
-        margin: 1.5rem 0 !important;
+        margin: 1rem 0 2rem 0 !important;
         border-left: 2px solid var(--text-primary) !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
-    
+
     #about p {
-        font-size: 0.875rem !important;
+        font-size: 0.95rem !important;
         line-height: 1.6 !important;
-        margin-bottom: 0.875rem !important;
+        margin-bottom: 1rem !important;
+        color: var(--text-primary) !important;
     }
-    
-    /* Info grid */
+
+    /* Info Grid (Experience/Services) */
     #about > div > div:first-child > div:nth-of-type(2) {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        gap: 0.75rem !important;
-        margin: 1.5rem 0 !important;
+        gap: 1rem !important;
+        margin: 0 0 2rem 0 !important;
+        width: 100% !important;
     }
-    
+
     #about > div > div:first-child > div:nth-of-type(2) > div {
-        padding: 0.875rem !important;
-        border: 1px solid rgba(136, 136, 136, 0.2) !important;
+        padding: 1rem !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
         border-radius: 8px !important;
     }
-    
+
     #about > div > div:first-child > div:nth-of-type(2) h4 {
-        font-size: 0.625rem !important;
-        margin-bottom: 0.375rem !important;
+        font-size: 0.7rem !important;
+        margin-bottom: 0.5rem !important;
+        opacity: 0.7;
     }
-    
+
     #about > div > div:first-child > div:nth-of-type(2) p {
-        font-size: 0.875rem !important;
+        font-size: 0.9rem !important;
+        margin: 0 !important;
     }
-    
+
     /* What I Do section */
     #about > div > div:first-child > div:nth-of-type(3) {
         padding-top: 1.5rem !important;
         border-top: 1px solid rgba(136, 136, 136, 0.2) !important;
     }
-    
+
     #about h3 {
-        font-size: 0.875rem !important;
+        font-size: 1rem !important;
         margin-bottom: 1rem !important;
     }
-    
+
     #about > div > div:first-child > div:nth-of-type(3) > div {
         display: flex !important;
         flex-wrap: wrap !important;
-        gap: 0.625rem !important;
+        gap: 0.75rem !important;
     }
-    
+
     #about span {
-        padding: 0.5rem 0.875rem !important;
-        font-size: 0.7rem !important;
+        padding: 0.5rem 1rem !important;
+        font-size: 0.75rem !important;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 100px;
     }
     
     /* PROJECT SECTIONS */
@@ -713,7 +737,7 @@
     }
     
     #about > div > div:last-child > div {
-        width: 200px !important;
+        width: 100% !important;
     }
 }
 
