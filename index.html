@@ -414,26 +414,24 @@
         ↑
     </button>
 
-    <script src="js/loader.js"></script>
+   <script src="js/loader.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/projects.js"></script>
     <script src="js/lightbox.js"></script>
     <script src="js/forms.js"></script>
 
-    <!-- Hide only Contact link in footer on home page -->
+    <!-- Hide Contact link ONLY on home page -->
     <script>
         function updateContactLinkVisibility() {
             const activeSection = document.querySelector('.section.active');
             const contactFooterLink = document.querySelector('.footer-link[data-nav="contact"]');
             
-            if (activeSection && activeSection.id === 'home') {
-                // Hide contact link on homepage
-                if (contactFooterLink) {
+            if (contactFooterLink) {
+                if (activeSection && activeSection.id === 'home') {
+                    // Hide ONLY on homepage
                     contactFooterLink.style.display = 'none';
-                }
-            } else {
-                // Show contact link on all other pages
-                if (contactFooterLink) {
+                } else {
+                    // Show on ALL other sections (posters, 3d, generative, logos, about, contact, privacy)
                     contactFooterLink.style.display = 'block';
                 }
             }
@@ -445,7 +443,8 @@
         // Run whenever navigation changes
         document.querySelectorAll('[data-nav]').forEach(link => {
             link.addEventListener('click', () => {
-                setTimeout(updateContactLinkVisibility, 100);
+                // Delay to allow section transition
+                setTimeout(updateContactLinkVisibility, 500);
             });
         });
     </script>
