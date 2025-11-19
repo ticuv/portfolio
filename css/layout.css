@@ -272,7 +272,7 @@
 }
 
 /* ============================================
-   MOBILE OPTIMIZATIONS - COMPLETE
+   MOBILE OPTIMIZATIONS - COMPLETE & FINAL
    ============================================ */
 
 @media (max-width: 768px) {
@@ -368,138 +368,114 @@
         font-size: 0.9rem !important;
     }
     
-    /* =========================================
-       FIXED ABOUT SECTION (Mobile Only)
-       ========================================= */
+    /* ABOUT SECTION - COMPLETE REDESIGN */
     #about {
-        /* Allow the section to grow naturally so text isn't cut off */
-        height: auto !important;
-        min-height: 100vh !important;
-        padding: 7rem 1.5rem 8rem !important;
-        overflow-y: visible !important;
-        display: block !important;
+        padding: 5rem 1.5rem 7rem !important;
+        overflow-y: auto !important;
     }
-
-    /* The main container holding text and image */
+    
     #about > div {
         display: flex !important;
         flex-direction: column !important;
-        gap: 2rem !important; /* Adds space between image and text so they don't overlap */
         max-width: 100% !important;
         width: 100% !important;
         height: auto !important;
-        transform: none !important;
     }
-
-    /* 1. IMAGE CONTAINER - Fixes "Misplaced" and "Not Full Frame" */
+    
+    /* Title - Order 1 */
+    #about h2:first-of-type {
+        order: 1 !important;
+        font-size: 1.75rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 2rem !important;
+        width: 100% !important;
+    }
+    
+    /* Photo - Order 2, smaller and centered */
     #about > div > div:last-child {
-        order: 1 !important; /* Puts image at the very top */
+        order: 2 !important;
         width: 100% !important;
-        margin: 0 0 1rem 0 !important;
-        display: block !important;
-        position: static !important;
+        margin: 0 0 2rem 0 !important;
+        text-align: center !important;
     }
-
-    /* The Image Wrapper */
+    
     #about > div > div:last-child > div {
-        width: 100% !important; /* Full Frame width */
-        max-width: 100% !important;
-        aspect-ratio: 4/5 !important; /* Nice portrait ratio for mobile */
-        height: auto !important;
+        width: 200px !important;
+        height: 267px !important;
+        margin: 0 auto !important;
         border-radius: 12px !important;
-        margin: 0 !important;
         overflow: hidden !important;
     }
-
-    /* The Image Itself */
+    
     #about > div > div:last-child img {
         width: 100% !important;
         height: 100% !important;
         object-fit: cover !important;
     }
-
-    /* 2. TEXT CONTENT - Fixes hidden objects */
+    
+    /* Content - Order 3 */
     #about > div > div:first-child {
-        order: 2 !important; /* Puts text below the image */
+        order: 3 !important;
         width: 100% !important;
-        height: auto !important;
-        display: flex !important;
-        flex-direction: column !important;
     }
-
-    /* The Main Title */
-    #about h2 {
-        font-size: 2rem !important;
-        line-height: 1.2 !important;
-        margin-bottom: 1.5rem !important;
-        width: 100% !important;
-        order: 0 !important;
-    }
-
-    /* The Bio Text (border-left part) */
+    
+    /* Bio text */
     #about div[style*="border-left"] {
         padding-left: 1rem !important;
-        margin: 1rem 0 2rem 0 !important;
+        margin: 1.5rem 0 !important;
         border-left: 2px solid var(--text-primary) !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
     }
-
+    
     #about p {
-        font-size: 0.95rem !important;
+        font-size: 0.875rem !important;
         line-height: 1.6 !important;
-        margin-bottom: 1rem !important;
-        color: var(--text-primary) !important;
+        margin-bottom: 0.875rem !important;
     }
-
-    /* Info Grid (Experience/Services) */
+    
+    /* Info grid - 2 columns */
     #about > div > div:first-child > div:nth-of-type(2) {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        gap: 1rem !important;
-        margin: 0 0 2rem 0 !important;
-        width: 100% !important;
+        gap: 0.75rem !important;
+        margin: 1.5rem 0 !important;
     }
-
+    
     #about > div > div:first-child > div:nth-of-type(2) > div {
-        padding: 1rem !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        padding: 0.875rem !important;
+        border: 1px solid rgba(136, 136, 136, 0.2) !important;
         border-radius: 8px !important;
     }
-
+    
     #about > div > div:first-child > div:nth-of-type(2) h4 {
-        font-size: 0.7rem !important;
-        margin-bottom: 0.5rem !important;
-        opacity: 0.7;
+        font-size: 0.625rem !important;
+        margin-bottom: 0.375rem !important;
     }
-
+    
     #about > div > div:first-child > div:nth-of-type(2) p {
-        font-size: 0.9rem !important;
-        margin: 0 !important;
+        font-size: 0.875rem !important;
     }
-
+    
     /* What I Do section */
     #about > div > div:first-child > div:nth-of-type(3) {
         padding-top: 1.5rem !important;
         border-top: 1px solid rgba(136, 136, 136, 0.2) !important;
+        margin-top: 1.5rem !important;
     }
-
+    
     #about h3 {
-        font-size: 1rem !important;
+        font-size: 0.875rem !important;
         margin-bottom: 1rem !important;
     }
-
+    
     #about > div > div:first-child > div:nth-of-type(3) > div {
         display: flex !important;
         flex-wrap: wrap !important;
-        gap: 0.75rem !important;
+        gap: 0.625rem !important;
     }
-
+    
     #about span {
-        padding: 0.5rem 1rem !important;
-        font-size: 0.75rem !important;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 100px;
+        padding: 0.5rem 0.875rem !important;
+        font-size: 0.7rem !important;
     }
     
     /* PROJECT SECTIONS */
@@ -737,7 +713,8 @@
     }
     
     #about > div > div:last-child > div {
-        width: 100% !important;
+        width: 180px !important;
+        height: 240px !important;
     }
 }
 
