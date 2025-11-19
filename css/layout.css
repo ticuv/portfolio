@@ -659,12 +659,7 @@
     #privacy a[data-nav="home"] {
         padding: 0.875rem 2rem !important;
         font-size: 0.9rem !important;
-    }
-     /* Hide scroll hint or move it higher */
-    .scroll-hint {
-        display: none !important;
-    }
-    
+     }
     /* Project cards */
     .project-card {
         width: 240px !important;
