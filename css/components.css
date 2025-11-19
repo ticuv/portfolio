@@ -16,19 +16,14 @@
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* Removed font-size since it doesn't affect the image directly */
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
     transition: opacity 0.3s ease;
     cursor: pointer;
     opacity: 0;
     animation: logoFadeIn 0.4s ease 2s forwards;
-}
-
-.logo img {
-    height: 2.25rem;
-    width: auto;
-    object-fit: contain;
 }
 
 .logo:hover {
@@ -196,14 +191,18 @@
 
 .loader-logo {
     position: fixed;
-    left: 50%;
-    top: 50%;
-    height: 2.25rem;
-    width: auto;
-    object-fit: contain;
+    /* CHANGED: Replaced font-size with height */
+    height: clamp(3rem, 8vw, 5rem);
+    width: auto; /* Ensures aspect ratio is kept */
+    
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
     opacity: 0;
-    will-change: transform, opacity;
-    animation: slideToCenter 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    left: -20%;
+    top: 50%;
+    transform: translateY(-50%);
+    animation: slideToCenter 1.5s ease forwards;
 }
 
 /* Bounce Arrow */
