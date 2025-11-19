@@ -2,23 +2,27 @@
    ANIMATIONS.CSS - All Animations (Optimized)
    ========================================== */
 
-/* Loader Logo Animation - Optimized for smooth performance */
+/* Loader Logo Animation - Ends exactly where header logo sits */
 @keyframes slideToCenter {
     0% {
         opacity: 0;
-        transform: translate(-150%, -50%);
+        top: 50%;
+        transform: translate(-150%, -50%) scale(1);
     }
     40% {
         opacity: 1;
+        top: 50%;
         transform: translate(-50%, -50%) scale(1);
     }
     70% {
         opacity: 1;
+        top: 50%;
         transform: translate(-50%, -50%) scale(1);
     }
     100% {
         opacity: 1;
-        transform: translate(-50%, calc(-50vh + 2rem)) scale(0.45);
+        top: 2rem;
+        transform: translate(-50%, 0) scale(0.45);
     }
 }
 
