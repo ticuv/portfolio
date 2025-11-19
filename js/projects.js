@@ -15,9 +15,11 @@ async function loadProjects() {
         
         // Initialize each section
         initializeSection('posters', data.posters);
-        initializeSection('3d', data['3d']);
-        initializeSection('generative', data.generative);
-        initializeSection('logos', data.logos);
+        
+        // HIDDEN SECTIONS (Uncomment when ready)
+        // initializeSection('3d', data['3d']);
+        // initializeSection('generative', data.generative);
+        // initializeSection('logos', data.logos);
         
     } catch (error) {
         console.error('Error loading projects:', error);
@@ -177,7 +179,7 @@ function createProjectCard(project, sectionId) {
         opacity: 0;
         transition: opacity 0.3s ease;
         pointer-events: none;
-        background: rgba(10, 10, 10, 0.8);
+        background: rgba(0, 0, 0, 0.8);
         padding: 0.75rem 1.5rem;
         border-radius: 50px;
         backdrop-filter: blur(10px);
