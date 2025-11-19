@@ -16,7 +16,7 @@
 }
 
 .logo {
-    /* Removed font-size since it doesn't affect the image directly */
+    /* Animation Fix: Removed font-size as it doesn't affect images */
     font-weight: 600;
     letter-spacing: 0.05em;
     color: var(--text-primary);
@@ -191,9 +191,9 @@
 
 .loader-logo {
     position: fixed;
-    /* CHANGED: Replaced font-size with height */
+    /* Animation Fix: Using height instead of font-size for image scaling */
     height: clamp(3rem, 8vw, 5rem);
-    width: auto; /* Ensures aspect ratio is kept */
+    width: auto; /* Ensures aspect ratio is preserved */
     
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -251,7 +251,10 @@
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
-    background: rgba(10, 10, 10, 0.8);
+    
+    /* CHANGED: Updated to Pure Black with opacity */
+    background: rgba(0, 0, 0, 0.8);
+    
     padding: 0.75rem 1.5rem;
     border-radius: 50px;
     backdrop-filter: blur(10px);
