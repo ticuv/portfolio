@@ -2,22 +2,23 @@
    ANIMATIONS.CSS - All Animations
    ========================================== */
 
-/* Loader Logo Animation - Simple Pop & Move */
+/* Loader Logo Animation - Matches exact header position */
 @keyframes slideToCenter {
     0% {
         opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
     }
-    30% {
+    50% {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
     }
-    70% {
+    80% {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
     }
     100% {
         opacity: 1;
-        transform: translate(-50%, calc(-50vh + 3rem)) scale(0.45);
+        transform: translate(-50%, calc(-50vh + 3.125rem)) scale(1);
     }
 }
 
