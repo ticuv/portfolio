@@ -196,14 +196,14 @@
 
 .loader-logo {
     position: fixed;
-    opacity: 0;
-    left: -20%;
+    left: 50%;
     top: 50%;
-    transform: translateY(-50%);
-    animation: slideToCenter 1.5s ease forwards;
     height: clamp(3rem, 8vw, 5rem);
     width: auto;
     object-fit: contain;
+    opacity: 0;
+    will-change: transform, opacity;
+    animation: slideToCenter 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* Bounce Arrow */
