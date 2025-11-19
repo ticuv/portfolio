@@ -1,40 +1,24 @@
 /* ==========================================
-   ANIMATIONS.CSS - All Animations
+   ANIMATIONS.CSS - All Animations (Optimized)
    ========================================== */
 
-/* Loader Logo Animation - Updated for image logo */
+/* Loader Logo Animation - Optimized for smooth performance */
 @keyframes slideToCenter {
     0% {
         opacity: 0;
-        left: -20%;
-        top: 50%;
-        transform: translateY(-50%);
-        height: clamp(3rem, 8vw, 5rem);
-        width: auto;
+        transform: translateX(-100vw) translateY(-50%);
     }
     40% {
         opacity: 1;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        height: clamp(3rem, 8vw, 5rem);
-        width: auto;
+        transform: translate(-50%, -50%) scale(1);
     }
     70% {
         opacity: 1;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        height: clamp(3rem, 8vw, 5rem);
-        width: auto;
+        transform: translate(-50%, -50%) scale(1);
     }
     100% {
         opacity: 1;
-        left: 50%;
-        top: 2rem;
-        transform: translateX(-50%);
-        height: 2.25rem;
-        width: auto;
+        transform: translate(-50%, 0) scale(0.45);
     }
 }
 
