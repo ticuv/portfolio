@@ -414,37 +414,60 @@
         ↑
     </button>
 
-   <script src="js/loader.js"></script>
+  <script src="js/loader.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/projects.js"></script>
     <script src="js/lightbox.js"></script>
     <script src="js/forms.js"></script>
 
-    <!-- Hide Contact link ONLY on home page -->
+    <!-- Smart Footer Links - Hide current section link -->
     <script>
-        function updateContactLinkVisibility() {
+        function updateFooterLinks() {
             const activeSection = document.querySelector('.section.active');
+            const aboutFooterLink = document.querySelector('.footer-link[data-nav="about"]');
             const contactFooterLink = document.querySelector('.footer-link[data-nav="contact"]');
+            const privacyFooterLink = document.querySelector('.footer-link[data-nav="privacy"]');
             
-            if (contactFooterLink) {
-                if (activeSection && activeSection.id === 'home') {
-                    // Hide ONLY on homepage
-                    contactFooterLink.style.display = 'none';
-                } else {
-                    // Show on ALL other sections (posters, 3d, generative, logos, about, contact, privacy)
-                    contactFooterLink.style.display = 'block';
+            if (activeSection) {
+                const currentSection = activeSection.id;
+                
+                // Handle About link
+                if (aboutFooterLink) {
+                    if (currentSection === 'about') {
+                        aboutFooterLink.style.display = 'none';
+                    } else {
+                        aboutFooterLink.style.display = 'block';
+                    }
+                }
+                
+                // Handle Contact link
+                if (contactFooterLink) {
+                    if (currentSection === 'home' || currentSection === 'contact') {
+                        contactFooterLink.style.display = 'none';
+                    } else {
+                        contactFooterLink.style.display = 'block';
+                    }
+                }
+                
+                // Handle Privacy link
+                if (privacyFooterLink) {
+                    if (currentSection === 'privacy') {
+                        privacyFooterLink.style.display = 'none';
+                    } else {
+                        privacyFooterLink.style.display = 'block';
+                    }
                 }
             }
         }
 
         // Run on page load
-        updateContactLinkVisibility();
+        updateFooterLinks();
 
         // Run whenever navigation changes
         document.querySelectorAll('[data-nav]').forEach(link => {
             link.addEventListener('click', () => {
                 // Delay to allow section transition
-                setTimeout(updateContactLinkVisibility, 500);
+                setTimeout(updateFooterLinks, 500);
             });
         });
     </script>
