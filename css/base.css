@@ -5,11 +5,15 @@
 
 /* CSS Variables - Change these to customize your site */
 :root {
-    --bg-primary: #0a0a0a;      /* Main background color */
-    --bg-secondary: #111111;     /* Secondary background */
-    --text-primary: #f5f5f5;     /* Main text color */
-    --text-secondary: #888888;   /* Secondary text color */
-    --accent: #f5f5f5;          /* Accent color */
+    /* CHANGED: Updated to True Black */
+    --bg-primary: #000000;      
+    
+    /* Secondary background (kept slightly lighter for contrast) */
+    --bg-secondary: #111111;     
+    
+    --text-primary: #f5f5f5;     
+    --text-secondary: #888888;   
+    --accent: #f5f5f5;          
 }
 
 /* Reset & Base Styles */
