@@ -1,13 +1,13 @@
 /* ==========================================
-   ANIMATIONS.CSS - All Animations (Optimized)
+   ANIMATIONS.CSS - All Animations
    ========================================== */
 
-/* Loader Logo Animation - Ends exactly where header logo sits */
+/* Loader Logo Animation - Simple Pop & Move */
 @keyframes slideToCenter {
     0% {
         opacity: 0;
         top: 50%;
-        transform: translate(-150%, -50%) scale(1);
+        transform: translate(-50%, -50%) scale(0.8);
     }
     40% {
         opacity: 1;
