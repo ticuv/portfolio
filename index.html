@@ -131,12 +131,14 @@
         <a class="nav-link" data-nav="logos" role="button" tabindex="0">Logos</a>
         <a class="nav-link" data-nav="about" role="button" tabindex="0">About</a>
         <a class="nav-link" data-nav="contact" role="button" tabindex="0">Contact</a>
+        <a class="nav-link" data-nav="privacy" role="button" tabindex="0">Privacy</a>
     </nav>
 
     <footer class="footer">
         <div class="footer-links">
             <a class="footer-link" data-nav="about">About</a>
             <a class="footer-link" data-nav="contact">Contact</a>
+            <a class="footer-link" data-nav="privacy">Privacy</a>
         </div>
         <div class="footer-divider"></div>
         <div class="social-links">
@@ -183,11 +185,17 @@
             <p>Țicu Vlad is an emerging designer from Romania, offering affordable graphic design services, professional logo design, startup branding, small business logo design, and brand refresh services. As an independent creative with agency-quality standards, ticuv provides design consultation, visual storytelling, and conceptual design for clients worldwide.</p>
         </article>
 
+        <!-- HOME SECTION - IMPROVED -->
         <section id="home" class="section active" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0;">
-            <div style="text-align: center;">
-                <h1 class="hero-title">Clarity in Form.</h1>
-                <h2 class="hero-subtitle">Visual Designer • 3D Art • Branding</h2>
-                <div class="bounce-arrow" style="margin-top: 1rem;">
+            <div style="text-align: center; max-width: 900px; padding: 0 2rem;">
+                <h1 class="hero-title" style="margin-bottom: 1rem;">Clarity in Form.</h1>
+                <h2 class="hero-subtitle" style="font-size: 1.25rem; line-height: 1.5; margin-bottom: 0.5rem;">
+                    Visual Designer crafting bold <strong>Posters</strong>, immersive <strong>3D Art</strong>, algorithmic <strong>Generative Design</strong>, and memorable <strong>Brand Identities</strong>
+                </h2>
+                <p style="color: var(--text-secondary); font-size: 1rem; margin-top: 1.5rem; opacity: 0.8;">
+                    Click any category below to explore the work
+                </p>
+                <div class="bounce-arrow" style="margin-top: 2rem;">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="12" y1="5" x2="12" y2="19"></line>
                         <polyline points="19 12 12 19 5 12"></polyline>
@@ -211,6 +219,11 @@
                     </div>
                 </div>
             </div>
+
+            <!-- CTA Button -->
+            <a data-nav="contact" style="display: inline-block; margin-top: 4rem; padding: 1rem 2.5rem; background: var(--text-primary); color: var(--bg-primary); border-radius: 4px; font-weight: 500; transition: all 0.3s ease; text-decoration: none; cursor: pointer;">
+                Let's Work Together
+            </a>
         </section>
 
         <section id="posters" class="section">
@@ -242,26 +255,16 @@
                         </h2>
                         
                         <div style="border-left: 2px solid var(--text-primary); padding-left: 1.5rem; margin: 2rem 0;">
-
-    <p style="font-size: 1.125rem; line-height: 1.6; color: var(--text-primary); margin-bottom: 1rem; font-weight: 400;">
-
-        Hi, I'm <strong>Țicu Vlad</strong>—known as <strong>ticuv</strong>. At 24, design isn't just a hobby for me, it's the passion that fuels my everyday life.
-
-    </p>
-
-    <p style="font-size: 1rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 1rem;">
-
-        I create <strong>poster designs</strong>, <strong>3D art</strong>, <strong>generative visuals</strong>, and <strong>brand identities</strong>. With a solid foundation in photography since 2022, I bring a unique perspective to every project.
-
-    </p>
-
-    <p style="font-size: 1rem; line-height: 1.6; color: var(--text-secondary);">
-
-        I believe great design comes from balancing discipline with creative freedom. Whether you need a bold poster, striking 3D visuals, or a complete brand refresh. I'm here to help bring your vision to life.
-
-    </p>
-
-</div>
+                            <p style="font-size: 1.125rem; line-height: 1.6; color: var(--text-primary); margin-bottom: 1rem; font-weight: 400;">
+                                Hi, I'm <strong>Țicu Vlad</strong>—known as <strong>ticuv</strong>. At 24, design isn't just a hobby for me, it's the passion that fuels my everyday life.
+                            </p>
+                            <p style="font-size: 1rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 1rem;">
+                                Based in <strong>Iași, Romania</strong>, I create <strong>poster designs</strong>, <strong>3D art</strong>, <strong>generative visuals</strong>, and <strong>brand identities</strong>. With a solid foundation in photography since 2022, I bring a unique perspective to every project.
+                            </p>
+                            <p style="font-size: 1rem; line-height: 1.6; color: var(--text-secondary);">
+                                I believe great design comes from balancing discipline with creative freedom. Whether you need a bold poster, striking 3D visuals, or a complete brand refresh—I'm here to help bring your vision to life.
+                            </p>
+                        </div>
                         
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin: 2.5rem 0;">
                             <div style="padding: 1.25rem; border: 1px solid rgba(136, 136, 136, 0.2); border-radius: 8px; transition: border-color 0.3s ease;">
@@ -339,6 +342,56 @@
             </div>
         </section>
 
+        <!-- PRIVACY SECTION -->
+        <section id="privacy" class="section">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 class="hero-title">Privacy Policy</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 3rem; font-size: 0.875rem;">Last updated: November 19, 2024</p>
+                
+                <div style="margin-bottom: 2.5rem;">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-primary);">Information Collection</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                        When you contact me through the form, I collect your name, email address, and message content solely to respond to your inquiry.
+                    </p>
+                </div>
+                
+                <div style="margin-bottom: 2.5rem;">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-primary);">Data Usage</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                        Your information is used exclusively to respond to your messages and is never shared with third parties, sold, or used for marketing purposes.
+                    </p>
+                </div>
+                
+                <div style="margin-bottom: 2.5rem;">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-primary);">Analytics</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                        This site uses Google Analytics to understand visitor behavior and improve user experience. No personally identifiable information is collected through analytics.
+                    </p>
+                </div>
+                
+                <div style="margin-bottom: 2.5rem;">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-primary);">Cookies</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                        This website uses essential cookies for Google Analytics only. No tracking or advertising cookies are used.
+                    </p>
+                </div>
+                
+                <div style="margin-bottom: 2.5rem;">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-primary);">Your Rights</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                        You have the right to request deletion of any personal information I have collected. Contact me at <a href="mailto:vladticu100@gmail.com" style="color: var(--text-primary); text-decoration: none; border-bottom: 1px solid var(--text-primary);">vladticu100@gmail.com</a> to exercise this right.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 style="font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-primary);">Contact</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">
+                        For questions about this privacy policy, contact: <a href="mailto:vladticu100@gmail.com" style="color: var(--text-primary); text-decoration: none; border-bottom: 1px solid var(--text-primary);">vladticu100@gmail.com</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <div class="lightbox" id="lightbox">
@@ -351,6 +404,11 @@
         <p class="lightbox-title" id="lightboxTitle"></p>
         <p class="lightbox-counter" id="lightboxCounter"></p>
     </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" style="position: fixed; bottom: 2rem; right: 2rem; width: 50px; height: 50px; background: rgba(245, 245, 245, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(245, 245, 245, 0.2); border-radius: 50%; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 999; display: flex; align-items: center; justify-content: center; border: none;" aria-label="Back to top">
+        ↑
+    </button>
 
     <script src="js/loader.js"></script>
     <script src="js/navigation.js"></script>
