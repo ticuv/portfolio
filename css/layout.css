@@ -100,7 +100,6 @@
 .lightbox {
     position: fixed;
     inset: 0;
-    /* CHANGED: Updated to Pure Black with opacity */
     background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(20px);
     z-index: 2000;
@@ -246,88 +245,6 @@
     margin: 1rem auto 0;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .section {
-        padding: 6rem 2rem 6rem;
-    }
-    
-    .marquee-link {
-        padding: 0 2rem;
-    }
-    
-    .footer {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .footer-divider {
-        width: 100%;
-        height: 1px;
-    }
-    
-    .lightbox-nav {
-        width: 50px;
-        height: 50px;
-    }
-    
-    .lightbox-nav.prev {
-        left: 1rem;
-    }
-    
-    .lightbox-nav.next {
-        right: 1rem;
-    }
-    
-    .project-card {
-        width: 300px;
-    }
-    
-    .project-marquee-track {
-        animation: marquee 25s linear infinite;
-    }
-    
-    .scroll-hint {
-        bottom: 5rem;
-        font-size: 0.75rem;
-    }
-    
-    /* About section mobile */
-    #about > div > div {
-        grid-template-columns: 1fr !important;
-        gap: 3rem !important;
-        min-height: auto !important;
-    }
-    
-    #about > div > div > div:first-child {
-        padding-right: 0 !important;
-    }
-    
-    #about > div > div > div:first-child > div:nth-of-type(2) {
-        grid-template-columns: 1fr !important;
-    }
-    
-    /* Lightbox content on mobile */
-    .lightbox-content {
-        max-width: 95vw;
-        max-height: 85vh;
-    }
-    
-    .lightbox-content img.zoomed {
-        transform: scale(2);
-    }
-    
-    .lightbox-title {
-        bottom: 2rem;
-        font-size: 1rem;
-        padding: 0 1rem;
-    }
-    
-    .lightbox-counter {
-        bottom: 0.75rem;
-    }
-}
-
 /* Tablet optimizations */
 @media (max-width: 1024px) and (min-width: 769px) {
     .section {
@@ -407,14 +324,15 @@
     }
 }
 
-/* Dark mode optimizations (if browser prefers dark) */
+/* Dark mode optimizations */
 @media (prefers-color-scheme: dark) {
     .lightbox {
         background: rgba(0, 0, 0, 0.98);
     }
 }
+
 /* ============================================
-   MOBILE-ONLY IMPROVEMENTS - FINAL FIX
+   MOBILE-ONLY IMPROVEMENTS
    ============================================ */
 
 @media (max-width: 768px) {
@@ -507,7 +425,7 @@
         font-size: 0.9rem !important;
     }
     
-   /* Fix About section - make it scrollable with proper spacing */
+    /* Fix About section */
     #about {
         padding: 5rem 1.5rem 3rem !important;
     }
@@ -533,7 +451,7 @@
         margin-bottom: 2rem !important;
     }
     
-    /* About info grid - make it 2 columns on mobile */
+    /* About info grid */
     #about > div > div:first-child > div:nth-of-type(2) {
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
@@ -566,7 +484,7 @@
         margin: 0 auto !important;
     }
     
-    /* Make "What I Do" tags smaller */
+    /* What I Do tags */
     #about span {
         padding: 0.5rem 0.875rem !important;
         font-size: 0.7rem !important;
@@ -576,7 +494,7 @@
         font-size: 0.875rem !important;
         margin-bottom: 1rem !important;
     }
-   /* Hide scroll hint or move it higher */
+    
     .scroll-hint {
         display: none !important;
     }
@@ -597,7 +515,7 @@
         background: var(--bg-primary) !important;
         z-index: 2 !important;
     }
-   
+    
     /* CONTACT SECTION */
     #contact {
         padding: 5rem 1.5rem 7rem !important;
@@ -680,8 +598,9 @@
     #privacy a[data-nav="home"] {
         padding: 0.875rem 2rem !important;
         font-size: 0.9rem !important;
-     }
-   
+    }
+}
+
 /* ============================================
    FOOTER FINAL FIX - Mobile Only
    ============================================ */
