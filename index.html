@@ -256,7 +256,7 @@
                                 Hi, I'm <strong>Țicu Vlad</strong>—known as <strong>ticuv</strong>. At 24, design isn't just a hobby for me, it's the passion that fuels my everyday life.
                             </p>
                             <p style="font-size: 1rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 1rem;">
-                                Based in <strong>Iași, Romania</strong>, I create <strong>poster designs</strong>, <strong>3D art</strong>, <strong>generative visuals</strong>, and <strong>brand identities</strong>. With a solid foundation in photography since 2022, I bring a unique perspective to every project.
+                                I create <strong>poster designs</strong>, <strong>3D art</strong>, <strong>generative visuals</strong>, and <strong>brand identities</strong>. With a solid foundation in photography since 2022, I bring a unique perspective to every project.
                             </p>
                             <p style="font-size: 1rem; line-height: 1.6; color: var(--text-secondary);">
                                 I believe great design comes from balancing discipline with creative freedom. Whether you need a bold poster, striking 3D visuals, or a complete brand refresh—I'm here to help bring your vision to life.
@@ -420,27 +420,32 @@
     <script src="js/lightbox.js"></script>
     <script src="js/forms.js"></script>
 
-    <!-- Hide Footer on Home Page -->
+    <!-- Hide only Contact link in footer on home page -->
     <script>
-        // Hide footer on home page, show on all other sections
-        function updateFooterVisibility() {
-            const mainFooter = document.getElementById('mainFooter');
+        function updateContactLinkVisibility() {
             const activeSection = document.querySelector('.section.active');
+            const contactFooterLink = document.querySelector('.footer-link[data-nav="contact"]');
             
             if (activeSection && activeSection.id === 'home') {
-                mainFooter.style.display = 'none';
+                // Hide contact link on homepage
+                if (contactFooterLink) {
+                    contactFooterLink.style.display = 'none';
+                }
             } else {
-                mainFooter.style.display = 'flex';
+                // Show contact link on all other pages
+                if (contactFooterLink) {
+                    contactFooterLink.style.display = 'block';
+                }
             }
         }
 
         // Run on page load
-        updateFooterVisibility();
+        updateContactLinkVisibility();
 
         // Run whenever navigation changes
         document.querySelectorAll('[data-nav]').forEach(link => {
             link.addEventListener('click', () => {
-                setTimeout(updateFooterVisibility, 100);
+                setTimeout(updateContactLinkVisibility, 100);
             });
         });
     </script>
