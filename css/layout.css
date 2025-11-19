@@ -414,192 +414,382 @@
     }
 }
 /* ============================================
-   MOBILE-ONLY IMPROVEMENTS
+   MOBILE-ONLY IMPROVEMENTS - FIXED VERSION
    ============================================ */
 
 @media (max-width: 768px) {
+    /* Fix header logo size */
+    .header .logo img {
+        height: 1.75rem !important;
+        width: auto !important;
+    }
+    
+    /* Prevent logo from overlapping content */
+    .header {
+        padding: 1rem !important;
+        z-index: 1000 !important;
+    }
+    
+    /* Fix hamburger positioning */
+    .hamburger-btn {
+        width: 44px !important;
+        height: 44px !important;
+        top: 1rem !important;
+        right: 1rem !important;
+    }
+    
     /* Improve Home Page on Mobile */
+    #home {
+        padding: 6rem 1.5rem 3rem !important;
+    }
+    
     #home .hero-title {
-        font-size: 2.5rem !important;
+        font-size: 2.25rem !important;
         line-height: 1.1 !important;
         margin-bottom: 1rem !important;
     }
     
     #home p {
-        font-size: 0.9rem !important;
+        font-size: 0.875rem !important;
+        margin-top: 1rem !important;
     }
     
-    /* Make marquee text more visible on mobile */
+    /* Make marquee text smaller and more visible on mobile */
     .marquee-link {
-        font-size: 3rem !important;
-        padding: 0 1.5rem !important;
+        font-size: 2.5rem !important;
+        padding: 0 1.25rem !important;
     }
     
-    /* Improve CTA button spacing */
+    .marquee-container {
+        margin-top: 2rem !important;
+    }
+    
+    /* Improve CTA button */
     #home a[data-nav="contact"] {
-        margin-top: 2.5rem !important;
-        padding: 0.875rem 2rem !important;
-        font-size: 0.95rem !important;
+        margin-top: 2rem !important;
+        padding: 0.75rem 1.75rem !important;
+        font-size: 0.875rem !important;
     }
     
-    /* Better About section on mobile */
+    /* Fix About section - make it scrollable with proper spacing */
+    #about {
+        padding: 5rem 1.5rem 3rem !important;
+    }
+    
+    #about > div {
+        display: block !important;
+        max-width: 100% !important;
+    }
+    
     #about h2 {
-        font-size: 2rem !important;
+        font-size: 1.75rem !important;
         margin-bottom: 1.5rem !important;
+        line-height: 1.2 !important;
     }
     
     #about p {
-        font-size: 0.95rem !important;
+        font-size: 0.875rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 0.875rem !important;
     }
     
-    /* Make "What I Do" tags more readable */
+    #about > div > div:first-child {
+        margin-bottom: 2rem !important;
+    }
+    
+    /* About info grid - make it 2 columns on mobile */
+    #about > div > div:first-child > div:nth-of-type(2) {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.875rem !important;
+        margin: 2rem 0 !important;
+    }
+    
+    #about > div > div:first-child > div:nth-of-type(2) > div {
+        padding: 0.875rem !important;
+    }
+    
+    #about > div > div:first-child > div:nth-of-type(2) h4 {
+        font-size: 0.65rem !important;
+        margin-bottom: 0.375rem !important;
+    }
+    
+    #about > div > div:first-child > div:nth-of-type(2) p {
+        font-size: 0.875rem !important;
+    }
+    
+    /* About image container */
+    #about > div > div:last-child {
+        margin-top: 2rem !important;
+        max-width: 100% !important;
+    }
+    
+    #about > div > div:last-child > div {
+        width: 100% !important;
+        max-width: 400px !important;
+        margin: 0 auto !important;
+    }
+    
+    /* Make "What I Do" tags smaller */
     #about span {
-        padding: 0.5rem 1rem !important;
-        font-size: 0.75rem !important;
+        padding: 0.5rem 0.875rem !important;
+        font-size: 0.7rem !important;
     }
     
-    /* Improve Contact form on mobile */
+    #about h3 {
+        font-size: 0.875rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Fix Contact section */
+    #contact {
+        padding: 5rem 1.5rem 3rem !important;
+    }
+    
     #contact .hero-title {
-        font-size: 2rem !important;
+        font-size: 1.75rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+    
+    #contact .hero-subtitle {
+        font-size: 0.875rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    #contact > div {
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+    
+    #contact p {
+        font-size: 0.875rem !important;
+        margin-bottom: 1.5rem !important;
     }
     
     #contact input,
     #contact textarea {
         font-size: 16px !important; /* Prevents zoom on iOS */
+        padding: 0.875rem !important;
     }
     
-    /* Privacy section readability */
+    #contact textarea {
+        min-height: 120px !important;
+    }
+    
+    #contact button {
+        padding: 0.875rem !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* Fix Privacy section */
+    #privacy {
+        padding: 5rem 1.5rem 3rem !important;
+    }
+    
+    #privacy > div {
+        max-width: 100% !important;
+    }
+    
     #privacy h2 {
-        font-size: 2rem !important;
+        font-size: 1.75rem !important;
+        margin-bottom: 0.75rem !important;
     }
     
     #privacy h3 {
-        font-size: 1.1rem !important;
+        font-size: 1rem !important;
+        margin-bottom: 0.875rem !important;
     }
     
     #privacy p {
-        font-size: 0.95rem !important;
-        line-height: 1.7 !important;
+        font-size: 0.875rem !important;
+        line-height: 1.6 !important;
+        margin-bottom: 1.25rem !important;
+    }
+    
+    #privacy > div > div {
+        margin-bottom: 2rem !important;
     }
     
     /* Back to Home button on mobile */
     #privacy a[data-nav="home"] {
-        padding: 0.875rem 2rem !important;
-        font-size: 0.95rem !important;
+        padding: 0.75rem 1.75rem !important;
+        font-size: 0.875rem !important;
     }
     
-    /* Project cards better size on mobile */
+    /* Project sections titles */
+    #posters h2,
+    #3d h2,
+    #generative h2,
+    #logos h2 {
+        font-size: 1.75rem !important;
+        padding: 5rem 1.5rem 1rem !important;
+    }
+    
+    /* Make project cards SMALLER on mobile */
     .project-card {
-        width: 280px !important;
+        width: 240px !important;
+        margin: 0 0.75rem !important;
     }
     
     .project-image {
-        height: 380px !important;
+        height: 320px !important;
     }
     
-    /* Footer improvements on mobile */
+    .project-title {
+        font-size: 0.875rem !important;
+        padding: 0.75rem !important;
+    }
+    
+    /* Footer improvements - FIX OVERLAPPING */
     .footer {
-        padding: 1.5rem 1rem !important;
+        padding: 1.25rem 1rem !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 100 !important;
+    }
+    
+    .footer-links {
+        display: flex !important;
+        gap: 1.5rem !important;
+        justify-content: center !important;
     }
     
     .footer-link {
-        font-size: 0.8rem !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .footer-divider {
+        display: none !important;
+    }
+    
+    .social-links {
+        display: flex !important;
+        gap: 1.25rem !important;
+        justify-content: center !important;
     }
     
     .social-link svg {
-        width: 18px !important;
-        height: 18px !important;
+        width: 16px !important;
+        height: 16px !important;
+    }
+    
+    /* Scroll hint smaller */
+    .scroll-hint {
+        font-size: 0.75rem !important;
+        bottom: 6rem !important;
     }
     
     /* Back to top button mobile positioning */
     #backToTop {
-        bottom: 1.5rem !important;
-        right: 1.5rem !important;
-        width: 45px !important;
-        height: 45px !important;
+        bottom: 5.5rem !important;
+        right: 1rem !important;
+        width: 42px !important;
+        height: 42px !important;
+        font-size: 1.25rem !important;
     }
     
-    /* Hamburger menu touch target */
-    .hamburger-btn {
-        width: 48px !important;
-        height: 48px !important;
-    }
-    
-    /* Side nav better spacing */
+    /* Side nav improvements */
     .nav-link {
-        font-size: 1.75rem !important;
-        margin-bottom: 1.25rem !important;
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
     }
     
     /* Lightbox improvements on mobile */
     .lightbox-content img {
-        max-width: 95vw !important;
-        max-height: 80vh !important;
+        max-width: 92vw !important;
+        max-height: 75vh !important;
     }
     
     .lightbox-title {
-        font-size: 0.95rem !important;
+        font-size: 0.875rem !important;
         padding: 0 1rem !important;
+        bottom: 6rem !important;
     }
     
-    .lightbox-nav {
-        width: 45px !important;
-        height: 45px !important;
-    }
-    
-    .lightbox-nav.prev {
-        left: 1rem !important;
-    }
-    
-    .lightbox-nav.next {
-        right: 1rem !important;
-    }
-    
-    /* Scroll hint more visible */
-    .scroll-hint {
-        font-size: 0.8rem !important;
+    .lightbox-counter {
+        font-size: 0.75rem !important;
         bottom: 5rem !important;
     }
     
+    .lightbox-nav {
+        width: 42px !important;
+        height: 42px !important;
+        font-size: 1.75rem !important;
+    }
+    
+    .lightbox-nav.prev {
+        left: 0.75rem !important;
+    }
+    
+    .lightbox-nav.next {
+        right: 0.75rem !important;
+    }
+    
+    .lightbox-close {
+        top: 1rem !important;
+        right: 1rem !important;
+        width: 42px !important;
+        height: 42px !important;
+        font-size: 2rem !important;
+    }
+    
     /* Improve touch targets */
-    a, button {
+    a, button, .nav-link, .footer-link, .marquee-link {
         min-height: 44px;
-        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
     }
     
     /* Prevent text from being too small */
     body {
         -webkit-text-size-adjust: 100%;
+        font-size: 16px !important;
+    }
+    
+    /* Add padding to sections so content doesn't hide under footer */
+    .section {
+        padding-bottom: 6rem !important;
     }
 }
 
 /* Ultra-small phones (iPhone SE, etc) */
 @media (max-width: 375px) {
     #home .hero-title {
-        font-size: 2rem !important;
+        font-size: 1.875rem !important;
     }
     
     .marquee-link {
-        font-size: 2.5rem !important;
+        font-size: 2rem !important;
     }
     
     .project-card {
-        width: 260px !important;
+        width: 220px !important;
     }
     
     .project-image {
-        height: 350px !important;
+        height: 300px !important;
+    }
+    
+    #about h2,
+    #contact h2,
+    #privacy h2 {
+        font-size: 1.5rem !important;
     }
 }
 
 /* Landscape mode on mobile */
 @media (max-height: 500px) and (orientation: landscape) {
     #home {
-        padding: 2rem 1rem !important;
+        padding: 4rem 1rem !important;
     }
     
     #home .hero-title {
-        font-size: 1.75rem !important;
+        font-size: 1.5rem !important;
         margin-bottom: 0.5rem !important;
     }
     
@@ -608,6 +798,27 @@
     }
     
     .marquee-container {
-        margin-top: 1.5rem !important;
+        margin-top: 1rem !important;
+    }
+    
+    #home a[data-nav="contact"] {
+        margin-top: 1rem !important;
+    }
+}
+
+/* Touch feedback for mobile */
+@media (hover: none) and (pointer: coarse) {
+    a:active,
+    button:active,
+    .nav-link:active,
+    .footer-link:active,
+    .marquee-link:active {
+        opacity: 0.6 !important;
+        transform: scale(0.98) !important;
+        transition: all 0.1s ease !important;
+    }
+    
+    .project-card:active {
+        transform: translateY(-3px) scale(0.98) !important;
     }
 }
