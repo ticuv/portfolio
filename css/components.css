@@ -341,18 +341,3 @@
     opacity: 0.5;
     cursor: not-allowed;
 }
-/* Touch feedback for mobile */
-@media (hover: none) and (pointer: coarse) {
-    a:active,
-    button:active,
-    .nav-link:active,
-    .footer-link:active,
-    .marquee-link:active {
-        opacity: 0.6;
-        transform: scale(0.98);
-    }
-    
-    .project-card:active {
-        transform: translateY(-5px) scale(0.98);
-    }
-}
