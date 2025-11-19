@@ -577,28 +577,6 @@
         margin-bottom: 1rem !important;
     }
    
-    /* Hide scroll hint or move it higher */
-    .scroll-hint {
-        display: none !important;
-    }
-    
-    /* Project cards */
-    .project-card {
-        width: 240px !important;
-        margin: 0 0.625rem !important;
-    }
-    
-    .project-image {
-        height: 320px !important;
-    }
-    
-    .project-title {
-        font-size: 0.875rem !important;
-        padding: 0.75rem !important;
-        background: var(--bg-primary) !important;
-        z-index: 2 !important;
-    }
-   
     /* CONTACT SECTION */
     #contact {
         padding: 5rem 1.5rem 7rem !important;
