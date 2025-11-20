@@ -71,47 +71,174 @@ function initializeSection(sectionId, projects) {
 function createMarqueeRow(projects, rowIndex, sectionId) {
     const wrapper = document.createElement('div');
     wrapper.className = 'project-marquee';
-    wrapper.style.cssText = 'overflow: hidden; width: 100%;';
-    
+    wrapper.style.cssText = 'overflow: hidden; width: 100%; cursor: grab; touch-action: pan-y;';
+
     const track = document.createElement('div');
     track.className = 'project-marquee-track';
-    
-    // Alternate direction for each row (if you eventually have more than 1)
-    const direction = rowIndex % 2 === 0 ? 'normal' : 'reverse';
-    
-    // Different speeds for visual interest
-    const speeds = ['35s', '45s', '40s'];
-    const speed = speeds[rowIndex % speeds.length];
-    
     track.style.cssText = `
         display: flex;
-        animation: marquee ${speed} linear infinite;
-        animation-direction: ${direction};
         width: fit-content;
         gap: 2rem;
+        will-change: transform;
     `;
-    
+
     // Duplicate projects for seamless loop
-    // If we don't have enough items to fill the screen, duplicate them more times
     let allProjects = [...projects, ...projects];
     if (projects.length < 4) {
          allProjects = [...allProjects, ...projects, ...projects];
     }
-    
+
     allProjects.forEach((project, index) => {
         const card = createProjectCard(project, sectionId);
         track.appendChild(card);
     });
-    
-    track.addEventListener('mouseenter', () => {
-        track.style.animationPlayState = 'paused';
-    });
-    
-    track.addEventListener('mouseleave', () => {
-        track.style.animationPlayState = 'running';
-    });
-    
+
     wrapper.appendChild(track);
+
+    // Animation state
+    let position = 0;
+    let targetPosition = 0;
+    let isAutoScrolling = true;
+    let isDragging = false;
+    let startX = 0;
+    let startPosition = 0;
+    let hasMoved = false;
+    let velocity = 0;
+    let lastX = 0;
+    let lastTime = 0;
+
+    const autoSpeed = 0.5;
+    const direction = rowIndex % 2 === 0 ? -1 : 1;
+
+    // Main animation loop
+    function update() {
+        // Auto scroll when not dragging
+        if (isAutoScrolling && !isDragging) {
+            position += autoSpeed * direction;
+        }
+
+        // Apply momentum after drag
+        if (!isDragging && Math.abs(velocity) > 0.1) {
+            position += velocity;
+            velocity *= 0.95; // Friction
+        } else if (!isDragging) {
+            velocity = 0;
+        }
+
+        // Loop the position
+        const trackWidth = track.scrollWidth / 2;
+        if (trackWidth > 0) {
+            if (position <= -trackWidth) {
+                position += trackWidth;
+            } else if (position >= 0 && direction === 1) {
+                position -= trackWidth;
+            } else if (position > 0 && direction === -1) {
+                position -= trackWidth;
+            }
+        }
+
+        track.style.transform = `translateX(${position}px)`;
+        requestAnimationFrame(update);
+    }
+
+    // Start the animation loop
+    requestAnimationFrame(update);
+
+    // Pause on hover (desktop)
+    wrapper.addEventListener('mouseenter', () => {
+        if (!isDragging) isAutoScrolling = false;
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+        if (!isDragging) isAutoScrolling = true;
+    });
+
+    // Get X position from event
+    function getX(e) {
+        if (e.type.includes('touch')) {
+            return e.touches[0] ? e.touches[0].clientX : e.changedTouches[0].clientX;
+        }
+        return e.clientX;
+    }
+
+    // Drag start
+    function onDragStart(e) {
+        isDragging = true;
+        hasMoved = false;
+        isAutoScrolling = false;
+        velocity = 0;
+
+        startX = getX(e);
+        startPosition = position;
+        lastX = startX;
+        lastTime = Date.now();
+
+        wrapper.style.cursor = 'grabbing';
+    }
+
+    // Drag move
+    function onDragMove(e) {
+        if (!isDragging) return;
+
+        const currentX = getX(e);
+        const diff = currentX - startX;
+
+        // Track velocity for momentum
+        const now = Date.now();
+        const dt = now - lastTime;
+        if (dt > 0) {
+            velocity = (currentX - lastX) / dt * 16; // Normalize to ~60fps
+        }
+        lastX = currentX;
+        lastTime = now;
+
+        // Mark as moved if threshold exceeded
+        if (Math.abs(diff) > 5) {
+            hasMoved = true;
+        }
+
+        position = startPosition + diff;
+    }
+
+    // Drag end
+    function onDragEnd(e) {
+        if (!isDragging) return;
+
+        isDragging = false;
+        wrapper.style.cursor = 'grab';
+
+        // Set flag to prevent lightbox opening
+        if (hasMoved) {
+            wrapper.setAttribute('data-just-dragged', 'true');
+            setTimeout(() => {
+                wrapper.removeAttribute('data-just-dragged');
+            }, 100);
+        }
+
+        // Resume auto scroll after momentum settles
+        setTimeout(() => {
+            if (!isDragging) {
+                isAutoScrolling = true;
+            }
+        }, 1000);
+    }
+
+    // Mouse events
+    wrapper.addEventListener('mousedown', onDragStart);
+    window.addEventListener('mousemove', onDragMove);
+    window.addEventListener('mouseup', onDragEnd);
+
+    // Touch events
+    wrapper.addEventListener('touchstart', onDragStart, { passive: true });
+    wrapper.addEventListener('touchmove', (e) => {
+        if (isDragging && hasMoved) {
+            e.preventDefault();
+        }
+        onDragMove(e);
+    }, { passive: false });
+    wrapper.addEventListener('touchend', onDragEnd);
+    wrapper.addEventListener('touchcancel', onDragEnd);
+
     return wrapper;
 }
 
@@ -135,7 +262,6 @@ function createProjectCard(project, sectionId) {
     imageContainer.className = 'project-image';
     imageContainer.style.cssText = `
         width: 100%;
-        height: 500px;
         border-radius: 8px;
         overflow: hidden;
         background: var(--bg-secondary);
@@ -222,7 +348,13 @@ function initializeLightboxForDynamicCards() {
     document.addEventListener('click', (e) => {
         const card = e.target.closest('.project-card[data-lightbox]');
         if (!card) return;
-        
+
+        // Check if parent marquee was just dragged - don't open lightbox
+        const marquee = card.closest('.project-marquee');
+        if (marquee && marquee.getAttribute('data-just-dragged') === 'true') {
+            return;
+        }
+
         const sectionId = card.getAttribute('data-section');
         const section = document.getElementById(sectionId);
         

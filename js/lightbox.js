@@ -121,7 +121,7 @@ document.addEventListener('keydown', (e) => {
 lightboxImg.addEventListener('click', (e) => {
     e.stopPropagation();
     lightboxImg.classList.toggle('zoomed');
-    
+
     // Track zoom interaction in Google Analytics
     if (typeof gtag !== 'undefined') {
         gtag('event', 'image_zoom', {
@@ -130,3 +130,37 @@ lightboxImg.addEventListener('click', (e) => {
         });
     }
 });
+
+// Touch/Swipe gestures for mobile
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+lightbox.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+lightbox.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+
+    // Only handle horizontal swipes (ignore vertical)
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > swipeThreshold) {
+        if (diffX > 0) {
+            // Swipe right - previous image
+            showProject(currentProjectIndex - 1);
+        } else {
+            // Swipe left - next image
+            showProject(currentProjectIndex + 1);
+        }
+    }
+}

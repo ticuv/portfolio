@@ -17,30 +17,40 @@ hamburger.addEventListener('click', () => {
 });
 
 // Navigate between sections with smooth transitions
-function navigate(target) {
+function navigate(target, updateHash = true) {
     if (target === currentSection) return;
-    
+
+    // Validate target section exists
+    if (!document.getElementById(target)) {
+        target = 'home';
+    }
+
+    // Update URL hash (always use hash-based URLs for SPA compatibility)
+    if (updateHash) {
+        window.history.pushState(null, '', `#${target}`);
+    }
+
     // Track page view in Google Analytics
     if (typeof gtag !== 'undefined') {
         gtag('event', 'page_view', {
             'page_title': target,
-            'page_location': window.location.href + '#' + target
+            'page_location': window.location.href
         });
     }
-    
+
     // Add leaving state to current section
     const currentSectionEl = document.getElementById(currentSection);
     currentSectionEl.classList.add('leaving');
-    
+
     // Wait for leave animation, then switch
     setTimeout(() => {
         currentSectionEl.classList.remove('active');
         currentSectionEl.classList.remove('leaving');
-        
+
         // Show new section
         const newSection = document.getElementById(target);
         newSection.classList.add('active');
-        
+
         // Update nav links
         document.querySelectorAll('.nav-link').forEach(link => {
             if (link.getAttribute('data-nav') === target) {
@@ -49,13 +59,13 @@ function navigate(target) {
                 link.classList.remove('active');
             }
         });
-        
+
         currentSection = target;
-        
+
         // Scroll to top
         newSection.scrollTop = 0;
     }, 400); // Half of transition time for overlap
-    
+
     // Close menu
     hamburger.classList.remove('active');
     sideNav.classList.remove('active');
@@ -99,4 +109,39 @@ backToTop.addEventListener('click', () => {
         top: 0,
         behavior: 'smooth'
     });
+});
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', () => {
+    const hash = window.location.hash.slice(1); // Remove the #
+    const target = hash || 'home';
+    if (target !== currentSection) {
+        navigate(target, false); // Don't update hash again
+    }
+});
+
+// Handle direct navigation via URL hash on page load
+window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash.slice(1); // Remove the #
+
+    if (hash) {
+        // Navigate to the hashed section if it exists
+        if (document.getElementById(hash)) {
+            setTimeout(() => {
+                navigate(hash, false); // Don't update hash again
+            }, 100);
+        } else {
+            // Invalid hash, go to home
+            window.history.replaceState(null, '', '#home');
+        }
+    } else {
+        // No hash, set default to #home
+        window.history.replaceState(null, '', '#home');
+    }
+
+    // Update copyright year automatically
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
 });
