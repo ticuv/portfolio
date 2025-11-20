@@ -6,14 +6,32 @@
 /* CSS Variables - Change these to customize your site */
 :root {
     /* CHANGED: Updated to True Black */
-    --bg-primary: #000000;      
-    
+    --bg-primary: #000000;
+
     /* Secondary background (kept slightly lighter for contrast) */
-    --bg-secondary: #111111;     
-    
-    --text-primary: #f5f5f5;     
-    --text-secondary: #888888;   
-    --accent: #f5f5f5;          
+    --bg-secondary: #111111;
+
+    --text-primary: #f5f5f5;
+    --text-secondary: #888888;
+    --accent: #f5f5f5;
+}
+
+/* Light Theme Variables */
+[data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --text-primary: #111111;
+    --text-secondary: #666666;
+    --accent: #111111;
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+.section {
+    scroll-behavior: smooth;
 }
 
 /* Reset & Base Styles */

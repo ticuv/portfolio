@@ -9,11 +9,23 @@
     padding: 8rem 4rem 8rem;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-                visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1),
                 transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
     transform: translateY(30px) scale(0.98);
+}
+
+/* About section fix - don't center vertically to avoid cutting off top */
+#about {
+    align-items: flex-start !important;
+}
+
+#about > div {
+    height: auto;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .section.active {
@@ -83,6 +95,13 @@
     margin-top: 3rem;
     overflow: hidden;
     width: 100%;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.project-marquee:active {
+    cursor: grabbing;
 }
 
 .project-marquee-track {
@@ -249,82 +268,196 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .section {
-        padding: 6rem 2rem 6rem;
+        padding: 7rem 1rem 6rem;
     }
-    
+
     .marquee-link {
-        padding: 0 2rem;
+        padding: 0 1.5rem;
+        font-size: clamp(2.5rem, 8vw, 4rem);
     }
-    
+
     .footer {
         flex-direction: column;
         gap: 1rem;
     }
-    
+
     .footer-divider {
         width: 100%;
         height: 1px;
     }
-    
+
     .lightbox-nav {
         width: 50px;
         height: 50px;
     }
-    
+
     .lightbox-nav.prev {
         left: 1rem;
     }
-    
+
     .lightbox-nav.next {
         right: 1rem;
     }
-    
+
     .project-card {
-        width: 300px;
+        width: 260px;
     }
-    
+
+    .project-image {
+        height: 350px;
+    }
+
     .project-marquee-track {
         animation: marquee 25s linear infinite;
     }
-    
+
     .scroll-hint {
         bottom: 5rem;
         font-size: 0.75rem;
     }
-    
+
     /* About section mobile */
-    #about > div > div {
-        grid-template-columns: 1fr !important;
-        gap: 3rem !important;
+    #about {
+        overflow-y: auto !important;
+    }
+
+    #about > div {
+        height: auto !important;
         min-height: auto !important;
     }
-    
+
+    #about > div > div {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+        min-height: auto !important;
+        height: auto !important;
+    }
+
     #about > div > div > div:first-child {
         padding-right: 0 !important;
     }
-    
-    #about > div > div > div:first-child > div:nth-of-type(2) {
-        grid-template-columns: 1fr !important;
+
+    /* Make sticky image static on mobile */
+    #about > div > div > div:last-child {
+        position: static !important;
+        order: -1;
     }
-    
+
+    #about > div > div > div:last-child > div {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 4/5;
+        max-height: 280px;
+    }
+
+    #about > div > div > div:first-child h2 {
+        font-size: clamp(1.5rem, 5vw, 2rem) !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    #about > div > div > div:first-child p {
+        font-size: 0.8125rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* Border left section on mobile */
+    #about > div > div > div:first-child > div:first-of-type {
+        padding-left: 1rem !important;
+        margin: 1rem 0 !important;
+    }
+
+    /* Skills grid on mobile */
+    #about > div > div > div:first-child > div:nth-of-type(2) {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.5rem !important;
+        margin: 1rem 0 !important;
+    }
+
+    #about > div > div > div:first-child > div:nth-of-type(2) > div {
+        padding: 0.625rem !important;
+    }
+
+    #about > div > div > div:first-child > div:nth-of-type(2) h4 {
+        font-size: 0.5625rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+
+    #about > div > div > div:first-child > div:nth-of-type(2) p {
+        font-size: 0.75rem !important;
+    }
+
+    /* Tags on mobile */
+    #about span {
+        padding: 0.4375rem 0.875rem !important;
+        font-size: 0.6875rem !important;
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    /* What I Do section on mobile */
+    #about > div > div > div:first-child > div:last-of-type {
+        padding-top: 1rem !important;
+    }
+
+    #about > div > div > div:first-child > div:last-of-type h3 {
+        font-size: 0.75rem !important;
+        margin-bottom: 0.625rem !important;
+    }
+
     /* Lightbox content on mobile */
     .lightbox-content {
         max-width: 95vw;
         max-height: 85vh;
     }
-    
+
     .lightbox-content img.zoomed {
         transform: scale(2);
     }
-    
+
     .lightbox-title {
         bottom: 2rem;
         font-size: 1rem;
         padding: 0 1rem;
     }
-    
+
     .lightbox-counter {
         bottom: 0.75rem;
+    }
+
+    /* Extra bottom padding for sections with buttons near footer */
+    #contact,
+    #privacy {
+        padding-bottom: 10rem !important;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .section {
+        padding: 7rem 0.75rem 6rem;
+    }
+
+    .project-card {
+        width: 220px;
+    }
+
+    .project-image {
+        height: 280px;
+    }
+
+    .hero-title {
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+    }
+
+    .marquee-link {
+        font-size: clamp(2rem, 7vw, 3rem);
+        padding: 0 1rem;
+    }
+
+    #about > div > div > div:first-child > div:nth-of-type(2) {
+        grid-template-columns: 1fr !important;
     }
 }
 

@@ -96,3 +96,162 @@
     0%, 100% { opacity: 0.3; }
     50% { opacity: 0.7; }
 }
+
+/* Image Reveal - Fade and Slide Up */
+@keyframes revealUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Image Reveal - Fade and Slide In from Left */
+@keyframes revealLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Image Reveal - Scale Up */
+@keyframes revealScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Blur to Sharp Image Load */
+@keyframes blurToSharp {
+    from {
+        opacity: 0;
+        filter: blur(20px);
+        transform: scale(1.05);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+    }
+}
+
+/* Parallax Float */
+@keyframes parallaxFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Stagger reveal classes */
+.reveal-item {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger delays for cards */
+.reveal-item:nth-child(1) { transition-delay: 0ms; }
+.reveal-item:nth-child(2) { transition-delay: 100ms; }
+.reveal-item:nth-child(3) { transition-delay: 200ms; }
+.reveal-item:nth-child(4) { transition-delay: 300ms; }
+.reveal-item:nth-child(5) { transition-delay: 400ms; }
+.reveal-item:nth-child(6) { transition-delay: 500ms; }
+.reveal-item:nth-child(7) { transition-delay: 600ms; }
+.reveal-item:nth-child(8) { transition-delay: 700ms; }
+.reveal-item:nth-child(9) { transition-delay: 800ms; }
+.reveal-item:nth-child(10) { transition-delay: 900ms; }
+
+/* Magnetic button effect */
+.magnetic-btn {
+    transition: transform 0.3s ease;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(136, 136, 136, 0.1);
+    border: 1px solid rgba(136, 136, 136, 0.2);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+    background: rgba(136, 136, 136, 0.2);
+    transform: scale(1.1);
+}
+
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover svg {
+    transform: rotate(15deg);
+}
+
+/* Sun icon for dark mode */
+.theme-toggle .sun-icon {
+    display: block;
+}
+
+.theme-toggle .moon-icon {
+    display: none;
+}
+
+/* Moon icon for light mode */
+[data-theme="light"] .theme-toggle .sun-icon {
+    display: none;
+}
+
+[data-theme="light"] .theme-toggle .moon-icon {
+    display: block;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .reveal-item {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .magnetic-btn {
+        transition: none;
+    }
+
+    html, .section {
+        scroll-behavior: auto;
+    }
+}
