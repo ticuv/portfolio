@@ -813,72 +813,6 @@
             letter-spacing: 0.05em;
         }
 
-        /* Skills Section */
-        .skills {
-            padding: var(--space-2xl) 0;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-        }
-
-        .skills__grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-lg);
-        }
-
-        .skills__category {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-sm);
-        }
-
-        .skills__title {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--text-tertiary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: var(--space-xs);
-        }
-
-        .skills__list {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-xs);
-        }
-
-        .skill {
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-        }
-
-        .skill__name {
-            font-size: 1rem;
-            color: var(--text-primary);
-            min-width: 120px;
-        }
-
-        .skill__bar {
-            flex: 1;
-            height: 4px;
-            background: var(--border);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .skill__progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent) 0%, var(--accent-hover) 100%);
-            border-radius: 2px;
-            transition: width 1s var(--ease-out);
-            width: 0;
-        }
-
-        .skill__progress.animate {
-            width: var(--progress);
-        }
-
         /* Mobile Navigation */
         .nav__toggle {
             display: none;
@@ -1274,7 +1208,9 @@
 
     <!-- Navigation -->
     <nav class="nav" aria-label="Main navigation">
-        <a href="#" class="nav__logo">Ticuv</a>
+        <a href="#" class="nav__logo">
+            <img src="logo.png" alt="ticuv - Țicu Vlad designer logo" style="height: 2rem; width: auto;">
+        </a>
         <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
             <span class="nav__toggle-line"></span>
             <span class="nav__toggle-line"></span>
@@ -1446,86 +1382,6 @@
                             <div class="stat__meta">
                                 <span class="stat__meta-label">Location</span>
                                 <span class="stat__meta-value">Iași, Romania</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section class="skills" id="skills">
-            <div class="container">
-                <header class="section__header fade-in">
-                    <h2 class="section__title">Tools & Skills</h2>
-                </header>
-                <div class="skills__grid fade-in">
-                    <div class="skills__category">
-                        <h3 class="skills__title">3D & Motion</h3>
-                        <div class="skills__list">
-                            <div class="skill">
-                                <span class="skill__name">Blender</span>
-                                <div class="skill__bar">
-                                    <div class="skill__progress" style="--progress: 90%"></div>
-                                </div>
-                            </div>
-                            <div class="skill">
-                                <span class="skill__name">Cinema 4D</span>
-                                <div class="skill__bar">
-                                    <div class="skill__progress" style="--progress: 85%"></div>
-                                </div>
-                            </div>
-                            <div class="skill">
-                                <span class="skill__name">After Effects</span>
-                                <div class="skill__bar">
-                                    <div class="skill__progress" style="--progress: 88%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skills__category">
-                        <h3 class="skills__title">Design</h3>
-                        <div class="skills__list">
-                            <div class="skill">
-                                <span class="skill__name">Photoshop</span>
-                                <div class="skill__bar">
-                                    <div class="skill__progress" style="--progress: 95%"></div>
-                                </div>
-                            </div>
-                            <div class="skill">
-                                <span class="skill__name">Illustrator</span>
-                                <div class="skill__bar">
-                                    <div class="skill__progress" style="--progress: 90%"></div>
-                                </div>
-                            </div>
-                            <div class="skill">
-                                <span class="skill__name">Figma</span>
-                                <div class="skill__bar">
-                                    <div class="skill__progress" style="--progress: 85%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="skills__category">
-                        <h3 class="skills__title">Code & Generative</h3>
-                        <div class="skills__list">
-                            <div class="skill">
-                                <span class="skill__name">Processing</span>
-                                <div class="skill__bar">
-                                    <div class="skill__progress" style="--progress: 75%"></div>
-                                </div>
-                            </div>
-                            <div class="skill">
-                                <span class="skill__name">TouchDesigner</span>
-                                <div class="skill__bar">
-                                    <div class="skill__progress" style="--progress: 70%"></div>
-                                </div>
-                            </div>
-                            <div class="skill">
-                                <span class="skill__name">p5.js</span>
-                                <div class="skill__bar">
-                                    <div class="skill__progress" style="--progress: 80%"></div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -1802,25 +1658,6 @@
                     navLinks.classList.remove('active');
                 }
             });
-        }
-
-        // Animate skill bars on scroll
-        const skillsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const progressBars = entry.target.querySelectorAll('.skill__progress');
-                    progressBars.forEach((bar, index) => {
-                        setTimeout(() => {
-                            bar.classList.add('animate');
-                        }, index * 100);
-                    });
-                }
-            });
-        }, { threshold: 0.3 });
-
-        const skillsSection = document.querySelector('.skills');
-        if (skillsSection) {
-            skillsObserver.observe(skillsSection);
         }
 
         // Cookie Consent Logic
