@@ -177,6 +177,76 @@
             color: var(--text-primary);
         }
 
+        /* Dropdown Menu */
+        .nav__dropdown {
+            position: relative;
+        }
+
+        .nav__dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: var(--space-xs) 0;
+            font-family: var(--font-body);
+            transition: color 0.3s var(--ease-out);
+        }
+
+        .nav__dropdown-toggle:hover {
+            color: var(--text-primary);
+        }
+
+        .nav__dropdown-arrow {
+            transition: transform 0.3s var(--ease-out);
+        }
+
+        .nav__dropdown.active .nav__dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .nav__dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            min-width: 180px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.5rem;
+            list-style: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s var(--ease-out);
+            z-index: 1001;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav__dropdown.active .nav__dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav__dropdown-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            border-radius: 8px;
+            transition: all 0.2s var(--ease-out);
+        }
+
+        .nav__dropdown-link:hover {
+            background: var(--bg);
+            color: var(--text-primary);
+        }
+
         .nav__toggle {
             display: none;
             width: 40px;
@@ -660,8 +730,18 @@
                 <span class="nav__toggle-line"></span>
             </button>
             <ul class="nav__links" id="navLinks">
-                <li><a href="../index.html" class="nav__link">Home</a></li>
-                <li><a href="../projects.html" class="nav__link">Projects</a></li>
+                <li class="nav__dropdown">
+                    <button class="nav__link nav__dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        Work
+                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" class="nav__dropdown-arrow">
+                            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <ul class="nav__dropdown-menu">
+                        <li><a href="../index.html#work" class="nav__dropdown-link">Selected Work</a></li>
+                        <li><a href="../projects.html" class="nav__dropdown-link">Projects</a></li>
+                    </ul>
+                </li>
                 <li><a href="../index.html#about" class="nav__link">About</a></li>
                 <li><a href="../index.html#contact" class="nav__link">Contact</a></li>
             </ul>
@@ -887,6 +967,44 @@
             navToggle.classList.toggle('active');
             navLinks.classList.toggle('active');
         });
+
+        // Dropdown Menu
+        (function() {
+            const dropdown = document.querySelector('.nav__dropdown');
+            if (!dropdown) return;
+            
+            const dropdownToggle = dropdown.querySelector('.nav__dropdown-toggle');
+            const dropdownLinks = dropdown.querySelectorAll('.nav__dropdown-link');
+
+            dropdownToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdown.classList.toggle('active');
+                dropdownToggle.setAttribute('aria-expanded', dropdown.classList.contains('active'));
+            });
+
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    dropdown.classList.remove('active');
+                    dropdownToggle.setAttribute('aria-expanded', 'false');
+                    navToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove('active');
+                    dropdownToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && dropdown.classList.contains('active')) {
+                    dropdown.classList.remove('active');
+                    dropdownToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        })();
 
         // Scroll Animations
         const observer = new IntersectionObserver((entries) => {
