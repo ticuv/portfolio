@@ -813,25 +813,103 @@
             letter-spacing: 0.05em;
         }
 
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s var(--ease-out);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(232, 93, 4, 0.4);
+        }
+
+        /* Project Filters */
+        .work__filters {
+            display: flex;
+            gap: var(--space-xs);
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out);
+            font-family: var(--font-body);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--text-primary);
+        }
+
+        .filter-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        .work__item.hidden {
+            display: none;
+        }
+
         /* Mobile Navigation */
         .nav__toggle {
             display: none;
             width: 40px;
             height: 40px;
-            background: none;
-            border: none;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             gap: 6px;
             cursor: pointer;
             z-index: 1001;
+            transition: all 0.3s var(--ease-out);
+            mix-blend-mode: normal;
+        }
+
+        .nav__toggle:hover {
+            background: var(--bg-secondary);
+            border-color: var(--accent);
         }
 
         .nav__toggle-line {
             width: 24px;
             height: 2px;
-            background: #fff;
+            background: var(--text-primary);
             transition: all 0.3s var(--ease-out);
         }
 
@@ -1257,14 +1335,25 @@
             <div class="container">
                 <header class="section__header fade-in">
                     <h2 class="section__title">Selected Work</h2>
-                    <span class="section__count">04 Projects</span>
+                    <span class="section__count"><span id="projectCount">04</span> Projects</span>
                 </header>
+
+                <!-- Project Filters -->
+                <div class="work__filters fade-in">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="3d">3D Art</button>
+                    <button class="filter-btn" data-filter="posters">Posters</button>
+                    <button class="filter-btn" data-filter="branding">Branding</button>
+                    <button class="filter-btn" data-filter="generative">Generative</button>
+                </div>
+
                 <div class="work__grid">
                     <article class="work__item fade-in" role="article" aria-label="Meridian Brand System project"
                         data-title="Meridian"
                         data-tags="3D Art, Brand Identity, Generative Design"
                         data-description="A comprehensive brand system exploring the intersection of geometric precision and organic movement. Using procedural generation, we created a living identity that adapts while maintaining its core essence."
-                        data-image="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=800&fit=crop">
+                        data-image="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=800&fit=crop"
+                        data-category="branding generative 3d">
                         <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=800&fit=crop" alt="Meridian Brand System" class="work__item-image">
                         <div class="work__item-meta">
                             <span class="work__item-featured">Featured</span>
@@ -1281,7 +1370,8 @@
                         data-title="Vessel"
                         data-tags="3D Visualization, WebGL, Interactive Design"
                         data-description="An immersive digital platform combining real-time 3D rendering with fluid interactions. The project showcases product architecture through dynamic camera movements and particle-based transitions."
-                        data-image="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=800&fit=crop">
+                        data-image="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=800&fit=crop"
+                        data-category="3d">
                         <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=800&fit=crop" alt="Vessel Digital Platform" class="work__item-image">
                         <div class="work__item-meta">
                             <span class="work__item-year">2024</span>
@@ -1297,7 +1387,8 @@
                         data-title="Forma"
                         data-tags="Generative Art, Architecture, Visual Identity"
                         data-description="Architectural visualization meets generative design. We developed custom algorithms to create unique spatial compositions that reflect the studio's modernist philosophy and computational approach."
-                        data-image="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=800&fit=crop">
+                        data-image="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=800&fit=crop"
+                        data-category="generative branding">
                         <img src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=800&fit=crop" alt="Forma Architecture" class="work__item-image">
                         <div class="work__item-meta">
                             <span class="work__item-year">2023</span>
@@ -1313,7 +1404,8 @@
                         data-title="Lumière"
                         data-tags="3D Art, Editorial Design, Motion Graphics"
                         data-description="Editorial design reimagined through the lens of light and shadow. This project combines traditional typography with 3D rendered elements, creating a bridge between print and digital mediums."
-                        data-image="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=800&fit=crop">
+                        data-image="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=800&fit=crop"
+                        data-category="3d posters">
                         <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=800&fit=crop" alt="Lumière Editorial" class="work__item-image">
                         <div class="work__item-meta">
                             <span class="work__item-year">2023</span>
@@ -1509,6 +1601,9 @@
         </div>
     </div>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
     <script>
         // Modal functionality
         const modal = document.getElementById('projectModal');
@@ -1659,6 +1754,58 @@
                 }
             });
         }
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Project Filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCount = document.getElementById('projectCount');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+                let visibleCount = 0;
+
+                // Reuse workItems already declared above for modal
+                workItems.forEach(item => {
+                    const categories = item.getAttribute('data-category');
+
+                    if (filter === 'all') {
+                        item.classList.remove('hidden');
+                        visibleCount++;
+                    } else if (categories && categories.includes(filter)) {
+                        item.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+
+                // Update project count
+                projectCount.textContent = visibleCount.toString().padStart(2, '0');
+            });
+        });
 
         // Cookie Consent Logic
         (function() {
