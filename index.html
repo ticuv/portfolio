@@ -51,6 +51,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.gstatic.com/s/spacegrotesk/v16/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj7aUXskPMA.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7K503SBY5S"></script>
@@ -131,6 +132,18 @@
             --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
         }
 
+        /* Light theme */
+        [data-theme="light"] {
+            --bg: #FAFAFA;
+            --bg-secondary: #FFFFFF;
+            --text-primary: #1A1A1A;
+            --text-secondary: #4A4A4A;
+            --text-tertiary: #8A8A8A;
+            --accent: #E85D04;
+            --accent-hover: #FF6B1A;
+            --border: #E5E5E5;
+        }
+
         html {
             font-size: 16px;
             scroll-behavior: smooth;
@@ -144,6 +157,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
+            transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
         }
 
         ::selection {
@@ -173,14 +187,43 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .nav__right {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
         }
 
         .nav__logo {
             font-family: var(--font-display);
             font-size: 1.25rem;
             font-weight: 400;
-            color: #fff;
+            color: var(--text-primary);
             letter-spacing: -0.02em;
+        }
+
+        .nav__theme-toggle {
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.125rem;
+            color: var(--text-primary);
+            transition: all 0.3s var(--ease-out);
+            order: 1;
+        }
+
+        .nav__theme-toggle:hover {
+            background: var(--bg-secondary);
+            border-color: var(--accent);
+            transform: rotate(20deg);
         }
 
         .nav__links {
@@ -192,7 +235,7 @@
         .nav__link {
             font-size: 0.875rem;
             font-weight: 500;
-            color: #fff;
+            color: var(--text-primary);
             position: relative;
             padding: var(--space-xs) 0;
         }
@@ -204,7 +247,7 @@
             left: 0;
             width: 0;
             height: 1px;
-            background: #fff;
+            background: var(--accent);
             transition: width 0.4s var(--ease-out);
         }
 
@@ -1346,6 +1389,32 @@
         /* Smooth transitions for service tags */
         .about__service-tag {
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about__service-tag::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s var(--ease-out);
+        }
+
+        .about__service-tag:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Smooth scrolling enhancement */
+        @media (prefers-reduced-motion: no-preference) {
+            html {
+                scroll-behavior: smooth;
+            }
         }
     </style>
 </head>
@@ -1381,17 +1450,22 @@
         <a href="#" class="nav__logo">
             <img src="logo.png" alt="ticuv - Țicu Vlad designer logo" style="height: 2rem; width: auto;">
         </a>
-        <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
-            <span class="nav__toggle-line"></span>
-            <span class="nav__toggle-line"></span>
-            <span class="nav__toggle-line"></span>
-        </button>
-        <ul class="nav__links" id="navLinks">
-            <li><a href="#work" class="nav__link">Work</a></li>
-            <li><a href="#about" class="nav__link">About</a></li>
-            <li><a href="#contact" class="nav__link">Contact</a></li>
-            <li><a href="#privacy" class="nav__link">Privacy</a></li>
-        </ul>
+        <div class="nav__right">
+            <button class="nav__theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <span id="themeIcon">☀️</span>
+            </button>
+            <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <span class="nav__toggle-line"></span>
+                <span class="nav__toggle-line"></span>
+                <span class="nav__toggle-line"></span>
+            </button>
+            <ul class="nav__links" id="navLinks">
+                <li><a href="#work" class="nav__link">Work</a></li>
+                <li><a href="#about" class="nav__link">About</a></li>
+                <li><a href="#contact" class="nav__link">Contact</a></li>
+                <li><a href="#privacy" class="nav__link">Privacy</a></li>
+            </ul>
+        </div>
     </nav>
 
     <main>
@@ -1446,7 +1520,7 @@
                         data-description="A comprehensive brand system exploring the intersection of geometric precision and organic movement. Using procedural generation, we created a living identity that adapts while maintaining its core essence."
                         data-image="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=800&fit=crop"
                         data-category="branding generative 3d">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=800&fit=crop" alt="Meridian Brand System" class="work__item-image">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&h=800&fit=crop" alt="Meridian Brand System" class="work__item-image" loading="lazy" decoding="async">
                         <div class="work__item-meta">
                             <span class="work__item-featured">Featured</span>
                             <span class="work__item-year">2024</span>
@@ -1464,7 +1538,7 @@
                         data-description="An immersive digital platform combining real-time 3D rendering with fluid interactions. The project showcases product architecture through dynamic camera movements and particle-based transitions."
                         data-image="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=800&fit=crop"
                         data-category="3d">
-                        <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=800&fit=crop" alt="Vessel Digital Platform" class="work__item-image">
+                        <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=800&fit=crop" alt="Vessel Digital Platform" class="work__item-image" loading="lazy" decoding="async">
                         <div class="work__item-meta">
                             <span class="work__item-year">2024</span>
                         </div>
@@ -1481,7 +1555,7 @@
                         data-description="Architectural visualization meets generative design. We developed custom algorithms to create unique spatial compositions that reflect the studio's modernist philosophy and computational approach."
                         data-image="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=800&fit=crop"
                         data-category="generative branding">
-                        <img src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=800&fit=crop" alt="Forma Architecture" class="work__item-image">
+                        <img src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=800&fit=crop" alt="Forma Architecture" class="work__item-image" loading="lazy" decoding="async">
                         <div class="work__item-meta">
                             <span class="work__item-year">2023</span>
                         </div>
@@ -1498,7 +1572,7 @@
                         data-description="Editorial design reimagined through the lens of light and shadow. This project combines traditional typography with 3D rendered elements, creating a bridge between print and digital mediums."
                         data-image="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=800&fit=crop"
                         data-category="3d visuals">
-                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=800&fit=crop" alt="Lumière Editorial" class="work__item-image">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=800&fit=crop" alt="Lumière Editorial" class="work__item-image" loading="lazy" decoding="async">
                         <div class="work__item-meta">
                             <span class="work__item-year">2023</span>
                         </div>
@@ -1697,6 +1771,27 @@
     <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
     <script>
+        // Theme Toggle
+        (function() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const html = document.documentElement;
+
+            // Check for saved theme preference or default to dark
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            html.setAttribute('data-theme', currentTheme);
+            themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+
+            themeToggle.addEventListener('click', () => {
+                const theme = html.getAttribute('data-theme');
+                const newTheme = theme === 'dark' ? 'light' : 'dark';
+
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+            });
+        })();
+
         // Modal functionality
         const modal = document.getElementById('projectModal');
         const closeModal = document.getElementById('closeModal');
