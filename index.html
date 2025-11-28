@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1598,16 +1599,20 @@
                 <!-- BENTO GRID -->
                 <div class="work__grid">
                     <!-- 
-                        UTILITY CLASSES:
+                        AUTOMATIC ASPECT RATIO DETECTION:
+                        Just paste your image URL - the script will automatically detect
+                        if it's portrait, landscape, square, or wide and apply the correct class!
+                        
+                        Manual override classes (optional):
                         - .portrait = tall image, spans 2 rows
-                        - .wide = wide image, spans 2 columns
-                        - .featured = large card, spans 2 columns AND 2 rows
-                        - .square = square image, spans 2 rows (like portrait but for 1:1)
+                        - .wide = wide image, spans 2 columns  
+                        - .featured = large card, spans 2 columns AND 2 rows (use for hero projects)
+                        - .square = square image, spans 2 rows
                         - (no class) = standard landscape, 1 row
                     -->
 
-                    <!-- Featured Project - Wide + Tall -->
-                    <article class="work__item featured fade-in" role="article" aria-label="Relax"
+                    <!-- Just add your project - aspect ratio detected automatically! -->
+                    <article class="work__item fade-in" role="article" aria-label="Relax"
                         data-title="Relax"
                         data-tags="Visuals, Poster"
                         data-description="A soothing, retro-inspired poster washed in vintage cyan tones. A figure floats weightlessly through a texture of clouds and water, embodying a sense of 1970s nostalgia and the quiet, effortless state of simply existing."
@@ -1626,8 +1631,8 @@
                         <span class="work__item-number">01</span>
                     </article>
 
-                    <!-- Portrait Project - Tall -->
-                    <article class="work__item portrait fade-in" role="article" aria-label="Vessel Digital Platform"
+                    <!-- Portrait image - auto-detected -->
+                    <article class="work__item fade-in" role="article" aria-label="Vessel Digital Platform"
                         data-title="Vessel"
                         data-tags="3D Visualization, WebGL, Interactive Design"
                         data-description="An immersive digital platform combining real-time 3D rendering with fluid interactions. The project showcases product architecture through dynamic camera movements and particle-based transitions."
@@ -1645,7 +1650,7 @@
                         <span class="work__item-number">02</span>
                     </article>
 
-                    <!-- Standard Landscape -->
+                    <!-- Landscape image - auto-detected -->
                     <article class="work__item fade-in" role="article" aria-label="Forma Architecture"
                         data-title="Forma"
                         data-tags="Generative Art, Architecture, Visual Identity"
@@ -1664,7 +1669,7 @@
                         <span class="work__item-number">03</span>
                     </article>
 
-                    <!-- Standard Landscape -->
+                    <!-- Landscape image - auto-detected -->
                     <article class="work__item fade-in" role="article" aria-label="Lumière Editorial"
                         data-title="Lumière"
                         data-tags="3D Art, Editorial Design, Motion Graphics"
@@ -1683,8 +1688,8 @@
                         <span class="work__item-number">04</span>
                     </article>
 
-                    <!-- Portrait Project -->
-                    <article class="work__item portrait fade-in" role="article" aria-label="Ethereal Dreams"
+                    <!-- Portrait image - auto-detected -->
+                    <article class="work__item fade-in" role="article" aria-label="Ethereal Dreams"
                         data-title="Ethereal Dreams"
                         data-tags="3D Art, Abstract, Generative"
                         data-description="An exploration of abstract forms and dreamlike atmospheres created through procedural generation and careful art direction."
@@ -1702,8 +1707,8 @@
                         <span class="work__item-number">05</span>
                     </article>
 
-                    <!-- Wide Landscape -->
-                    <article class="work__item wide fade-in" role="article" aria-label="Nexus Brand Identity"
+                    <!-- Wide image - auto-detected -->
+                    <article class="work__item fade-in" role="article" aria-label="Nexus Brand Identity"
                         data-title="Nexus"
                         data-tags="Branding, Logo Design, Visual Identity"
                         data-description="Complete brand identity for a tech startup. The visual system emphasizes connection and innovation through geometric forms and a bold color palette."
@@ -2135,6 +2140,49 @@
                 projectCount.textContent = visibleCount.toString().padStart(2, '0');
             });
         });
+
+        // Automatic Aspect Ratio Detection for Bento Grid
+        (function() {
+            const workItems = document.querySelectorAll('.work__item');
+            
+            workItems.forEach(item => {
+                const img = item.querySelector('.work__item-image');
+                if (!img) return;
+                
+                // Function to apply correct class based on aspect ratio
+                const applyAspectClass = () => {
+                    const width = img.naturalWidth;
+                    const height = img.naturalHeight;
+                    const ratio = width / height;
+                    
+                    // Remove any existing aspect classes first
+                    item.classList.remove('portrait', 'wide', 'square', 'featured');
+                    
+                    // Apply class based on aspect ratio
+                    if (ratio < 0.8) {
+                        // Portrait (tall) - ratio less than 0.8 (e.g., 2:3, 3:4, 9:16)
+                        item.classList.add('portrait');
+                    } else if (ratio > 1.8) {
+                        // Wide (panoramic) - ratio greater than 1.8 (e.g., 21:9, 2:1)
+                        item.classList.add('wide');
+                    } else if (ratio >= 0.9 && ratio <= 1.1) {
+                        // Square - ratio between 0.9 and 1.1 (approximately 1:1)
+                        item.classList.add('square');
+                    }
+                    // Landscape (default) - ratio between 0.8 and 1.8, no class needed
+                    
+                    console.log(`Image: ${img.alt || 'unnamed'} | Ratio: ${ratio.toFixed(2)} | Class: ${item.classList.contains('portrait') ? 'portrait' : item.classList.contains('wide') ? 'wide' : item.classList.contains('square') ? 'square' : 'landscape'}`);
+                };
+                
+                // If image is already loaded (cached)
+                if (img.complete && img.naturalWidth > 0) {
+                    applyAspectClass();
+                } else {
+                    // Wait for image to load
+                    img.addEventListener('load', applyAspectClass);
+                }
+            });
+        })();
 
         // Cookie Consent Logic
         (function() {
