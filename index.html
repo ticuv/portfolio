@@ -452,7 +452,7 @@
         }
 
         .about__text {
-            max-width: 60ch;
+            width: 100%;
         }
 
         .about__lead {
@@ -480,6 +480,8 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: var(--space-md);
+            margin-top: var(--space-lg);
+            margin-bottom: var(--space-lg);
         }
 
         .stat {
@@ -683,7 +685,7 @@
 
         /* About What I Do Section */
         .about__services {
-            margin-top: var(--space-lg);
+            margin-top: 0;
         }
 
         .about__services-title {
@@ -753,12 +755,11 @@
         /* Profile Photo */
         .about__profile {
             position: relative;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            border-radius: 16px;
             overflow: hidden;
-            border: 3px solid var(--border);
-            margin-bottom: var(--space-md);
+            border: 1px solid var(--border);
             background: var(--bg-secondary);
         }
 
@@ -1166,10 +1167,7 @@
             .about__content {
                 grid-template-columns: 1.5fr 1fr;
                 align-items: start;
-            }
-
-            .about__stats {
-                grid-template-columns: repeat(2, 1fr);
+                gap: var(--space-xl);
             }
 
             .footer__content {
@@ -1458,9 +1456,6 @@
             <div class="container">
                 <div class="about__content">
                     <div class="about__text fade-in">
-                        <div class="about__profile">
-                            <img src="ticuv.jpg" alt="Țicu Vlad (ticuv)" class="about__profile-image">
-                        </div>
                         <p class="about__lead">
                             Multidisciplinary designer creating <em>impactful visuals</em>.
                         </p>
@@ -1473,6 +1468,32 @@
                         <p class="about__body">
                             I believe great design comes from balancing discipline with creative freedom. Whether you need a bold poster, striking 3D visuals, or a complete brand refresh—I'm here to help bring your vision to life.
                         </p>
+                        <div class="about__stats">
+                            <div class="stat">
+                                <div class="stat__meta">
+                                    <span class="stat__meta-label">Foundation</span>
+                                    <span class="stat__meta-value">Photography</span>
+                                </div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat__meta">
+                                    <span class="stat__meta-label">Since</span>
+                                    <span class="stat__meta-value">2022</span>
+                                </div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat__meta">
+                                    <span class="stat__meta-label">Approach</span>
+                                    <span class="stat__meta-value">Discipline + Creativity</span>
+                                </div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat__meta">
+                                    <span class="stat__meta-label">Location</span>
+                                    <span class="stat__meta-value">Iași, Romania</span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="about__services">
                             <h3 class="about__services-title">What I Do</h3>
                             <div class="about__services-list">
@@ -1483,31 +1504,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="about__stats fade-in">
-                        <div class="stat">
-                            <div class="stat__meta">
-                                <span class="stat__meta-label">Foundation</span>
-                                <span class="stat__meta-value">Photography</span>
-                            </div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat__meta">
-                                <span class="stat__meta-label">Since</span>
-                                <span class="stat__meta-value">2022</span>
-                            </div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat__meta">
-                                <span class="stat__meta-label">Approach</span>
-                                <span class="stat__meta-value">Discipline + Creativity</span>
-                            </div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat__meta">
-                                <span class="stat__meta-label">Location</span>
-                                <span class="stat__meta-value">Iași, Romania</span>
-                            </div>
-                        </div>
+                    <div class="about__profile fade-in">
+                        <img src="ticuv.jpg" alt="Țicu Vlad (ticuv)" class="about__profile-image">
                     </div>
                 </div>
             </div>
