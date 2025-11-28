@@ -259,6 +259,75 @@
             width: 100%;
         }
 
+        /* Dropdown Menu */
+        .nav__dropdown {
+            position: relative;
+        }
+
+        .nav__dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: var(--space-xs) 0;
+            font-family: var(--font-body);
+        }
+
+        .nav__dropdown-arrow {
+            transition: transform 0.3s var(--ease-out);
+        }
+
+        .nav__dropdown.active .nav__dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .nav__dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            min-width: 180px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.5rem;
+            list-style: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s var(--ease-out);
+            z-index: 1001;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav__dropdown.active .nav__dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav__dropdown-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            border-radius: 8px;
+            transition: all 0.2s var(--ease-out);
+        }
+
+        .nav__dropdown-link:hover {
+            background: var(--bg);
+            color: var(--text-primary);
+        }
+
+        [data-theme="light"] .nav__dropdown-menu {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
         /* Container */
         .container {
             width: 100%;
@@ -532,6 +601,158 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+        }
+
+        /* Featured Projects Section */
+        .featured-projects {
+            padding: var(--space-2xl) 0;
+            border-top: 1px solid var(--border);
+            background: var(--bg-secondary);
+        }
+
+        .featured-projects__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+        }
+
+        .featured-projects__title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .featured-projects__link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--accent);
+            transition: gap 0.3s var(--ease-out);
+        }
+
+        .featured-projects__link:hover {
+            gap: 0.75rem;
+        }
+
+        .featured-projects__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-md);
+        }
+
+        /* Project Card */
+        .project-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            transition: all 0.4s var(--ease-out);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card__image {
+            position: relative;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+        }
+
+        .project-card__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s var(--ease-out);
+        }
+
+        .project-card:hover .project-card__image img {
+            transform: scale(1.05);
+        }
+
+        .project-card__category {
+            position: absolute;
+            top: var(--space-sm);
+            left: var(--space-sm);
+            padding: 0.5rem 1rem;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .project-card__content {
+            padding: var(--space-md);
+        }
+
+        .project-card__title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+            transition: color 0.3s var(--ease-out);
+        }
+
+        .project-card:hover .project-card__title {
+            color: var(--accent);
+        }
+
+        .project-card__description {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: var(--space-sm);
+        }
+
+        .project-card__meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--space-sm);
+            border-top: 1px solid var(--border);
+        }
+
+        .project-card__year {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+
+        .project-card__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--accent);
+            transition: gap 0.3s var(--ease-out);
+        }
+
+        .project-card:hover .project-card__cta {
+            gap: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .featured-projects__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-projects__header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
 
         /* About Section */
@@ -1228,6 +1449,42 @@
                 background: var(--accent);
             }
 
+            /* Mobile dropdown */
+            .nav__dropdown-toggle {
+                font-size: 1.25rem;
+                color: var(--text-primary);
+                padding: var(--space-sm) 0;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .nav__dropdown-menu {
+                position: static;
+                transform: none;
+                opacity: 1;
+                visibility: visible;
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                padding: 0 0 0 var(--space-md);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s var(--ease-out);
+            }
+
+            .nav__dropdown.active .nav__dropdown-menu {
+                max-height: 200px;
+            }
+
+            .nav__dropdown-link {
+                padding: 0.5rem 0;
+                font-size: 1rem;
+            }
+
+            .nav__dropdown-link:hover {
+                background: transparent;
+            }
+
             /* Hero mobile optimization */
             .hero {
                 min-height: 100vh;
@@ -1542,10 +1799,20 @@
                 <span class="nav__toggle-line"></span>
             </button>
             <ul class="nav__links" id="navLinks">
-                <li><a href="#work" class="nav__link">Work</a></li>
+                <li class="nav__dropdown">
+                    <button class="nav__link nav__dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        Work
+                        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" class="nav__dropdown-arrow">
+                            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <ul class="nav__dropdown-menu">
+                        <li><a href="#work" class="nav__dropdown-link">Selected Work</a></li>
+                        <li><a href="projects.html" class="nav__dropdown-link">Projects</a></li>
+                    </ul>
+                </li>
                 <li><a href="#about" class="nav__link">About</a></li>
                 <li><a href="#contact" class="nav__link">Contact</a></li>
-                <li><a href="#privacy" class="nav__link">Privacy</a></li>
             </ul>
         </div>
     </nav>
@@ -1723,6 +1990,90 @@
                             <p class="work__item-category">Branding / Identity</p>
                         </div>
                         <span class="work__item-number">06</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects Section -->
+        <section class="featured-projects" id="projects">
+            <div class="container">
+                <header class="featured-projects__header fade-in">
+                    <h2 class="featured-projects__title">Featured Projects</h2>
+                    <a href="projects.html" class="featured-projects__link">
+                        View All Projects
+                        <span>→</span>
+                    </a>
+                </header>
+
+                <div class="featured-projects__grid">
+                    <!-- Project Card: Nexus Branding -->
+                    <article class="project-card fade-in">
+                        <a href="project/nexus-branding.html">
+                            <div class="project-card__image">
+                                <img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800&h=500&fit=crop" alt="Nexus Branding" loading="lazy">
+                                <span class="project-card__category">Branding</span>
+                            </div>
+                            <div class="project-card__content">
+                                <h3 class="project-card__title">Nexus</h3>
+                                <p class="project-card__description">
+                                    Complete brand identity for a tech startup. Visual system emphasizing connection and innovation.
+                                </p>
+                                <div class="project-card__meta">
+                                    <span class="project-card__year">2024</span>
+                                    <span class="project-card__cta">
+                                        View Case Study
+                                        <span>→</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Project Card: Meridian -->
+                    <article class="project-card fade-in">
+                        <a href="project/meridian-branding.html">
+                            <div class="project-card__image">
+                                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=500&fit=crop" alt="Meridian Branding" loading="lazy">
+                                <span class="project-card__category">Branding</span>
+                            </div>
+                            <div class="project-card__content">
+                                <h3 class="project-card__title">Meridian</h3>
+                                <p class="project-card__description">
+                                    Brand identity for a luxury travel agency. Elegant typography meets modern minimalism.
+                                </p>
+                                <div class="project-card__meta">
+                                    <span class="project-card__year">2024</span>
+                                    <span class="project-card__cta">
+                                        View Case Study
+                                        <span>→</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Project Card: Vessel -->
+                    <article class="project-card fade-in">
+                        <a href="project/vessel-3d.html">
+                            <div class="project-card__image">
+                                <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=800&h=500&fit=crop" alt="Vessel 3D" loading="lazy">
+                                <span class="project-card__category">3D Art</span>
+                            </div>
+                            <div class="project-card__content">
+                                <h3 class="project-card__title">Vessel</h3>
+                                <p class="project-card__description">
+                                    Immersive 3D platform combining real-time rendering with fluid interactions.
+                                </p>
+                                <div class="project-card__meta">
+                                    <span class="project-card__year">2024</span>
+                                    <span class="project-card__cta">
+                                        View Case Study
+                                        <span>→</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
                     </article>
                 </div>
             </div>
@@ -1943,6 +2294,44 @@
             });
         })();
 
+        // Dropdown Menu
+        (function() {
+            const dropdown = document.querySelector('.nav__dropdown');
+            const dropdownToggle = dropdown.querySelector('.nav__dropdown-toggle');
+            const dropdownLinks = dropdown.querySelectorAll('.nav__dropdown-link');
+
+            // Toggle dropdown on click
+            dropdownToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdown.classList.toggle('active');
+                dropdownToggle.setAttribute('aria-expanded', dropdown.classList.contains('active'));
+            });
+
+            // Close dropdown when clicking a link
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    dropdown.classList.remove('active');
+                    dropdownToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove('active');
+                    dropdownToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+
+            // Close dropdown on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && dropdown.classList.contains('active')) {
+                    dropdown.classList.remove('active');
+                    dropdownToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        })();
+
         // Modal functionality
         const modal = document.getElementById('projectModal');
         const closeModal = document.getElementById('closeModal');
@@ -2043,6 +2432,11 @@
         // Add staggered delay to work items
         document.querySelectorAll('.work__item.fade-in').forEach((item, index) => {
             item.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Add staggered delay to project cards
+        document.querySelectorAll('.project-card.fade-in').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.15}s`;
         });
 
         // Add staggered delay to stats
