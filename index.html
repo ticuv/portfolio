@@ -130,6 +130,10 @@
 
             --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
             --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+            
+            /* Bento Grid Variables */
+            --grid-gap: 1rem;
+            --grid-row-height: 200px;
         }
 
         /* Light theme */
@@ -387,20 +391,47 @@
             color: var(--text-tertiary);
         }
 
+        /* ===========================================
+           BENTO GRID (MASONRY) LAYOUT
+           =========================================== */
         .work__grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--space-sm);
+            grid-template-columns: repeat(2, 1fr);
+            grid-auto-rows: var(--grid-row-height);
+            grid-auto-flow: dense; /* Tetris effect - fills gaps */
+            gap: var(--grid-gap);
         }
 
+        /* Standard landscape card - 1 row */
         .work__item {
             position: relative;
             background: var(--bg-secondary);
             border-radius: 8px;
             overflow: hidden;
-            aspect-ratio: 16 / 10;
             cursor: pointer;
             transition: transform 0.6s var(--ease-out);
+            grid-row: span 1;
+        }
+
+        /* Portrait card - spans 2 rows */
+        .work__item.portrait {
+            grid-row: span 2;
+        }
+
+        /* Wide/Featured card - spans 2 columns */
+        .work__item.wide {
+            grid-column: span 2;
+        }
+
+        /* Featured card - spans 2 columns AND 2 rows (large square/landscape) */
+        .work__item.featured {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        /* Square card - 2 rows (same as portrait height but for square images) */
+        .work__item.square {
+            grid-row: span 2;
         }
 
         .work__item:hover {
@@ -470,16 +501,37 @@
             color: var(--text-tertiary);
         }
 
-        /* Bento Layout for larger screens */
-        @media (min-width: 768px) {
-            .work__grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        /* Project Meta (Year & Featured Badge) */
+        .work__item-meta {
+            position: absolute;
+            top: var(--space-md);
+            left: var(--space-md);
+            display: flex;
+            gap: var(--space-xs);
+            z-index: 2;
+        }
 
-            .work__item:first-child {
-                grid-column: span 2;
-                aspect-ratio: 21 / 9;
-            }
+        .work__item-year {
+            padding: 0.5rem 1rem;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .work__item-featured {
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: #fff;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         /* About Section */
@@ -684,9 +736,10 @@
 
         .modal__image {
             width: 100%;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
+            max-height: 60vh;
+            object-fit: contain;
             border-radius: 16px 16px 0 0;
+            background: var(--bg);
         }
 
         .modal__body {
@@ -828,39 +881,6 @@
             font-size: 4rem;
             color: var(--text-tertiary);
             background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg) 100%);
-        }
-
-        /* Project Meta (Year & Featured Badge) */
-        .work__item-meta {
-            position: absolute;
-            top: var(--space-md);
-            left: var(--space-md);
-            display: flex;
-            gap: var(--space-xs);
-            z-index: 2;
-        }
-
-        .work__item-year {
-            padding: 0.5rem 1rem;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .work__item-featured {
-            padding: 0.5rem 1rem;
-            background: var(--accent);
-            border: 1px solid var(--accent);
-            border-radius: 100px;
-            font-size: 0.75rem;
-            color: #fff;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
 
         /* Back to Top Button */
@@ -1134,7 +1154,45 @@
             line-height: 1.8;
         }
 
+        /* ===========================================
+           RESPONSIVE BENTO GRID
+           =========================================== */
+        
+        /* Tablet - 2 columns */
+        @media (max-width: 1024px) {
+            :root {
+                --grid-row-height: 180px;
+            }
+        }
+
+        /* Mobile - Single column */
         @media (max-width: 768px) {
+            :root {
+                --grid-row-height: 150px;
+                --grid-gap: 0.75rem;
+            }
+
+            .work__grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* On mobile, portrait cards span 2 rows in single column */
+            .work__item.portrait {
+                grid-row: span 2;
+            }
+
+            /* Wide and featured become single column, standard height */
+            .work__item.wide,
+            .work__item.featured {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            /* Featured still gets extra height on mobile */
+            .work__item.featured {
+                grid-row: span 2;
+            }
+
             .nav__toggle {
                 display: flex;
             }
@@ -1263,6 +1321,17 @@
             }
         }
 
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            :root {
+                --grid-row-height: 120px;
+            }
+
+            .hero__headline {
+                font-size: clamp(1.8rem, 7vw, 2.5rem);
+            }
+        }
+
         /* Responsive Adjustments */
         @media (min-width: 768px) {
             .hero__content {
@@ -1291,6 +1360,7 @@
             :root {
                 --space-md: 3rem;
                 --space-lg: 6rem;
+                --grid-row-height: 220px;
             }
 
             .nav {
@@ -1299,6 +1369,18 @@
 
             .hero {
                 padding: var(--space-2xl) 0 var(--space-xl);
+            }
+        }
+
+        /* Large screens - 3 columns for more variety */
+        @media (min-width: 1200px) {
+            .work__grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            /* Adjust featured to span 2 columns on 3-col layout */
+            .work__item.featured {
+                grid-column: span 2;
             }
         }
 
@@ -1501,7 +1583,7 @@
             <div class="container">
                 <header class="section__header fade-in">
                     <h2 class="section__title">Selected Work</h2>
-                    <span class="section__count"><span id="projectCount">04</span> Projects</span>
+                    <span class="section__count"><span id="projectCount">06</span> Projects</span>
                 </header>
 
                 <!-- Project Filters -->
@@ -1513,14 +1595,29 @@
                     <button class="filter-btn" data-filter="generative">Generative</button>
                 </div>
 
+                <!-- BENTO GRID -->
                 <div class="work__grid">
+                    <!-- 
+                        AUTOMATIC ASPECT RATIO DETECTION:
+                        Just paste your image URL - the script will automatically detect
+                        if it's portrait, landscape, square, or wide and apply the correct class!
+                        
+                        Manual override classes (optional):
+                        - .portrait = tall image, spans 2 rows
+                        - .wide = wide image, spans 2 columns  
+                        - .featured = large card, spans 2 columns AND 2 rows (use for hero projects)
+                        - .square = square image, spans 2 rows
+                        - (no class) = standard landscape, 1 row
+                    -->
+
+                    <!-- Just add your project - aspect ratio detected automatically! -->
                     <article class="work__item fade-in" role="article" aria-label="Relax"
                         data-title="Relax"
                         data-tags="Visuals, Poster"
-                        data-description="A soothing, retro-inspired poster washed in vintage cyan tones. A figure floats weightlessly through a texture of clouds and water, embodying a sense of 1970s nostalgia and the quiet, effortless state of simply existing. "
+                        data-description="A soothing, retro-inspired poster washed in vintage cyan tones. A figure floats weightlessly through a texture of clouds and water, embodying a sense of 1970s nostalgia and the quiet, effortless state of simply existing."
                         data-image="https://res.cloudinary.com/daisb58zx/image/upload/v1764325063/8da64b84-0eb8-4f5b-b19a-bd290fb87a07_rw_1920_kbbybl.jpg"
-                        data-category="branding generative 3d">
-                        <img src="https://res.cloudinary.com/daisb58zx/image/upload/v1764325063/8da64b84-0eb8-4f5b-b19a-bd290fb87a07_rw_1920_kbbybl.jpg" alt="Meridian Brand System" class="work__item-image" loading="lazy" decoding="async">
+                        data-category="visuals branding">
+                        <img src="https://res.cloudinary.com/daisb58zx/image/upload/v1764325063/8da64b84-0eb8-4f5b-b19a-bd290fb87a07_rw_1920_kbbybl.jpg" alt="Relax - Vintage poster design" class="work__item-image" loading="lazy" decoding="async">
                         <div class="work__item-meta">
                             <span class="work__item-featured">Featured</span>
                             <span class="work__item-year">2024</span>
@@ -1528,17 +1625,19 @@
                         <div class="work__item-overlay"></div>
                         <div class="work__item-content">
                             <h3 class="work__item-title">Relax</h3>
-                            <p class="work__item-category">Visuals/ Poster</p>
+                            <p class="work__item-category">Visuals / Poster</p>
                         </div>
                         <span class="work__item-number">01</span>
                     </article>
-                    <article class="work__item fade-in" role="article" aria-label="Vessel Digital Platform project"
+
+                    <!-- Portrait image - auto-detected -->
+                    <article class="work__item fade-in" role="article" aria-label="Vessel Digital Platform"
                         data-title="Vessel"
                         data-tags="3D Visualization, WebGL, Interactive Design"
                         data-description="An immersive digital platform combining real-time 3D rendering with fluid interactions. The project showcases product architecture through dynamic camera movements and particle-based transitions."
-                        data-image="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=800&fit=crop"
+                        data-image="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=800&h=1200&fit=crop"
                         data-category="3d">
-                        <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1200&h=800&fit=crop" alt="Vessel Digital Platform" class="work__item-image" loading="lazy" decoding="async">
+                        <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=800&h=1200&fit=crop" alt="Vessel Digital Platform" class="work__item-image" loading="lazy" decoding="async">
                         <div class="work__item-meta">
                             <span class="work__item-year">2024</span>
                         </div>
@@ -1549,7 +1648,9 @@
                         </div>
                         <span class="work__item-number">02</span>
                     </article>
-                    <article class="work__item fade-in" role="article" aria-label="Forma Architecture project"
+
+                    <!-- Landscape image - auto-detected -->
+                    <article class="work__item fade-in" role="article" aria-label="Forma Architecture"
                         data-title="Forma"
                         data-tags="Generative Art, Architecture, Visual Identity"
                         data-description="Architectural visualization meets generative design. We developed custom algorithms to create unique spatial compositions that reflect the studio's modernist philosophy and computational approach."
@@ -1566,7 +1667,9 @@
                         </div>
                         <span class="work__item-number">03</span>
                     </article>
-                    <article class="work__item fade-in" role="article" aria-label="Lumière Editorial project"
+
+                    <!-- Landscape image - auto-detected -->
+                    <article class="work__item fade-in" role="article" aria-label="Lumière Editorial"
                         data-title="Lumière"
                         data-tags="3D Art, Editorial Design, Motion Graphics"
                         data-description="Editorial design reimagined through the lens of light and shadow. This project combines traditional typography with 3D rendered elements, creating a bridge between print and digital mediums."
@@ -1582,6 +1685,44 @@
                             <p class="work__item-category">Editorial / Print</p>
                         </div>
                         <span class="work__item-number">04</span>
+                    </article>
+
+                    <!-- Portrait image - auto-detected -->
+                    <article class="work__item fade-in" role="article" aria-label="Ethereal Dreams"
+                        data-title="Ethereal Dreams"
+                        data-tags="3D Art, Abstract, Generative"
+                        data-description="An exploration of abstract forms and dreamlike atmospheres created through procedural generation and careful art direction."
+                        data-image="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=1200&fit=crop"
+                        data-category="3d generative">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=1200&fit=crop" alt="Ethereal Dreams" class="work__item-image" loading="lazy" decoding="async">
+                        <div class="work__item-meta">
+                            <span class="work__item-year">2024</span>
+                        </div>
+                        <div class="work__item-overlay"></div>
+                        <div class="work__item-content">
+                            <h3 class="work__item-title">Ethereal Dreams</h3>
+                            <p class="work__item-category">3D Art / Generative</p>
+                        </div>
+                        <span class="work__item-number">05</span>
+                    </article>
+
+                    <!-- Wide image - auto-detected -->
+                    <article class="work__item fade-in" role="article" aria-label="Nexus Brand Identity"
+                        data-title="Nexus"
+                        data-tags="Branding, Logo Design, Visual Identity"
+                        data-description="Complete brand identity for a tech startup. The visual system emphasizes connection and innovation through geometric forms and a bold color palette."
+                        data-image="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1600&h=800&fit=crop"
+                        data-category="branding">
+                        <img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1600&h=800&fit=crop" alt="Nexus Brand Identity" class="work__item-image" loading="lazy" decoding="async">
+                        <div class="work__item-meta">
+                            <span class="work__item-year">2024</span>
+                        </div>
+                        <div class="work__item-overlay"></div>
+                        <div class="work__item-content">
+                            <h3 class="work__item-title">Nexus</h3>
+                            <p class="work__item-category">Branding / Identity</p>
+                        </div>
+                        <span class="work__item-number">06</span>
                     </article>
                 </div>
             </div>
@@ -1998,6 +2139,49 @@
                 projectCount.textContent = visibleCount.toString().padStart(2, '0');
             });
         });
+
+        // Automatic Aspect Ratio Detection for Bento Grid
+        (function() {
+            const workItems = document.querySelectorAll('.work__item');
+            
+            workItems.forEach(item => {
+                const img = item.querySelector('.work__item-image');
+                if (!img) return;
+                
+                // Function to apply correct class based on aspect ratio
+                const applyAspectClass = () => {
+                    const width = img.naturalWidth;
+                    const height = img.naturalHeight;
+                    const ratio = width / height;
+                    
+                    // Remove any existing aspect classes first
+                    item.classList.remove('portrait', 'wide', 'square', 'featured');
+                    
+                    // Apply class based on aspect ratio
+                    if (ratio < 0.8) {
+                        // Portrait (tall) - ratio less than 0.8 (e.g., 2:3, 3:4, 9:16)
+                        item.classList.add('portrait');
+                    } else if (ratio > 1.8) {
+                        // Wide (panoramic) - ratio greater than 1.8 (e.g., 21:9, 2:1)
+                        item.classList.add('wide');
+                    } else if (ratio >= 0.9 && ratio <= 1.1) {
+                        // Square - ratio between 0.9 and 1.1 (approximately 1:1)
+                        item.classList.add('square');
+                    }
+                    // Landscape (default) - ratio between 0.8 and 1.8, no class needed
+                    
+                    console.log(`Image: ${img.alt || 'unnamed'} | Ratio: ${ratio.toFixed(2)} | Class: ${item.classList.contains('portrait') ? 'portrait' : item.classList.contains('wide') ? 'wide' : item.classList.contains('square') ? 'square' : 'landscape'}`);
+                };
+                
+                // If image is already loaded (cached)
+                if (img.complete && img.naturalWidth > 0) {
+                    applyAspectClass();
+                } else {
+                    // Wait for image to load
+                    img.addEventListener('load', applyAspectClass);
+                }
+            });
+        })();
 
         // Cookie Consent Logic
         (function() {
