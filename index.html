@@ -173,7 +173,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            mix-blend-mode: difference;
         }
 
         .nav__logo {
@@ -883,22 +882,6 @@
             display: none;
         }
 
-        /* Mobile Menu Overlay */
-        .nav__overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.8);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s var(--ease-out);
-            z-index: 9999;
-        }
-
-        .nav__overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
         /* Mobile Navigation */
         .nav__toggle {
             display: none;
@@ -912,9 +895,9 @@
             align-items: center;
             gap: 6px;
             cursor: pointer;
-            z-index: 10001;
+            position: relative;
+            z-index: 1001;
             transition: all 0.3s var(--ease-out);
-            mix-blend-mode: normal;
         }
 
         .nav__toggle:hover {
@@ -1109,7 +1092,7 @@
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 100%;
+                width: 80%;
                 max-width: 300px;
                 height: 100vh;
                 background: var(--bg);
@@ -1117,8 +1100,8 @@
                 flex-direction: column;
                 padding: var(--space-xl) var(--space-md);
                 gap: var(--space-md);
-                transition: right 0.4s var(--ease-out);
-                z-index: 10000;
+                transition: right 0.3s var(--ease-out);
+                z-index: 1000;
                 overflow-y: auto;
             }
 
@@ -1127,7 +1110,7 @@
             }
 
             .nav__link {
-                font-size: 1.5rem;
+                font-size: 1.25rem;
                 color: var(--text-primary);
                 padding: var(--space-sm) 0;
             }
@@ -1300,9 +1283,6 @@
 
         <p>Țicu Vlad is an emerging designer from Romania, offering affordable graphic design services, professional logo design, startup branding, small business logo design, and brand refresh services. As an independent creative with agency-quality standards, ticuv provides design consultation, visual storytelling, and conceptual design for clients worldwide.</p>
     </article>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="nav__overlay" id="navOverlay"></div>
 
     <!-- Navigation -->
     <nav class="nav" aria-label="Main navigation">
@@ -1693,8 +1673,12 @@
                         block: 'start'
                     });
                     // Close mobile menu if open
-                    navToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
+                    const toggle = document.getElementById('navToggle');
+                    const links = document.getElementById('navLinks');
+                    if (toggle && links) {
+                        toggle.classList.remove('active');
+                        links.classList.remove('active');
+                    }
                 }
             });
         });
@@ -1751,14 +1735,12 @@
         // Mobile navigation toggle
         const navToggle = document.getElementById('navToggle');
         const navLinks = document.getElementById('navLinks');
-        const navOverlay = document.getElementById('navOverlay');
 
-        if (navToggle && navLinks && navOverlay) {
-            navToggle.addEventListener('click', () => {
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
                 navToggle.classList.toggle('active');
                 navLinks.classList.toggle('active');
-                navOverlay.classList.toggle('active');
-                document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
             });
 
             // Close mobile menu when clicking on a link
@@ -1766,26 +1748,14 @@
                 link.addEventListener('click', () => {
                     navToggle.classList.remove('active');
                     navLinks.classList.remove('active');
-                    navOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
                 });
-            });
-
-            // Close mobile menu when clicking on overlay
-            navOverlay.addEventListener('click', () => {
-                navToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                navOverlay.classList.remove('active');
-                document.body.style.overflow = '';
             });
 
             // Close mobile menu when clicking outside
             document.addEventListener('click', (e) => {
-                if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                if (!navToggle.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('active')) {
                     navToggle.classList.remove('active');
                     navLinks.classList.remove('active');
-                    navOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
                 }
             });
         }
