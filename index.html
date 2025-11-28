@@ -883,6 +883,22 @@
             display: none;
         }
 
+        /* Mobile Menu Overlay */
+        .nav__overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s var(--ease-out);
+            z-index: 9999;
+        }
+
+        .nav__overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         /* Mobile Navigation */
         .nav__toggle {
             display: none;
@@ -896,7 +912,7 @@
             align-items: center;
             gap: 6px;
             cursor: pointer;
-            z-index: 1001;
+            z-index: 10001;
             transition: all 0.3s var(--ease-out);
             mix-blend-mode: normal;
         }
@@ -1102,7 +1118,8 @@
                 padding: var(--space-xl) var(--space-md);
                 gap: var(--space-md);
                 transition: right 0.4s var(--ease-out);
-                z-index: 1000;
+                z-index: 10000;
+                overflow-y: auto;
             }
 
             .nav__links.active {
@@ -1284,6 +1301,9 @@
         <p>Țicu Vlad is an emerging designer from Romania, offering affordable graphic design services, professional logo design, startup branding, small business logo design, and brand refresh services. As an independent creative with agency-quality standards, ticuv provides design consultation, visual storytelling, and conceptual design for clients worldwide.</p>
     </article>
 
+    <!-- Mobile Menu Overlay -->
+    <div class="nav__overlay" id="navOverlay"></div>
+
     <!-- Navigation -->
     <nav class="nav" aria-label="Main navigation">
         <a href="#" class="nav__logo">
@@ -1342,7 +1362,7 @@
                 <div class="work__filters fade-in">
                     <button class="filter-btn active" data-filter="all">All</button>
                     <button class="filter-btn" data-filter="3d">3D Art</button>
-                    <button class="filter-btn" data-filter="posters">Posters</button>
+                    <button class="filter-btn" data-filter="visuals">Visuals</button>
                     <button class="filter-btn" data-filter="branding">Branding</button>
                     <button class="filter-btn" data-filter="generative">Generative</button>
                 </div>
@@ -1405,7 +1425,7 @@
                         data-tags="3D Art, Editorial Design, Motion Graphics"
                         data-description="Editorial design reimagined through the lens of light and shadow. This project combines traditional typography with 3D rendered elements, creating a bridge between print and digital mediums."
                         data-image="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=800&fit=crop"
-                        data-category="3d posters">
+                        data-category="3d visuals">
                         <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=800&fit=crop" alt="Lumière Editorial" class="work__item-image">
                         <div class="work__item-meta">
                             <span class="work__item-year">2023</span>
@@ -1731,11 +1751,14 @@
         // Mobile navigation toggle
         const navToggle = document.getElementById('navToggle');
         const navLinks = document.getElementById('navLinks');
+        const navOverlay = document.getElementById('navOverlay');
 
-        if (navToggle && navLinks) {
+        if (navToggle && navLinks && navOverlay) {
             navToggle.addEventListener('click', () => {
                 navToggle.classList.toggle('active');
                 navLinks.classList.toggle('active');
+                navOverlay.classList.toggle('active');
+                document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
             });
 
             // Close mobile menu when clicking on a link
@@ -1743,7 +1766,17 @@
                 link.addEventListener('click', () => {
                     navToggle.classList.remove('active');
                     navLinks.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
                 });
+            });
+
+            // Close mobile menu when clicking on overlay
+            navOverlay.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                navOverlay.classList.remove('active');
+                document.body.style.overflow = '';
             });
 
             // Close mobile menu when clicking outside
@@ -1751,6 +1784,8 @@
                 if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
                     navToggle.classList.remove('active');
                     navLinks.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
                 }
             });
         }
