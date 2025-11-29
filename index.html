@@ -285,6 +285,17 @@
             align-items: end;
         }
 
+        .hero__tagline {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--space-sm);
+            opacity: 0;
+            animation: fadeUp 0.8s var(--ease-out) forwards;
+            animation-delay: 0s;
+        }
+
         .hero__headline {
             font-family: var(--font-display);
             font-size: clamp(3rem, 12vw, 9rem);
@@ -299,6 +310,15 @@
             color: var(--text-secondary);
         }
 
+        .hero__subheadline {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: var(--space-sm);
+            opacity: 0;
+            animation: fadeUp 0.8s var(--ease-out) forwards;
+            animation-delay: 0.15s;
+        }
+
         .hero__meta {
             display: flex;
             flex-direction: column;
@@ -310,6 +330,12 @@
             color: var(--text-secondary);
             max-width: 32ch;
             line-height: 1.7;
+        }
+
+        .hero__cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
         }
 
         .hero__cta {
@@ -338,6 +364,17 @@
 
         .hero__cta:hover .hero__cta-arrow {
             transform: translateX(4px);
+        }
+
+        .hero__email {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            transition: color 0.3s var(--ease-out);
+            width: fit-content;
+        }
+
+        .hero__email:hover {
+            color: var(--accent);
         }
 
         .hero__scroll {
@@ -1499,6 +1536,169 @@
                 scroll-behavior: smooth;
             }
         }
+
+        /* Availability Indicator */
+        .about__availability {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-xs);
+            padding: 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            margin-bottom: var(--space-md);
+            font-size: 0.875rem;
+            color: var(--text-primary);
+        }
+
+        .availability__dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(0.95);
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--accent);
+            z-index: 10000;
+            transform-origin: left;
+            transition: width 0.1s ease-out;
+        }
+
+        /* Floating CTA Button */
+        .floating-cta {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            padding: 1rem 2rem;
+            background: var(--text-primary);
+            color: var(--bg);
+            font-size: 0.875rem;
+            font-weight: 500;
+            border-radius: 100px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s var(--ease-out);
+            z-index: 998;
+            border: none;
+            cursor: pointer;
+        }
+
+        .floating-cta.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .floating-cta:hover {
+            background: var(--accent);
+            transform: translateX(-50%) translateY(-4px);
+        }
+
+        /* Exit Intent Popup */
+        .exit-intent {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: var(--space-lg);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s var(--ease-out);
+            z-index: 10001;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .exit-intent.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .exit-intent__title {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+        }
+
+        .exit-intent__email {
+            font-size: 1.125rem;
+            color: var(--accent);
+            margin-top: var(--space-sm);
+            font-weight: 500;
+        }
+
+        .exit-intent__close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.3s var(--ease-out);
+        }
+
+        .exit-intent__close:hover {
+            color: var(--accent);
+        }
+
+        .exit-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s var(--ease-out);
+            z-index: 10000;
+        }
+
+        .exit-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Image Fade-in Enhancement */
+        .work__item-image,
+        .about__profile-image {
+            opacity: 0;
+            animation: imageFadeIn 0.6s var(--ease-out) forwards;
+        }
+
+        @keyframes imageFadeIn {
+            to {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1556,20 +1756,29 @@
         <section class="hero">
             <div class="container">
                 <div class="hero__content">
-                    <h1 class="hero__headline">
-                        Creating<br>
-                        <em>Impactful</em><br>
-                        Visuals
-                    </h1>
+                    <div class="hero__text">
+                        <p class="hero__tagline">Visual Designer × Poster Art × 3D</p>
+                        <h1 class="hero__headline">
+                            Creating<br>
+                            <em>Impactful</em><br>
+                            Visuals
+                        </h1>
+                        <p class="hero__subheadline">24-year-old designer from Iași, Romania</p>
+                    </div>
                     <div class="hero__meta">
                         <p class="hero__description">
                             Multidisciplinary designer specializing in 3D art, generative design,
                             and brand identities. Balancing discipline with creative freedom.
                         </p>
-                        <a href="#contact" class="hero__cta">
-                            Let's Collaborate
-                            <span class="hero__cta-arrow" aria-hidden="true">→</span>
-                        </a>
+                        <div class="hero__cta-group">
+                            <a href="#contact" class="hero__cta">
+                                Let's Collaborate
+                                <span class="hero__cta-arrow" aria-hidden="true">→</span>
+                            </a>
+                            <a href="mailto:vladticu100@gmail.com" class="hero__email">
+                                vladticu100@gmail.com
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1734,6 +1943,10 @@
             <div class="container">
                 <div class="about__content">
                     <div class="about__text fade-in">
+                        <div class="about__availability">
+                            <span class="availability__dot"></span>
+                            <span class="availability__text">Available for new projects</span>
+                        </div>
                         <p class="about__lead">
                             Multidisciplinary designer creating <em>impactful visuals</em>.
                         </p>
@@ -1749,20 +1962,20 @@
                         <div class="about__stats">
                             <div class="stat">
                                 <div class="stat__meta">
+                                    <span class="stat__meta-label">Projects</span>
+                                    <span class="stat__meta-value">50+ Designs</span>
+                                </div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat__meta">
+                                    <span class="stat__meta-label">Experience</span>
+                                    <span class="stat__meta-value">3 Years</span>
+                                </div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat__meta">
                                     <span class="stat__meta-label">Foundation</span>
                                     <span class="stat__meta-value">Photography</span>
-                                </div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat__meta">
-                                    <span class="stat__meta-label">Since</span>
-                                    <span class="stat__meta-value">2022</span>
-                                </div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat__meta">
-                                    <span class="stat__meta-label">Approach</span>
-                                    <span class="stat__meta-value">Discipline + Creativity</span>
                                 </div>
                             </div>
                             <div class="stat">
@@ -1775,10 +1988,10 @@
                         <div class="about__services">
                             <h3 class="about__services-title">What I Do</h3>
                             <div class="about__services-list">
-                                <span class="about__service-tag">Graphics & Posters</span>
-                                <span class="about__service-tag">Logo Design & Branding</span>
-                                <span class="about__service-tag">3D Design</span>
-                                <span class="about__service-tag">Generative Art</span>
+                                <span class="about__service-tag" data-filter="visuals">Graphics & Posters</span>
+                                <span class="about__service-tag" data-filter="branding">Logo Design & Branding</span>
+                                <span class="about__service-tag" data-filter="3d">3D Design</span>
+                                <span class="about__service-tag" data-filter="generative">Generative Art</span>
                             </div>
                         </div>
                     </div>
@@ -1911,6 +2124,21 @@
 
     <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Floating CTA Button -->
+    <button class="floating-cta" id="floatingCta">Work Together →</button>
+
+    <!-- Exit Intent Popup -->
+    <div class="exit-overlay" id="exitOverlay"></div>
+    <div class="exit-intent" id="exitIntent">
+        <button class="exit-intent__close" id="exitClose">×</button>
+        <h3 class="exit-intent__title">Before you go...</h3>
+        <p style="color: var(--text-secondary);">Let's create something amazing together</p>
+        <p class="exit-intent__email">vladticu100@gmail.com</p>
+    </div>
 
     <script>
         // Theme Toggle
@@ -2222,6 +2450,105 @@
                     if (name.startsWith('_ga')) {
                         document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
                     }
+                });
+            });
+        })();
+
+        // Scroll Progress Bar
+        (function() {
+            const scrollProgress = document.getElementById('scrollProgress');
+
+            window.addEventListener('scroll', () => {
+                const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (window.scrollY / windowHeight) * 100;
+                scrollProgress.style.width = scrolled + '%';
+            });
+        })();
+
+        // Floating CTA Button
+        (function() {
+            const floatingCta = document.getElementById('floatingCta');
+            const backToTop = document.getElementById('backToTop');
+
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+                const heroHeight = document.querySelector('.hero').offsetHeight;
+
+                // Show after scrolling past hero section
+                if (scrolled > heroHeight * 0.5) {
+                    floatingCta.classList.add('show');
+                } else {
+                    floatingCta.classList.remove('show');
+                }
+            });
+
+            floatingCta.addEventListener('click', () => {
+                document.querySelector('#contact').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        })();
+
+        // Exit Intent Popup
+        (function() {
+            const exitIntent = document.getElementById('exitIntent');
+            const exitOverlay = document.getElementById('exitOverlay');
+            const exitClose = document.getElementById('exitClose');
+            let exitShown = false;
+
+            // Check if already shown in this session
+            if (sessionStorage.getItem('exitIntentShown')) {
+                exitShown = true;
+            }
+
+            const showExitIntent = () => {
+                if (!exitShown) {
+                    exitIntent.classList.add('show');
+                    exitOverlay.classList.add('show');
+                    exitShown = true;
+                    sessionStorage.setItem('exitIntentShown', 'true');
+                }
+            };
+
+            const hideExitIntent = () => {
+                exitIntent.classList.remove('show');
+                exitOverlay.classList.remove('show');
+            };
+
+            // Trigger on mouse leave from top
+            document.addEventListener('mouseleave', (e) => {
+                if (e.clientY < 10) {
+                    showExitIntent();
+                }
+            });
+
+            exitClose.addEventListener('click', hideExitIntent);
+            exitOverlay.addEventListener('click', hideExitIntent);
+        })();
+
+        // Make Service Tags Clickable to Filter Work
+        (function() {
+            const serviceTags = document.querySelectorAll('.about__service-tag[data-filter]');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+
+            serviceTags.forEach(tag => {
+                tag.addEventListener('click', () => {
+                    const filter = tag.getAttribute('data-filter');
+
+                    // Scroll to work section
+                    document.querySelector('#work').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+
+                    // Trigger the filter after a short delay
+                    setTimeout(() => {
+                        const targetButton = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+                        if (targetButton) {
+                            targetButton.click();
+                        }
+                    }, 500);
                 });
             });
         })();
