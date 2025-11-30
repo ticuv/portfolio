@@ -1,0 +1,21 @@
+/* Main CSS - Imports all stylesheets in correct order */
+
+/* 1. Variables first */
+@import 'variables.css';
+
+/* 2. Base styles */
+@import 'base.css';
+
+/* 3. Components */
+@import 'components/nav.css';
+@import 'components/hero.css';
+@import 'components/work.css';
+@import 'components/modal.css';
+@import 'components/about.css';
+@import 'components/contact.css';
+@import 'components/cookie.css';
+@import 'components/privacy.css';
+@import 'components/ui.css';
+
+/* 4. Responsive styles last */
+@import 'responsive.css';
