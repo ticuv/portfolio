@@ -310,15 +310,6 @@
             color: var(--text-secondary);
         }
 
-        .hero__subheadline {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            margin-top: var(--space-sm);
-            opacity: 0;
-            animation: fadeUp 0.8s var(--ease-out) forwards;
-            animation-delay: 0.15s;
-        }
-
         .hero__meta {
             display: flex;
             flex-direction: column;
@@ -1614,79 +1605,6 @@
             transform: translateX(-50%) translateY(-4px);
         }
 
-        /* Exit Intent Popup */
-        .exit-intent {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: var(--space-lg);
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s var(--ease-out);
-            z-index: 10001;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-
-        .exit-intent.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .exit-intent__title {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: var(--space-sm);
-            color: var(--text-primary);
-        }
-
-        .exit-intent__email {
-            font-size: 1.125rem;
-            color: var(--accent);
-            margin-top: var(--space-sm);
-            font-weight: 500;
-        }
-
-        .exit-intent__close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: transparent;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: color 0.3s var(--ease-out);
-        }
-
-        .exit-intent__close:hover {
-            color: var(--accent);
-        }
-
-        .exit-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(4px);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s var(--ease-out);
-            z-index: 10000;
-        }
-
-        .exit-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
         /* Image Fade-in Enhancement */
         .work__item-image,
         .about__profile-image {
@@ -1763,7 +1681,6 @@
                             <em>Impactful</em><br>
                             Visuals
                         </h1>
-                        <p class="hero__subheadline">24-year-old designer from Iași, Romania</p>
                     </div>
                     <div class="hero__meta">
                         <p class="hero__description">
@@ -2131,15 +2048,6 @@
     <!-- Floating CTA Button -->
     <button class="floating-cta" id="floatingCta">Work Together →</button>
 
-    <!-- Exit Intent Popup -->
-    <div class="exit-overlay" id="exitOverlay"></div>
-    <div class="exit-intent" id="exitIntent">
-        <button class="exit-intent__close" id="exitClose">×</button>
-        <h3 class="exit-intent__title">Before you go...</h3>
-        <p style="color: var(--text-secondary);">Let's create something amazing together</p>
-        <p class="exit-intent__email">vladticu100@gmail.com</p>
-    </div>
-
     <script>
         // Theme Toggle
         (function() {
@@ -2488,43 +2396,6 @@
                     block: 'start'
                 });
             });
-        })();
-
-        // Exit Intent Popup
-        (function() {
-            const exitIntent = document.getElementById('exitIntent');
-            const exitOverlay = document.getElementById('exitOverlay');
-            const exitClose = document.getElementById('exitClose');
-            let exitShown = false;
-
-            // Check if already shown in this session
-            if (sessionStorage.getItem('exitIntentShown')) {
-                exitShown = true;
-            }
-
-            const showExitIntent = () => {
-                if (!exitShown) {
-                    exitIntent.classList.add('show');
-                    exitOverlay.classList.add('show');
-                    exitShown = true;
-                    sessionStorage.setItem('exitIntentShown', 'true');
-                }
-            };
-
-            const hideExitIntent = () => {
-                exitIntent.classList.remove('show');
-                exitOverlay.classList.remove('show');
-            };
-
-            // Trigger on mouse leave from top
-            document.addEventListener('mouseleave', (e) => {
-                if (e.clientY < 10) {
-                    showExitIntent();
-                }
-            });
-
-            exitClose.addEventListener('click', hideExitIntent);
-            exitOverlay.addEventListener('click', hideExitIntent);
         })();
 
         // Make Service Tags Clickable to Filter Work
