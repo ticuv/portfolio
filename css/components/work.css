@@ -349,7 +349,17 @@
 .view-archive {
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 100%;
     margin: var(--space-lg) 0;
+    position: relative;
+    z-index: 5;
+}
+
+#archiveSection {
+    padding-bottom: var(--space-2xl);
+    width: 100%;
+    display: block;
 }
 
 .view-archive-btn {
