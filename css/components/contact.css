@@ -97,7 +97,7 @@
 .contact__whatsapp {
     max-width: 600px;
     margin: 0 auto 2rem;
-    text-align: center;
+    text-align: left;
 }
 
 .contact__whatsapp-text {
@@ -107,22 +107,23 @@
 }
 
 .contact__whatsapp-btn {
-    display: inline-flex;
+    display: inline-flex !important;
     align-items: center;
     gap: var(--space-sm);
     padding: 1rem 2rem;
-    background: #25D366;
-    color: #fff;
+    background: #25D366 !important;
+    color: #fff !important;
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: 0.02em;
     border-radius: 100px;
     transition: all 0.4s var(--ease-out);
+    text-decoration: none;
     width: fit-content;
 }
 
 .contact__whatsapp-btn:hover {
-    background: #20BA5A;
+    background: #20BA5A !important;
     gap: var(--space-md);
     transform: translateY(-2px);
 }
