@@ -5,7 +5,7 @@
 }
 
 .form__group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .form__label {
@@ -64,7 +64,7 @@
 }
 
 .form__status {
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     text-align: center;
     font-size: 0.875rem;
     color: var(--text-secondary);
@@ -76,7 +76,7 @@
     align-items: center;
     gap: 1rem;
     max-width: 600px;
-    margin: 2rem auto 1.5rem;
+    margin: 1.25rem auto 1rem;
 }
 
 .contact__divider-line {
@@ -96,14 +96,14 @@
 /* WhatsApp Alternative */
 .contact__whatsapp {
     max-width: 600px;
-    margin: 0 auto 2rem;
+    margin: 0 auto 1rem;
     text-align: left;
 }
 
 .contact__whatsapp-text {
     font-size: 0.875rem;
     color: var(--text-secondary);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
 .contact__whatsapp-btn {
