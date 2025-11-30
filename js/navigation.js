@@ -8,6 +8,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth',
                 block: 'start'
             });
+            // Update URL without jumping
+            history.pushState(null, null, this.getAttribute('href'));
             // Close mobile menu if open
             const toggle = document.getElementById('navToggle');
             const links = document.getElementById('navLinks');
@@ -17,6 +19,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             }
         }
     });
+});
+
+// Smooth scroll on page load if URL has hash
+window.addEventListener('load', () => {
+    if (window.location.hash) {
+        // Prevent default jump
+        setTimeout(() => {
+            const target = document.querySelector(window.location.hash);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }, 0);
+    }
 });
 
 // Mobile navigation toggle
