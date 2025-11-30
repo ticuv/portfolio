@@ -9,7 +9,13 @@
     const currentTheme = localStorage.getItem('theme') || 'dark';
     html.setAttribute('data-theme', currentTheme);
     themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
-    logoImage.src = currentTheme === 'dark' ? 'logo.png' : 'whitemode.png';
+
+    // Use filter to invert logo color for light mode
+    if (currentTheme === 'light') {
+        logoImage.style.filter = 'invert(1)';
+    } else {
+        logoImage.style.filter = 'invert(0)';
+    }
 
     themeToggle.addEventListener('click', () => {
         const theme = html.getAttribute('data-theme');
@@ -18,6 +24,12 @@
         html.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-        logoImage.src = newTheme === 'dark' ? 'logo.png' : 'whitemode.png';
+
+        // Use filter to invert logo color for light mode
+        if (newTheme === 'light') {
+            logoImage.style.filter = 'invert(1)';
+        } else {
+            logoImage.style.filter = 'invert(0)';
+        }
     });
 })();
