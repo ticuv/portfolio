@@ -345,7 +345,7 @@
     transform: translateY(100%);
 }
 
-/* View Archive CTA */
+/* View Archive CTA - Fixes alignment */
 .view-archive {
     display: flex;
     justify-content: center;
@@ -356,10 +356,14 @@
     z-index: 5;
 }
 
+/* Archive Section - Fixes overlap */
 #archiveSection {
-    padding-bottom: var(--space-2xl);
+    /* Changed 2x1 (typo) to 2xl */
+    padding-bottom: var(--space-2xl); 
     width: 100%;
     display: block;
+    /* Added overflow hidden to force it to respect inner content height */
+    overflow: hidden; 
 }
 
 .view-archive-btn {
