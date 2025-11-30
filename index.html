@@ -415,9 +415,63 @@
             letter-spacing: -0.02em;
         }
 
+        .section__subtitle {
+            font-size: 1rem;
+            color: var(--text-tertiary);
+            margin-top: var(--space-xs);
+            font-weight: 400;
+        }
+
         .section__count {
             font-size: 0.875rem;
             color: var(--text-tertiary);
+        }
+
+        /* Work Sections Hierarchy */
+        .work__section {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .work__section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .work__section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .work__section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        /* Section Divider */
+        .work__divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+            margin: var(--space-2xl) 0;
+            position: relative;
+        }
+
+        .work__divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
         }
 
         /* ===========================================
@@ -531,6 +585,7 @@
             font-family: var(--font-display);
             font-size: 1rem;
             color: var(--text-tertiary);
+            display: none; /* Hidden - not needed anymore */
         }
 
         /* Project Meta (Year & Featured Badge) */
@@ -948,16 +1003,37 @@
             box-shadow: 0 8px 20px rgba(232, 93, 4, 0.4);
         }
 
-        /* Project Filters */
+        /* Project Filters & Controls */
+        .work__controls {
+            display: flex;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .work__filters {
             display: flex;
             gap: var(--space-xs);
-            margin-bottom: var(--space-lg);
             flex-wrap: wrap;
-            justify-content: center;
         }
 
-        .filter-btn {
+        .work__sort {
+            display: flex;
+            gap: var(--space-xs);
+            align-items: center;
+        }
+
+        .sort-label {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-right: var(--space-xs);
+        }
+
+        .filter-btn, .sort-btn {
             padding: 0.75rem 1.5rem;
             background: var(--bg-secondary);
             border: 1px solid var(--border);
@@ -970,12 +1046,13 @@
             font-weight: 500;
         }
 
-        .filter-btn:hover {
+        .filter-btn:hover, .sort-btn:hover {
             color: var(--text-primary);
             border-color: var(--text-primary);
+            transform: translateY(-2px);
         }
 
-        .filter-btn.active {
+        .filter-btn.active, .sort-btn.active {
             background: var(--accent);
             border-color: var(--accent);
             color: #fff;
@@ -983,6 +1060,105 @@
 
         .work__item.hidden {
             display: none;
+        }
+
+        /* Load More Button */
+        .load-more {
+            display: flex;
+            justify-content: center;
+            margin-top: var(--space-lg);
+            opacity: 0;
+            animation: fadeUp 0.6s var(--ease-out) forwards;
+            animation-delay: 0.3s;
+        }
+
+        .load-more-btn {
+            padding: 1rem 3rem;
+            background: transparent;
+            border: 2px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.4s var(--ease-out);
+            font-family: var(--font-body);
+            letter-spacing: 0.02em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .load-more-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--accent);
+            transform: translateY(100%);
+            transition: transform 0.4s var(--ease-out);
+            z-index: -1;
+        }
+
+        .load-more-btn:hover {
+            color: #fff;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .load-more-btn:hover::before {
+            transform: translateY(0);
+        }
+
+        .load-more-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .load-more-btn:disabled:hover {
+            color: var(--text-primary);
+            border-color: var(--border);
+        }
+
+        .load-more-btn:disabled::before {
+            transform: translateY(100%);
+        }
+
+        /* View Archive CTA */
+        .view-archive {
+            display: flex;
+            justify-content: center;
+            margin: var(--space-lg) 0;
+        }
+
+        .view-archive-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 0.75rem 2rem;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.4s var(--ease-out);
+        }
+
+        .view-archive-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--text-primary);
+            gap: 1rem;
+        }
+
+        .view-archive-btn svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.4s var(--ease-out);
+        }
+
+        .view-archive-btn:hover svg {
+            transform: translateY(3px);
         }
 
         /* Mobile Navigation */
@@ -1362,6 +1538,21 @@
             .hero__headline {
                 font-size: clamp(1.8rem, 7vw, 2.5rem);
             }
+
+            .work__controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .work__filters {
+                justify-content: center;
+            }
+
+            .work__sort {
+                justify-content: center;
+                padding-top: var(--space-xs);
+                border-top: 1px solid var(--border);
+            }
         }
 
         /* Responsive Adjustments */
@@ -1462,6 +1653,33 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        /* Stagger animations for work items */
+        .work__item:nth-child(1) { animation-delay: 0s; }
+        .work__item:nth-child(2) { animation-delay: 0.1s; }
+        .work__item:nth-child(3) { animation-delay: 0.2s; }
+        .work__item:nth-child(4) { animation-delay: 0.3s; }
+        .work__item:nth-child(5) { animation-delay: 0.4s; }
+        .work__item:nth-child(6) { animation-delay: 0.5s; }
+        .work__item:nth-child(7) { animation-delay: 0.6s; }
+        .work__item:nth-child(8) { animation-delay: 0.7s; }
+
+        /* Smooth section transitions */
+        .work__section {
+            opacity: 0;
+            animation: fadeUp 0.8s var(--ease-out) forwards;
+            animation-delay: 0.2s;
+        }
+
+        .work__divider {
+            opacity: 0;
+            animation: fadeIn 1s var(--ease-out) forwards;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
 
         /* Scroll animations */
@@ -1712,21 +1930,36 @@
         <section class="work" id="work">
             <div class="container">
                 <header class="section__header fade-in">
-                    <h2 class="section__title">Selected Work</h2>
-                    <span class="section__count"><span id="projectCount">06</span> Projects</span>
+                    <div>
+                        <h2 class="section__title">Selected Work</h2>
+                        <p class="section__subtitle">A curated collection of my best projects</p>
+                    </div>
                 </header>
 
-                <!-- Project Filters -->
-                <div class="work__filters fade-in">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="3d">3D Art</button>
-                    <button class="filter-btn" data-filter="visuals">Visuals</button>
-                    <button class="filter-btn" data-filter="branding">Branding</button>
-                    <button class="filter-btn" data-filter="generative">Generative</button>
+                <!-- Project Controls (Filters + Sort) -->
+                <div class="work__controls fade-in">
+                    <div class="work__filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="3d">3D Art</button>
+                        <button class="filter-btn" data-filter="visuals">Visuals</button>
+                        <button class="filter-btn" data-filter="branding">Branding</button>
+                        <button class="filter-btn" data-filter="generative">Generative</button>
+                    </div>
+                    <div class="work__sort">
+                        <span class="sort-label">Sort:</span>
+                        <button class="sort-btn active" data-sort="featured">Featured</button>
+                        <button class="sort-btn" data-sort="latest">Latest</button>
+                        <button class="sort-btn" data-sort="oldest">Oldest</button>
+                    </div>
                 </div>
 
-                <!-- BENTO GRID -->
-                <div class="work__grid">
+                <!-- FEATURED WORK SECTION -->
+                <div class="work__section">
+                    <div class="work__section-header">
+                        <h3 class="work__section-title">Featured</h3>
+                        <span class="work__section-label">Top Picks</span>
+                    </div>
+                    <div class="work__grid work__grid--featured" id="featuredGrid">
                     <!-- 
                         AUTOMATIC ASPECT RATIO DETECTION:
                         Just paste your image URL - the script will automatically detect
@@ -1740,120 +1973,172 @@
                         - (no class) = standard landscape, 1 row
                     -->
 
-                    <!-- Just add your project - aspect ratio detected automatically! -->
-                    <article class="work__item fade-in" role="article" aria-label="Relax"
-                        data-title="Relax"
-                        data-tags="Visuals, Poster"
-                        data-description="A soothing, retro-inspired poster washed in vintage cyan tones. A figure floats weightlessly through a texture of clouds and water, embodying a sense of 1970s nostalgia and the quiet, effortless state of simply existing."
-                        data-image="https://res.cloudinary.com/daisb58zx/image/upload/v1764325063/8da64b84-0eb8-4f5b-b19a-bd290fb87a07_rw_1920_kbbybl.jpg"
-                        data-category="visuals branding">
-                        <img src="https://res.cloudinary.com/daisb58zx/image/upload/v1764325063/8da64b84-0eb8-4f5b-b19a-bd290fb87a07_rw_1920_kbbybl.jpg" alt="Relax - Vintage poster design" class="work__item-image" loading="lazy" decoding="async">
-                        <div class="work__item-meta">
-                            <span class="work__item-featured">Featured</span>
-                            <span class="work__item-year">2024</span>
-                        </div>
-                        <div class="work__item-overlay"></div>
-                        <div class="work__item-content">
-                            <h3 class="work__item-title">Relax</h3>
-                            <p class="work__item-category">Visuals / Poster</p>
-                        </div>
-                        <span class="work__item-number">01</span>
-                    </article>
+                        <!-- Featured Project 1 -->
+                        <article class="work__item featured fade-in" role="article" aria-label="Relax"
+                            data-title="Relax"
+                            data-tags="Visuals, Poster"
+                            data-description="A soothing, retro-inspired poster washed in vintage cyan tones. A figure floats weightlessly through a texture of clouds and water, embodying a sense of 1970s nostalgia and the quiet, effortless state of simply existing."
+                            data-image="https://res.cloudinary.com/daisb58zx/image/upload/v1764325063/8da64b84-0eb8-4f5b-b19a-bd290fb87a07_rw_1920_kbbybl.jpg"
+                            data-category="visuals branding"
+                            data-year="2024"
+                            data-featured="true">
+                            <img src="https://res.cloudinary.com/daisb58zx/image/upload/v1764325063/8da64b84-0eb8-4f5b-b19a-bd290fb87a07_rw_1920_kbbybl.jpg" alt="Relax - Vintage poster design" class="work__item-image" loading="lazy" decoding="async">
+                            <div class="work__item-meta">
+                                <span class="work__item-featured">Featured</span>
+                                <span class="work__item-year">2024</span>
+                            </div>
+                            <div class="work__item-overlay"></div>
+                            <div class="work__item-content">
+                                <h3 class="work__item-title">Relax</h3>
+                                <p class="work__item-category">Visuals / Poster</p>
+                            </div>
+                        </article>
 
-                    <!-- Portrait image - auto-detected -->
-                    <article class="work__item fade-in" role="article" aria-label="Vessel Digital Platform"
-                        data-title="Vessel"
-                        data-tags="3D Visualization, WebGL, Interactive Design"
-                        data-description="An immersive digital platform combining real-time 3D rendering with fluid interactions. The project showcases product architecture through dynamic camera movements and particle-based transitions."
-                        data-image="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=800&h=1200&fit=crop"
-                        data-category="3d">
-                        <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=800&h=1200&fit=crop" alt="Vessel Digital Platform" class="work__item-image" loading="lazy" decoding="async">
-                        <div class="work__item-meta">
-                            <span class="work__item-year">2024</span>
-                        </div>
-                        <div class="work__item-overlay"></div>
-                        <div class="work__item-content">
-                            <h3 class="work__item-title">Vessel</h3>
-                            <p class="work__item-category">Digital Platform</p>
-                        </div>
-                        <span class="work__item-number">02</span>
-                    </article>
+                        <!-- Featured Project 2 -->
+                        <article class="work__item portrait fade-in" role="article" aria-label="Vessel Digital Platform"
+                            data-title="Vessel"
+                            data-tags="3D Visualization, WebGL, Interactive Design"
+                            data-description="An immersive digital platform combining real-time 3D rendering with fluid interactions. The project showcases product architecture through dynamic camera movements and particle-based transitions."
+                            data-image="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=800&h=1200&fit=crop"
+                            data-category="3d"
+                            data-year="2024"
+                            data-featured="true">
+                            <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=800&h=1200&fit=crop" alt="Vessel Digital Platform" class="work__item-image" loading="lazy" decoding="async">
+                            <div class="work__item-meta">
+                                <span class="work__item-featured">Featured</span>
+                                <span class="work__item-year">2024</span>
+                            </div>
+                            <div class="work__item-overlay"></div>
+                            <div class="work__item-content">
+                                <h3 class="work__item-title">Vessel</h3>
+                                <p class="work__item-category">Digital Platform</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
 
-                    <!-- Landscape image - auto-detected -->
-                    <article class="work__item fade-in" role="article" aria-label="Forma Architecture"
-                        data-title="Forma"
-                        data-tags="Generative Art, Architecture, Visual Identity"
-                        data-description="Architectural visualization meets generative design. We developed custom algorithms to create unique spatial compositions that reflect the studio's modernist philosophy and computational approach."
-                        data-image="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=800&fit=crop"
-                        data-category="generative branding">
-                        <img src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=800&fit=crop" alt="Forma Architecture" class="work__item-image" loading="lazy" decoding="async">
-                        <div class="work__item-meta">
-                            <span class="work__item-year">2023</span>
-                        </div>
-                        <div class="work__item-overlay"></div>
-                        <div class="work__item-content">
-                            <h3 class="work__item-title">Forma</h3>
-                            <p class="work__item-category">Architecture / Web</p>
-                        </div>
-                        <span class="work__item-number">03</span>
-                    </article>
+                <!-- Divider -->
+                <div class="work__divider"></div>
 
-                    <!-- Landscape image - auto-detected -->
-                    <article class="work__item fade-in" role="article" aria-label="Lumière Editorial"
-                        data-title="Lumière"
-                        data-tags="3D Art, Editorial Design, Motion Graphics"
-                        data-description="Editorial design reimagined through the lens of light and shadow. This project combines traditional typography with 3D rendered elements, creating a bridge between print and digital mediums."
-                        data-image="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=800&fit=crop"
-                        data-category="3d visuals">
-                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=800&fit=crop" alt="Lumière Editorial" class="work__item-image" loading="lazy" decoding="async">
-                        <div class="work__item-meta">
-                            <span class="work__item-year">2023</span>
-                        </div>
-                        <div class="work__item-overlay"></div>
-                        <div class="work__item-content">
-                            <h3 class="work__item-title">Lumière</h3>
-                            <p class="work__item-category">Editorial / Print</p>
-                        </div>
-                        <span class="work__item-number">04</span>
-                    </article>
+                <!-- RECENT PROJECTS SECTION -->
+                <div class="work__section">
+                    <div class="work__section-header">
+                        <h3 class="work__section-title">Recent Projects</h3>
+                        <span class="work__section-label">Latest Work</span>
+                    </div>
+                    <div class="work__grid work__grid--recent" id="recentGrid">
 
-                    <!-- Portrait image - auto-detected -->
-                    <article class="work__item fade-in" role="article" aria-label="Ethereal Dreams"
-                        data-title="Ethereal Dreams"
-                        data-tags="3D Art, Abstract, Generative"
-                        data-description="An exploration of abstract forms and dreamlike atmospheres created through procedural generation and careful art direction."
-                        data-image="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=1200&fit=crop"
-                        data-category="3d generative">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=1200&fit=crop" alt="Ethereal Dreams" class="work__item-image" loading="lazy" decoding="async">
-                        <div class="work__item-meta">
-                            <span class="work__item-year">2024</span>
-                        </div>
-                        <div class="work__item-overlay"></div>
-                        <div class="work__item-content">
-                            <h3 class="work__item-title">Ethereal Dreams</h3>
-                            <p class="work__item-category">3D Art / Generative</p>
-                        </div>
-                        <span class="work__item-number">05</span>
-                    </article>
+                        <!-- Recent Project 1 -->
+                        <article class="work__item fade-in" role="article" aria-label="Forma Architecture"
+                            data-title="Forma"
+                            data-tags="Generative Art, Architecture, Visual Identity"
+                            data-description="Architectural visualization meets generative design. We developed custom algorithms to create unique spatial compositions that reflect the studio's modernist philosophy and computational approach."
+                            data-image="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=800&fit=crop"
+                            data-category="generative branding"
+                            data-year="2024"
+                            data-featured="false">
+                            <img src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=1200&h=800&fit=crop" alt="Forma Architecture" class="work__item-image" loading="lazy" decoding="async">
+                            <div class="work__item-meta">
+                                <span class="work__item-year">2024</span>
+                            </div>
+                            <div class="work__item-overlay"></div>
+                            <div class="work__item-content">
+                                <h3 class="work__item-title">Forma</h3>
+                                <p class="work__item-category">Architecture / Web</p>
+                            </div>
+                        </article>
 
-                    <!-- Wide image - auto-detected -->
-                    <article class="work__item fade-in" role="article" aria-label="Nexus Brand Identity"
-                        data-title="Nexus"
-                        data-tags="Branding, Logo Design, Visual Identity"
-                        data-description="Complete brand identity for a tech startup. The visual system emphasizes connection and innovation through geometric forms and a bold color palette."
-                        data-image="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1600&h=800&fit=crop"
-                        data-category="branding">
-                        <img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1600&h=800&fit=crop" alt="Nexus Brand Identity" class="work__item-image" loading="lazy" decoding="async">
-                        <div class="work__item-meta">
-                            <span class="work__item-year">2024</span>
-                        </div>
-                        <div class="work__item-overlay"></div>
-                        <div class="work__item-content">
-                            <h3 class="work__item-title">Nexus</h3>
-                            <p class="work__item-category">Branding / Identity</p>
-                        </div>
-                        <span class="work__item-number">06</span>
-                    </article>
+                        <!-- Recent Project 2 -->
+                        <article class="work__item fade-in" role="article" aria-label="Lumière Editorial"
+                            data-title="Lumière"
+                            data-tags="3D Art, Editorial Design, Motion Graphics"
+                            data-description="Editorial design reimagined through the lens of light and shadow. This project combines traditional typography with 3D rendered elements, creating a bridge between print and digital mediums."
+                            data-image="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=800&fit=crop"
+                            data-category="3d visuals"
+                            data-year="2024"
+                            data-featured="false">
+                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=800&fit=crop" alt="Lumière Editorial" class="work__item-image" loading="lazy" decoding="async">
+                            <div class="work__item-meta">
+                                <span class="work__item-year">2024</span>
+                            </div>
+                            <div class="work__item-overlay"></div>
+                            <div class="work__item-content">
+                                <h3 class="work__item-title">Lumière</h3>
+                                <p class="work__item-category">Editorial / Print</p>
+                            </div>
+                        </article>
+
+                        <!-- Recent Project 3 -->
+                        <article class="work__item fade-in" role="article" aria-label="Ethereal Dreams"
+                            data-title="Ethereal Dreams"
+                            data-tags="3D Art, Abstract, Generative"
+                            data-description="An exploration of abstract forms and dreamlike atmospheres created through procedural generation and careful art direction."
+                            data-image="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=1200&fit=crop"
+                            data-category="3d generative"
+                            data-year="2023"
+                            data-featured="false">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=1200&fit=crop" alt="Ethereal Dreams" class="work__item-image" loading="lazy" decoding="async">
+                            <div class="work__item-meta">
+                                <span class="work__item-year">2023</span>
+                            </div>
+                            <div class="work__item-overlay"></div>
+                            <div class="work__item-content">
+                                <h3 class="work__item-title">Ethereal Dreams</h3>
+                                <p class="work__item-category">3D Art / Generative</p>
+                            </div>
+                        </article>
+
+                        <!-- Recent Project 4 -->
+                        <article class="work__item fade-in" role="article" aria-label="Nexus Brand Identity"
+                            data-title="Nexus"
+                            data-tags="Branding, Logo Design, Visual Identity"
+                            data-description="Complete brand identity for a tech startup. The visual system emphasizes connection and innovation through geometric forms and a bold color palette."
+                            data-image="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1600&h=800&fit=crop"
+                            data-category="branding"
+                            data-year="2023"
+                            data-featured="false">
+                            <img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=1600&h=800&fit=crop" alt="Nexus Brand Identity" class="work__item-image" loading="lazy" decoding="async">
+                            <div class="work__item-meta">
+                                <span class="work__item-year">2023</span>
+                            </div>
+                            <div class="work__item-overlay"></div>
+                            <div class="work__item-content">
+                                <h3 class="work__item-title">Nexus</h3>
+                                <p class="work__item-category">Branding / Identity</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!-- View Archive CTA -->
+                <div class="view-archive">
+                    <button class="view-archive-btn" id="viewArchiveBtn">
+                        <span>View Full Archive</span>
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- ARCHIVE SECTION (Initially Hidden) -->
+                <div class="work__section" id="archiveSection" style="display: none;">
+                    <!-- Divider -->
+                    <div class="work__divider"></div>
+
+                    <div class="work__section-header">
+                        <h3 class="work__section-title">Archive</h3>
+                        <span class="work__section-label">All Projects</span>
+                    </div>
+                    <div class="work__grid work__grid--archive" id="archiveGrid">
+                        <!-- Archive items will be loaded here dynamically -->
+                    </div>
+
+                    <!-- Load More Button -->
+                    <div class="load-more" id="loadMoreContainer" style="display: none;">
+                        <button class="load-more-btn" id="loadMoreBtn">
+                            Load More Projects
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2249,82 +2534,180 @@
             });
         });
 
-        // Project Filtering
+        // Project Filtering & Sorting
         const filterButtons = document.querySelectorAll('.filter-btn');
-        const projectCount = document.getElementById('projectCount');
+        const sortButtons = document.querySelectorAll('.sort-btn');
+        let currentFilter = 'all';
+        let currentSort = 'featured';
 
+        // Filter functionality
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Remove active class from all buttons
                 filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
                 button.classList.add('active');
-
-                const filter = button.getAttribute('data-filter');
-                let visibleCount = 0;
-
-                // Reuse workItems already declared above for modal
-                workItems.forEach(item => {
-                    const categories = item.getAttribute('data-category');
-
-                    if (filter === 'all') {
-                        item.classList.remove('hidden');
-                        visibleCount++;
-                    } else if (categories && categories.includes(filter)) {
-                        item.classList.remove('hidden');
-                        visibleCount++;
-                    } else {
-                        item.classList.add('hidden');
-                    }
-                });
-
-                // Update project count
-                projectCount.textContent = visibleCount.toString().padStart(2, '0');
+                currentFilter = button.getAttribute('data-filter');
+                applyFilterAndSort();
             });
         });
+
+        // Sort functionality
+        sortButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                sortButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentSort = button.getAttribute('data-sort');
+                applyFilterAndSort();
+            });
+        });
+
+        function applyFilterAndSort() {
+            const allWorkItems = document.querySelectorAll('.work__item');
+            let visibleItems = Array.from(allWorkItems);
+
+            // Apply filter
+            visibleItems.forEach(item => {
+                const categories = item.getAttribute('data-category');
+                if (currentFilter === 'all') {
+                    item.classList.remove('hidden');
+                } else if (categories && categories.includes(currentFilter)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            // Apply sort
+            visibleItems = visibleItems.filter(item => !item.classList.contains('hidden'));
+
+            if (currentSort === 'latest') {
+                visibleItems.sort((a, b) => {
+                    const yearA = parseInt(a.getAttribute('data-year')) || 0;
+                    const yearB = parseInt(b.getAttribute('data-year')) || 0;
+                    return yearB - yearA;
+                });
+            } else if (currentSort === 'oldest') {
+                visibleItems.sort((a, b) => {
+                    const yearA = parseInt(a.getAttribute('data-year')) || 0;
+                    const yearB = parseInt(b.getAttribute('data-year')) || 0;
+                    return yearA - yearB;
+                });
+            } else if (currentSort === 'featured') {
+                visibleItems.sort((a, b) => {
+                    const featuredA = a.getAttribute('data-featured') === 'true' ? 1 : 0;
+                    const featuredB = b.getAttribute('data-featured') === 'true' ? 1 : 0;
+                    return featuredB - featuredA;
+                });
+            }
+
+            // Re-append items in sorted order
+            const grids = [
+                document.getElementById('featuredGrid'),
+                document.getElementById('recentGrid'),
+                document.getElementById('archiveGrid')
+            ];
+
+            grids.forEach(grid => {
+                if (!grid) return;
+                const gridItems = Array.from(grid.querySelectorAll('.work__item'));
+                gridItems.forEach(item => {
+                    const index = visibleItems.indexOf(item);
+                    if (index !== -1) {
+                        item.style.order = index;
+                    }
+                });
+            });
+        }
+
+        // View Archive Button
+        const viewArchiveBtn = document.getElementById('viewArchiveBtn');
+        const archiveSection = document.getElementById('archiveSection');
+
+        if (viewArchiveBtn && archiveSection) {
+            viewArchiveBtn.addEventListener('click', () => {
+                archiveSection.style.display = 'block';
+                viewArchiveBtn.style.display = 'none';
+
+                // Smooth scroll to archive
+                setTimeout(() => {
+                    archiveSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+
+                // Show load more if there are more projects to load
+                const loadMoreContainer = document.getElementById('loadMoreContainer');
+                if (loadMoreContainer) {
+                    loadMoreContainer.style.display = 'flex';
+                }
+            });
+        }
+
+        // Load More functionality (for future use with dynamic content)
+        const loadMoreBtn = document.getElementById('loadMoreBtn');
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', () => {
+                // This is a placeholder for when you add more projects
+                // For now, it just disables the button
+                loadMoreBtn.textContent = 'No More Projects';
+                loadMoreBtn.disabled = true;
+
+                // In the future, you'd load more projects here:
+                // loadMoreProjects().then(() => { ... });
+            });
+        }
 
         // Automatic Aspect Ratio Detection for Bento Grid
         (function() {
             const workItems = document.querySelectorAll('.work__item');
-            
+
             workItems.forEach(item => {
                 const img = item.querySelector('.work__item-image');
                 if (!img) return;
-                
+
+                // Skip if already has a manual class
+                if (item.classList.contains('featured') ||
+                    item.classList.contains('portrait') ||
+                    item.classList.contains('wide') ||
+                    item.classList.contains('square')) {
+                    return;
+                }
+
                 // Function to apply correct class based on aspect ratio
                 const applyAspectClass = () => {
                     const width = img.naturalWidth;
                     const height = img.naturalHeight;
                     const ratio = width / height;
-                    
-                    // Remove any existing aspect classes first
-                    item.classList.remove('portrait', 'wide', 'square', 'featured');
-                    
+
                     // Apply class based on aspect ratio
                     if (ratio < 0.8) {
-                        // Portrait (tall) - ratio less than 0.8 (e.g., 2:3, 3:4, 9:16)
                         item.classList.add('portrait');
                     } else if (ratio > 1.8) {
-                        // Wide (panoramic) - ratio greater than 1.8 (e.g., 21:9, 2:1)
                         item.classList.add('wide');
                     } else if (ratio >= 0.9 && ratio <= 1.1) {
-                        // Square - ratio between 0.9 and 1.1 (approximately 1:1)
                         item.classList.add('square');
                     }
-                    // Landscape (default) - ratio between 0.8 and 1.8, no class needed
-                    
-                    console.log(`Image: ${img.alt || 'unnamed'} | Ratio: ${ratio.toFixed(2)} | Class: ${item.classList.contains('portrait') ? 'portrait' : item.classList.contains('wide') ? 'wide' : item.classList.contains('square') ? 'square' : 'landscape'}`);
                 };
-                
+
                 // If image is already loaded (cached)
                 if (img.complete && img.naturalWidth > 0) {
                     applyAspectClass();
                 } else {
-                    // Wait for image to load
                     img.addEventListener('load', applyAspectClass);
                 }
             });
         })();
+
+        // Smooth section reveal on scroll
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.work__section, .work__divider').forEach(section => {
+            sectionObserver.observe(section);
+        });
 
         // Cookie Consent Logic
         (function() {
