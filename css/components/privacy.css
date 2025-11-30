@@ -1,0 +1,25 @@
+/* Privacy Section */
+.privacy {
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--border);
+}
+
+.privacy__content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.privacy__section {
+    margin-bottom: 2.5rem;
+}
+
+.privacy__heading {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.privacy__text {
+    color: var(--text-secondary);
+    line-height: 1.8;
+}

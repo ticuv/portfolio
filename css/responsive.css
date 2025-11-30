@@ -1,0 +1,257 @@
+/* ===========================================
+   RESPONSIVE BENTO GRID
+   =========================================== */
+
+/* Tablet - 2 columns */
+@media (max-width: 1024px) {
+    :root {
+        --grid-row-height: 180px;
+    }
+}
+
+/* Mobile - Single column */
+@media (max-width: 768px) {
+    :root {
+        --grid-row-height: 150px;
+        --grid-gap: 0.75rem;
+    }
+
+    .work__grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* On mobile, portrait cards span 2 rows in single column */
+    .work__item.portrait {
+        grid-row: span 2;
+    }
+
+    /* Wide and featured become single column, standard height */
+    .work__item.wide,
+    .work__item.featured {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    /* Featured still gets extra height on mobile */
+    .work__item.featured {
+        grid-row: span 2;
+    }
+
+    .nav__toggle {
+        display: flex;
+    }
+
+    .nav__links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: var(--bg);
+        border-left: 1px solid var(--border);
+        flex-direction: column;
+        padding: var(--space-xl) var(--space-md);
+        gap: var(--space-md);
+        transition: right 0.3s var(--ease-out);
+        z-index: 1000;
+        overflow-y: auto;
+    }
+
+    .nav__links.active {
+        right: 0;
+    }
+
+    .nav__link {
+        font-size: 1.25rem;
+        color: var(--text-primary);
+        padding: var(--space-sm) 0;
+    }
+
+    .nav__link::after {
+        background: var(--accent);
+    }
+
+    /* Hero mobile optimization */
+    .hero {
+        min-height: 100vh;
+        padding: 6rem 0 2rem;
+        justify-content: center;
+    }
+
+    .hero__content {
+        gap: var(--space-md);
+    }
+
+    .hero__headline {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+        margin-bottom: var(--space-sm);
+    }
+
+    .hero__description {
+        font-size: 1rem;
+        max-width: 90%;
+    }
+
+    .hero__scroll {
+        display: none;
+    }
+
+    /* About section mobile */
+    .about__content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .about__profile {
+        order: -1;
+        margin-bottom: var(--space-lg);
+        max-width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .about__lead {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        margin-bottom: var(--space-md);
+    }
+
+    .about__intro,
+    .about__body {
+        font-size: 0.9375rem;
+        border-left: 3px solid var(--text-primary);
+        padding-left: var(--space-md);
+        margin-bottom: var(--space-md);
+    }
+
+    .about__stats {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+        margin-top: var(--space-md);
+        margin-bottom: var(--space-md);
+    }
+
+    .stat {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: var(--space-md);
+    }
+
+    .stat__meta-label {
+        font-size: 0.6875rem;
+    }
+
+    .stat__meta-value {
+        font-size: 1rem;
+    }
+
+    .about__services-title {
+        font-size: 0.75rem;
+    }
+
+    .about__service-tag {
+        font-size: 0.8125rem;
+        padding: 0.625rem 1.25rem;
+    }
+
+    .section__title {
+        font-size: clamp(1.75rem, 7vw, 2.5rem);
+    }
+
+    .cookie-consent {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    :root {
+        --grid-row-height: 120px;
+    }
+
+    .hero__headline {
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+    }
+
+    .work__controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .work__filters {
+        justify-content: center;
+    }
+
+    .work__sort {
+        justify-content: center;
+        padding-top: var(--space-xs);
+        border-top: 1px solid var(--border);
+    }
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    .hero__content {
+        grid-template-columns: 2fr 1fr;
+    }
+
+    .about__content {
+        grid-template-columns: 1.5fr 1fr;
+        align-items: start;
+        gap: var(--space-xl);
+    }
+
+    .footer__content {
+        grid-template-columns: 2fr 1fr;
+        align-items: end;
+    }
+
+    .footer__bottom {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --space-md: 3rem;
+        --space-lg: 6rem;
+        --grid-row-height: 220px;
+    }
+
+    .nav {
+        padding: var(--space-md);
+    }
+
+    .hero {
+        padding: var(--space-2xl) 0 var(--space-xl);
+    }
+}
+
+/* Large screens - 3 columns for more variety */
+@media (min-width: 1200px) {
+    .work__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Adjust featured to span 2 columns on 3-col layout */
+    .work__item.featured {
+        grid-column: span 2;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
