@@ -1161,6 +1161,10 @@
             transform: translateY(3px);
         }
 
+        .view-archive-btn--close:hover svg {
+            transform: rotate(180deg) translateY(3px) !important;
+        }
+
         /* Mobile Navigation */
         .nav__toggle {
             display: none;
@@ -2111,7 +2115,7 @@
                 </div>
 
                 <!-- View Archive CTA -->
-                <div class="view-archive">
+                <div class="view-archive" id="viewArchiveContainer">
                     <button class="view-archive-btn" id="viewArchiveBtn">
                         <span>View Full Archive</span>
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2137,6 +2141,16 @@
                     <div class="load-more" id="loadMoreContainer" style="display: none;">
                         <button class="load-more-btn" id="loadMoreBtn">
                             Load More Projects
+                        </button>
+                    </div>
+
+                    <!-- Close Archive Button -->
+                    <div class="view-archive" style="margin-top: var(--space-lg);">
+                        <button class="view-archive-btn view-archive-btn--close" id="closeArchiveBtn">
+                            <span>Show Less</span>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="transform: rotate(180deg);">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
                         </button>
                     </div>
                 </div>
@@ -2620,12 +2634,14 @@
 
         // View Archive Button
         const viewArchiveBtn = document.getElementById('viewArchiveBtn');
+        const viewArchiveContainer = document.getElementById('viewArchiveContainer');
         const archiveSection = document.getElementById('archiveSection');
+        const closeArchiveBtn = document.getElementById('closeArchiveBtn');
 
-        if (viewArchiveBtn && archiveSection) {
+        if (viewArchiveBtn && archiveSection && viewArchiveContainer) {
             viewArchiveBtn.addEventListener('click', () => {
                 archiveSection.style.display = 'block';
-                viewArchiveBtn.style.display = 'none';
+                viewArchiveContainer.style.display = 'none';
 
                 // Smooth scroll to archive
                 setTimeout(() => {
@@ -2637,6 +2653,20 @@
                 if (loadMoreContainer) {
                     loadMoreContainer.style.display = 'flex';
                 }
+            });
+        }
+
+        // Close Archive Button
+        if (closeArchiveBtn && archiveSection && viewArchiveContainer) {
+            closeArchiveBtn.addEventListener('click', () => {
+                // Smooth scroll back to the view archive button position
+                viewArchiveContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // Hide archive after scroll animation
+                setTimeout(() => {
+                    archiveSection.style.display = 'none';
+                    viewArchiveContainer.style.display = 'flex';
+                }, 400);
             });
         }
 
