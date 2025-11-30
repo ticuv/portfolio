@@ -37,6 +37,41 @@ window.addEventListener('load', () => {
     }
 });
 
+// Scroll spy - update URL as user scrolls through sections
+const sections = document.querySelectorAll('section[id]');
+const navLinkElements = document.querySelectorAll('.nav__link');
+
+const observerOptions = {
+    threshold: 0.3, // Section needs to be 30% visible
+    rootMargin: '-80px 0px -60% 0px' // Account for fixed nav and focus on top portion
+};
+
+const observerCallback = (entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const sectionId = entry.target.getAttribute('id');
+
+            // Update URL without adding to history
+            if (window.location.hash !== `#${sectionId}`) {
+                history.replaceState(null, null, `#${sectionId}`);
+            }
+
+            // Update active nav link
+            navLinkElements.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${sectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    });
+};
+
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+// Observe all sections
+sections.forEach(section => observer.observe(section));
+
 // Mobile navigation toggle
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');

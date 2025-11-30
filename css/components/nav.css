@@ -73,8 +73,13 @@
     transition: width 0.4s var(--ease-out);
 }
 
-.nav__link:hover::after {
+.nav__link:hover::after,
+.nav__link.active::after {
     width: 100%;
+}
+
+.nav__link.active {
+    color: var(--accent);
 }
 
 /* Mobile Navigation */
