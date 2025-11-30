@@ -41,36 +41,58 @@ window.addEventListener('load', () => {
 const sections = document.querySelectorAll('section[id]');
 const navLinkElements = document.querySelectorAll('.nav__link');
 
-const observerOptions = {
-    threshold: 0.3, // Section needs to be 30% visible
-    rootMargin: '-80px 0px -60% 0px' // Account for fixed nav and focus on top portion
-};
+let scrollTimeout;
 
-const observerCallback = (entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const sectionId = entry.target.getAttribute('id');
+function updateActiveSection() {
+    const scrollPosition = window.scrollY + 100; // Offset for fixed nav
 
-            // Update URL without adding to history
-            if (window.location.hash !== `#${sectionId}`) {
-                history.replaceState(null, null, `#${sectionId}`);
-            }
+    let currentSection = null;
 
-            // Update active nav link
-            navLinkElements.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) {
-                    link.classList.add('active');
-                }
-            });
+    // Find which section we're currently in
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
         }
     });
-};
 
-const observer = new IntersectionObserver(observerCallback, observerOptions);
+    // Update URL and nav links if section changed
+    if (currentSection) {
+        const newHash = `#${currentSection}`;
 
-// Observe all sections
-sections.forEach(section => observer.observe(section));
+        // Update URL without adding to history
+        if (window.location.hash !== newHash) {
+            history.replaceState(null, null, newHash);
+        }
+
+        // Update active nav link
+        navLinkElements.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === newHash) {
+                link.classList.add('active');
+            }
+        });
+    } else if (window.scrollY < 100) {
+        // At the top of the page, remove hash
+        if (window.location.hash) {
+            history.replaceState(null, null, window.location.pathname);
+        }
+        navLinkElements.forEach(link => link.classList.remove('active'));
+    }
+}
+
+// Throttle scroll events for performance
+window.addEventListener('scroll', () => {
+    if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+    }
+    scrollTimeout = setTimeout(updateActiveSection, 50);
+}, { passive: true });
+
+// Initial check on load
+window.addEventListener('load', updateActiveSection);
 
 // Mobile navigation toggle
 const navToggle = document.getElementById('navToggle');
