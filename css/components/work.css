@@ -1,3 +1,4 @@
+
 /* Work Section */
 .work {
     padding: var(--space-2xl) 0;
@@ -345,25 +346,11 @@
     transform: translateY(100%);
 }
 
-/* View Archive CTA - Fixes alignment */
+/* View Archive CTA */
 .view-archive {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
     margin: var(--space-lg) 0;
-    position: relative;
-    z-index: 5;
-}
-
-/* Archive Section - Fixes overlap */
-#archiveSection {
-    /* Changed 2x1 (typo) to 2xl */
-    padding-bottom: var(--space-2xl); 
-    width: 100%;
-    display: block;
-    /* Added overflow hidden to force it to respect inner content height */
-    overflow: hidden; 
 }
 
 .view-archive-btn {
