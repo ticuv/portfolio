@@ -79,6 +79,14 @@
     gap: var(--space-md);
 }
 
+.hero__cta--whatsapp {
+    background: #25D366;
+}
+
+.hero__cta--whatsapp:hover {
+    background: #20BA5A;
+}
+
 .hero__cta-arrow {
     transition: transform 0.4s var(--ease-out);
 }
