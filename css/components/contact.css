@@ -76,7 +76,7 @@
     align-items: center;
     gap: 1rem;
     max-width: 600px;
-    margin: 3rem auto;
+    margin: 2rem auto 1.5rem;
 }
 
 .contact__divider-line {
@@ -86,23 +86,24 @@
 }
 
 .contact__divider-text {
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: 0.75rem;
+    font-weight: 600;
     color: var(--text-tertiary);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
 }
 
 /* WhatsApp Alternative */
 .contact__whatsapp {
     max-width: 600px;
-    margin: 0 auto 3rem;
+    margin: 0 auto 2rem;
     text-align: center;
 }
 
 .contact__whatsapp-text {
-    font-size: 1rem;
+    font-size: 0.875rem;
     color: var(--text-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .contact__whatsapp-btn {
