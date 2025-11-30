@@ -69,3 +69,67 @@
     font-size: 0.875rem;
     color: var(--text-secondary);
 }
+
+/* OR Divider */
+.contact__divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 3rem auto;
+}
+
+.contact__divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.contact__divider-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-tertiary);
+    letter-spacing: 0.1em;
+}
+
+/* WhatsApp Alternative */
+.contact__whatsapp {
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+.contact__whatsapp-text {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.contact__whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 1rem 2rem;
+    background: #25D366;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    border-radius: 100px;
+    transition: all 0.4s var(--ease-out);
+    width: fit-content;
+}
+
+.contact__whatsapp-btn:hover {
+    background: #20BA5A;
+    gap: var(--space-md);
+    transform: translateY(-2px);
+}
+
+.contact__whatsapp-arrow {
+    transition: transform 0.4s var(--ease-out);
+}
+
+.contact__whatsapp-btn:hover .contact__whatsapp-arrow {
+    transform: translateX(4px);
+}
