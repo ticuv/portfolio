@@ -288,7 +288,4 @@ document.addEventListener('DOMContentLoaded', () => {
     deferNonCriticalCSS();
 });
 
-// Initialize loading animation immediately
-if (document.readyState === 'loading') {
-    initLoadingAnimation();
-}
+// Loading animation disabled per user request

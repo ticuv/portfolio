@@ -13,20 +13,26 @@ let currentSort = 'featured';
 async function initPortfolio() {
     try {
         const response = await fetch('data/projects.json');
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch projects.json');
+        }
+
         const data = await response.json();
         allProjects = data.projects || [];
         filteredProjects = [...allProjects];
 
-        // Initial render
-        renderProjects();
-
-        // Initialize controls
-        initializeFilters();
-        initializeSort();
+        // Only render if we successfully loaded projects
+        if (allProjects.length > 0) {
+            renderProjects();
+            initializeFilters();
+            initializeSort();
+        }
 
     } catch (error) {
-        console.error('Error loading projects:', error);
-        // If JSON fails to load, keep the hardcoded HTML projects
+        console.warn('Could not load projects.json. Using hardcoded HTML fallback.', error);
+        // Keep existing HTML projects, just initialize modal handlers
+        initializeModalHandlers();
     }
 }
 
