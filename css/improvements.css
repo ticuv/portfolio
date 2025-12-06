@@ -1,0 +1,355 @@
+/* ==========================================
+   IMPROVEMENTS.CSS - UX Enhancement Styles
+   ========================================== */
+
+/* ==========================================
+   1. PAGE LOADER
+   ========================================== */
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-primary);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.page-loader.loaded {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    text-align: center;
+    width: 200px;
+}
+
+.loader-logo {
+    margin-bottom: 2rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.loader-logo img {
+    width: 80px;
+    height: auto;
+}
+
+.loader-bar {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.loader-progress {
+    height: 100%;
+    background: var(--accent);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+/* ==========================================
+   2. ENHANCED PROJECT HOVER EFFECTS
+   ========================================== */
+.work__item {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+    will-change: transform;
+}
+
+.work__item:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.work__item-image {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.work__item-overlay {
+    transition: opacity 0.4s ease;
+    opacity: 0;
+}
+
+.work__item:hover .work__item-overlay {
+    opacity: 0.95;
+}
+
+/* ==========================================
+   3. FLOATING CTA ENHANCEMENTS
+   ========================================== */
+.floating-cta {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(100px);
+}
+
+.floating-cta.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.floating-cta:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(79, 70, 229, 0.3);
+}
+
+.floating-cta:active {
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   4. BACK TO TOP BUTTON ENHANCEMENTS
+   ========================================== */
+.back-to-top {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-top:active {
+    transform: scale(0.95);
+}
+
+/* ==========================================
+   5. SCROLL PROGRESS BAR
+   ========================================== */
+.scroll-progress {
+    transition: width 0.2s ease;
+    background: linear-gradient(90deg, var(--accent), #a78bfa);
+}
+
+/* ==========================================
+   6. ACTIVE NAV LINK
+   ========================================== */
+.nav__link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav__link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.nav__link.active::after,
+.nav__link:hover::after {
+    width: 100%;
+}
+
+.nav__link.active {
+    color: var(--accent);
+}
+
+/* ==========================================
+   7. FORM IMPROVEMENTS
+   ========================================== */
+.form__input,
+.form__textarea {
+    transition: all 0.3s ease;
+}
+
+.form__input:focus,
+.form__textarea:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
+}
+
+.form__button {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.form__button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+}
+
+.form__button:active {
+    transform: translateY(0);
+}
+
+.form__button.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.form__button.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ==========================================
+   8. MOBILE IMPROVEMENTS
+   ========================================== */
+@media (max-width: 768px) {
+    .work__item:active {
+        transform: scale(0.98);
+    }
+
+    .floating-cta {
+        font-size: 0.9rem;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+
+    .loader-logo img {
+        width: 60px;
+    }
+
+    /* Improve touch targets */
+    .nav__link {
+        padding: 1rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+
+    .form__input,
+    .form__textarea,
+    .form__button {
+        min-height: 48px;
+        font-size: 16px; /* Prevent iOS zoom */
+    }
+}
+
+/* ==========================================
+   9. PERFORMANCE OPTIMIZATIONS
+   ========================================== */
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .page-loader {
+        display: none !important;
+    }
+}
+
+/* ==========================================
+   10. LAZY LOADING BLUR EFFECT
+   ========================================== */
+.work__item-image[loading="lazy"],
+.about__profile-image[loading="lazy"] {
+    transition: filter 0.3s ease;
+}
+
+.work__item-image.loading {
+    filter: blur(10px);
+}
+
+.work__item-image.loaded {
+    filter: blur(0);
+}
+
+/* ==========================================
+   11. SMOOTH INTERACTIONS
+   ========================================== */
+.hero__cta,
+.work__item,
+.about__service-tag,
+.footer__link {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero__cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.3);
+}
+
+.hero__cta:active {
+    transform: translateY(0);
+}
+
+.about__service-tag:hover {
+    transform: translateY(-2px);
+    background: var(--accent);
+    color: white;
+}
+
+/* ==========================================
+   12. COOKIE CONSENT IMPROVEMENTS
+   ========================================== */
+.cookie-consent {
+    animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.cookie-btn {
+    transition: all 0.3s ease;
+}
+
+.cookie-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}

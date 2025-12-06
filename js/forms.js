@@ -60,6 +60,7 @@ if (contactForm) {
             const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
 
             // Send to Formspree
             try {
@@ -99,6 +100,7 @@ if (contactForm) {
             // Re-enable button
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
+            submitBtn.classList.remove('loading');
 
             // Clear status after 8 seconds
             setTimeout(() => {

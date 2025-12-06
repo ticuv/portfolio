@@ -19,6 +19,7 @@
 
 /* 4. Enhancements */
 @import 'enhancements.css';
+@import 'improvements.css';
 
 /* 5. Responsive styles last */
 @import 'responsive.css';
