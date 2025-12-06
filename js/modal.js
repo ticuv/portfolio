@@ -175,3 +175,6 @@ document.addEventListener('keydown', (e) => {
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', initializeModal);
+
+// Expose reinitializeModal for dynamic content updates
+window.reinitializeModal = initializeModal;
