@@ -72,7 +72,7 @@ function renderProjects() {
 // Create project card element
 function createProjectCard(project) {
     const article = document.createElement('article');
-    article.className = `work__item ${project.layout || ''} fade-in`;
+    article.className = `work__item ${project.layout || ''} visible`; // Add 'visible' immediately
     article.setAttribute('role', 'article');
     article.setAttribute('aria-label', project.title);
     article.setAttribute('data-project-id', project.id);
