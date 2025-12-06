@@ -114,6 +114,14 @@
     border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
 }
 
+/* Hide modal meta section completely when empty */
+.modal__meta:empty {
+    display: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
 .modal__tools,
 .modal__client,
 .modal__link {
@@ -165,6 +173,13 @@
     margin-top: var(--space-lg);
     padding-top: var(--space-lg);
     border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+}
+
+/* Remove margin when hidden */
+.modal__related[style*="display: none"] {
+    margin: 0;
+    padding: 0;
+    border: none;
 }
 
 .related__title {
