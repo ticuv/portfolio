@@ -1,145 +1,79 @@
 {
-  "posters": [
+  "projects": [
     {
-      "image": "https://i.imgur.com/example1.jpg",
-      "title": "Kinetic Typography",
-      "thumbnail": "https://i.imgur.com/example1.jpg"
+      "id": "relax",
+      "title": "Relax",
+      "tags": ["Visuals", "Poster"],
+      "description": "A soothing, retro-inspired poster washed in vintage cyan tones. A figure floats weightlessly through a texture of clouds and water, embodying a sense of 1970s nostalgia and the quiet, effortless state of simply existing.",
+      "image": "https://res.cloudinary.com/daisb58zx/image/upload/v1764325063/8da64b84-0eb8-4f5b-b19a-bd290fb87a07_rw_1920_kbbybl.jpg",
+      "thumbnail": "https://res.cloudinary.com/daisb58zx/image/upload/v1764325063/8da64b84-0eb8-4f5b-b19a-bd290fb87a07_rw_1920_kbbybl.jpg",
+      "category": "visuals",
+      "year": 2025,
+      "featured": true,
+      "layout": "featured",
+      "tools": ["Photoshop", "After Effects"],
+      "client": "",
+      "link": ""
     },
     {
-      "image": "https://i.imgur.com/example2.jpg",
-      "title": "Brutalist Forms",
-      "thumbnail": "https://i.imgur.com/example2.jpg"
+      "id": "primordial",
+      "title": "Primordial",
+      "tags": ["Visuals", "Poster"],
+      "description": "'Love Is Sacrifice' captures the primal, consuming nature of ultimate devotion. The fiery, red nebula symbolizes the intense, painful passion of commitment. This piece is a cosmic metaphor for the truth that genuine love requires the profound, beautiful, and energetic abandonment of the self.",
+      "image": "https://res.cloudinary.com/daisb58zx/image/upload/v1764325063/2a1e60b2-d293-4c80-820f-afe449a6c6a5_rw_1920_zqgeao.jpg",
+      "thumbnail": "https://res.cloudinary.com/daisb58zx/image/upload/v1764325063/2a1e60b2-d293-4c80-820f-afe449a6c6a5_rw_1920_zqgeao.jpg",
+      "category": "visuals",
+      "year": 2025,
+      "featured": true,
+      "layout": "portrait",
+      "tools": ["Photoshop", "Illustrator"],
+      "client": "",
+      "link": ""
     },
     {
-      "image": "https://i.imgur.com/example3.jpg",
-      "title": "Swiss Modern",
-      "thumbnail": "https://i.imgur.com/example3.jpg"
+      "id": "respect",
+      "title": "Respect",
+      "tags": ["Visuals", "Poster"],
+      "description": "Respect is not a given, it is a hard-won reward. The image demands that we recognize and honor true merit. The phrase 'HATS OFF WHEN RESPECT IS EARNED' is a universal call to value substance over superficiality, celebrating only those achievements that are genuinely earned.",
+      "image": "https://res.cloudinary.com/daisb58zx/image/upload/v1764527193/a0b0f8ba-a67e-4a35-a563-7d220001486d_rw_1920_wxvsrb.png",
+      "thumbnail": "https://res.cloudinary.com/daisb58zx/image/upload/v1764527193/a0b0f8ba-a67e-4a35-a563-7d220001486d_rw_1920_wxvsrb.png",
+      "category": "visuals",
+      "year": 2025,
+      "featured": false,
+      "layout": "",
+      "tools": ["Photoshop"],
+      "client": "",
+      "link": ""
     },
     {
-      "image": "https://i.imgur.com/example4.jpg",
-      "title": "Geometric Patterns",
-      "thumbnail": "https://i.imgur.com/example4.jpg"
+      "id": "bloom",
+      "title": "Bloom",
+      "tags": ["Visuals", "Poster"],
+      "description": "This artwork signifies that true selfhood, once fully realized and nurtured, manifests as something utterly beautiful, abundant, and naturally luminous. The floral head represents the internal transformation: when you allow yourself to 'bloom,' your inner complexity and vitality become your most striking and visible feature.",
+      "image": "https://res.cloudinary.com/daisb58zx/image/upload/v1764325064/a111a17e-4d6d-4e12-b7bd-6a28271109e1_rw_1920_ndmghk.jpg",
+      "thumbnail": "https://res.cloudinary.com/daisb58zx/image/upload/v1764325064/a111a17e-4d6d-4e12-b7bd-6a28271109e1_rw_1920_ndmghk.jpg",
+      "category": "visuals",
+      "year": 2025,
+      "featured": false,
+      "layout": "",
+      "tools": ["Photoshop", "Illustrator"],
+      "client": "",
+      "link": ""
     },
     {
-      "image": "https://i.imgur.com/example5.jpg",
-      "title": "Abstract Waves",
-      "thumbnail": "https://i.imgur.com/example5.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/example6.jpg",
-      "title": "Minimal Lines",
-      "thumbnail": "https://i.imgur.com/example6.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/example7.jpg",
-      "title": "Bold Typography",
-      "thumbnail": "https://i.imgur.com/example7.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/example8.jpg",
-      "title": "Color Study",
-      "thumbnail": "https://i.imgur.com/example8.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/example9.jpg",
-      "title": "Urban Photography",
-      "thumbnail": "https://i.imgur.com/example9.jpg"
-    }
-  ],
-  "3d": [
-    {
-      "image": "https://i.imgur.com/3d-example1.jpg",
-      "title": "Abstract Glass",
-      "thumbnail": "https://i.imgur.com/3d-example1.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/3d-example2.jpg",
-      "title": "Cloth Simulation",
-      "thumbnail": "https://i.imgur.com/3d-example2.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/3d-example3.jpg",
-      "title": "Metallic Forms",
-      "thumbnail": "https://i.imgur.com/3d-example3.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/3d-example4.jpg",
-      "title": "Crystal Structures",
-      "thumbnail": "https://i.imgur.com/3d-example4.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/3d-example5.jpg",
-      "title": "Organic Shapes",
-      "thumbnail": "https://i.imgur.com/3d-example5.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/3d-example6.jpg",
-      "title": "Liquid Metal",
-      "thumbnail": "https://i.imgur.com/3d-example6.jpg"
-    }
-  ],
-  "generative": [
-    {
-      "image": "https://i.imgur.com/gen-example1.jpg",
-      "title": "Algorithmic Flora",
-      "thumbnail": "https://i.imgur.com/gen-example1.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/gen-example2.jpg",
-      "title": "Particle Systems",
-      "thumbnail": "https://i.imgur.com/gen-example2.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/gen-example3.jpg",
-      "title": "Neural Networks",
-      "thumbnail": "https://i.imgur.com/gen-example3.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/gen-example4.jpg",
-      "title": "Fractal Patterns",
-      "thumbnail": "https://i.imgur.com/gen-example4.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/gen-example5.jpg",
-      "title": "Noise Fields",
-      "thumbnail": "https://i.imgur.com/gen-example5.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/gen-example6.jpg",
-      "title": "Cellular Automata",
-      "thumbnail": "https://i.imgur.com/gen-example6.jpg"
-    }
-  ],
-  "logos": [
-    {
-      "image": "https://i.imgur.com/logo-example1.jpg",
-      "title": "Aperture Labs",
-      "thumbnail": "https://i.imgur.com/logo-example1.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/logo-example2.jpg",
-      "title": "Monolith",
-      "thumbnail": "https://i.imgur.com/logo-example2.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/logo-example3.jpg",
-      "title": "Quantum",
-      "thumbnail": "https://i.imgur.com/logo-example3.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/logo-example4.jpg",
-      "title": "Nexus",
-      "thumbnail": "https://i.imgur.com/logo-example4.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/logo-example5.jpg",
-      "title": "Velocity",
-      "thumbnail": "https://i.imgur.com/logo-example5.jpg"
-    },
-    {
-      "image": "https://i.imgur.com/logo-example6.jpg",
-      "title": "Eclipse",
-      "thumbnail": "https://i.imgur.com/logo-example6.jpg"
+      "id": "zero",
+      "title": "Zero",
+      "tags": ["Visuals", "Poster"],
+      "description": "Zero is the circle of eternity, where endings and beginnings blur into one. Is not absence, but the point of perfect equilibrium—the origin from which all possibilities emerge and the endpoint to which they return.",
+      "image": "https://res.cloudinary.com/daisb58zx/image/upload/v1764325064/d8236f95-e0f0-42de-bbaa-52b76f0001c4_rw_1920_jadn88.jpg",
+      "thumbnail": "https://res.cloudinary.com/daisb58zx/image/upload/v1764325064/d8236f95-e0f0-42de-bbaa-52b76f0001c4_rw_1920_jadn88.jpg",
+      "category": "visuals",
+      "year": 2025,
+      "featured": false,
+      "layout": "",
+      "tools": ["Photoshop"],
+      "client": "",
+      "link": ""
     }
   ]
 }
