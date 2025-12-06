@@ -94,33 +94,17 @@ function initFloatingCTA() {
     const cta = document.getElementById('floatingCta');
     if (!cta) return;
 
-    let lastScroll = 0;
-    let isVisible = false;
-
     window.addEventListener('scroll', () => {
         const heroSection = document.querySelector('.hero');
         const heroBottom = heroSection ? heroSection.offsetHeight : 800;
         const currentScroll = window.pageYOffset;
 
-        // Show CTA after hero section
-        if (currentScroll > heroBottom && !isVisible) {
-            cta.classList.add('visible');
-            isVisible = true;
-        } else if (currentScroll <= heroBottom && isVisible) {
-            cta.classList.remove('visible');
-            isVisible = false;
+        // Show CTA after hero section, hide on hero section
+        if (currentScroll > heroBottom) {
+            cta.classList.add('show');
+        } else {
+            cta.classList.remove('show');
         }
-
-        // Hide on scroll down, show on scroll up
-        if (currentScroll > lastScroll && currentScroll > heroBottom) {
-            cta.style.transform = 'translateY(100px)';
-            cta.style.opacity = '0';
-        } else if (currentScroll < lastScroll && currentScroll > heroBottom) {
-            cta.style.transform = 'translateY(0)';
-            cta.style.opacity = '1';
-        }
-
-        lastScroll = currentScroll;
     }, { passive: true });
 
     // Smooth scroll to contact section
