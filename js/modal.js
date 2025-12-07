@@ -1,6 +1,10 @@
-// Modal functionality
+/* ==========================================
+   MODAL.JS - Project Modal System
+   Supports direct URLs and keyboard navigation
+   ========================================== */
+
 const modal = document.getElementById('projectModal');
-const closeModal = document.getElementById('closeModal');
+const closeModalBtn = document.getElementById('closeModal');
 const modalPrev = document.getElementById('modalPrev');
 const modalNext = document.getElementById('modalNext');
 
@@ -16,6 +20,7 @@ function getAllProjects() {
 function openModal(projectElement, index) {
     currentProjectIndex = index;
 
+    const projectId = projectElement.dataset.projectId;
     const title = projectElement.dataset.title;
     const tags = projectElement.dataset.tags;
     const description = projectElement.dataset.description;
@@ -23,6 +28,11 @@ function openModal(projectElement, index) {
     const tools = projectElement.dataset.tools;
     const client = projectElement.dataset.client;
     const link = projectElement.dataset.link;
+
+    // Update URL for shareable link
+    if (projectId) {
+        history.pushState({ projectId }, '', `#project/${projectId}`);
+    }
 
     // Populate modal content
     document.getElementById('modalTitle').textContent = title;
@@ -33,12 +43,14 @@ function openModal(projectElement, index) {
     // Create tags
     const tagsContainer = document.getElementById('modalTags');
     tagsContainer.innerHTML = '';
-    tags.split(',').forEach(tag => {
-        const tagElement = document.createElement('span');
-        tagElement.className = 'modal__tag';
-        tagElement.textContent = tag.trim();
-        tagsContainer.appendChild(tagElement);
-    });
+    if (tags) {
+        tags.split(',').forEach(tag => {
+            const tagElement = document.createElement('span');
+            tagElement.className = 'modal__tag';
+            tagElement.textContent = tag.trim();
+            tagsContainer.appendChild(tagElement);
+        });
+    }
 
     // Handle tools
     const toolsContainer = document.getElementById('modalTools');
@@ -81,22 +93,74 @@ function openModal(projectElement, index) {
     const linkContainer = document.getElementById('modalLink');
     if (linkContainer) {
         if (link && link.trim() !== '') {
-            linkContainer.innerHTML = `<a href="${link}" target="_blank" rel="noopener noreferrer" class="modal__link">View Full Case Study →</a>`;
+            linkContainer.innerHTML = `<a href="${link}" target="_blank" rel="noopener noreferrer" class="modal__external-link">View Full Case Study →</a>`;
             linkContainer.style.display = 'block';
         } else {
             linkContainer.style.display = 'none';
         }
     }
 
-    // Hide related projects section for now
-    const relatedContainer = document.getElementById('relatedProjects');
-    if (relatedContainer) {
-        relatedContainer.style.display = 'none';
-    }
+    // Show related projects
+    showRelatedProjects(projectElement);
+
+    // Update navigation button visibility
+    updateNavButtons();
 
     // Show modal
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    // Focus trap for accessibility
+    closeModalBtn?.focus();
+}
+
+// Show related projects based on category/tags
+function showRelatedProjects(currentProject) {
+    const relatedContainer = document.getElementById('relatedProjects');
+    if (!relatedContainer) return;
+
+    const currentCategory = currentProject.dataset.category;
+    const currentId = currentProject.dataset.projectId;
+
+    // Find related projects (same category, different project)
+    const related = allProjects.filter(p =>
+        p.dataset.category === currentCategory &&
+        p.dataset.projectId !== currentId
+    ).slice(0, 3);
+
+    if (related.length === 0) {
+        relatedContainer.style.display = 'none';
+        return;
+    }
+
+    relatedContainer.innerHTML = '<h4>Related Projects</h4><div class="related-grid"></div>';
+    const grid = relatedContainer.querySelector('.related-grid');
+
+    related.forEach(project => {
+        const item = document.createElement('div');
+        item.className = 'related-item';
+        item.innerHTML = `
+            <img src="${project.dataset.image}" alt="${project.dataset.title}" loading="lazy">
+            <span>${project.dataset.title}</span>
+        `;
+        item.addEventListener('click', () => {
+            const index = allProjects.indexOf(project);
+            openModal(project, index);
+        });
+        grid.appendChild(item);
+    });
+
+    relatedContainer.style.display = 'block';
+}
+
+// Update navigation button visibility
+function updateNavButtons() {
+    if (!modalPrev || !modalNext) return;
+
+    // Always show nav buttons if there are multiple projects
+    const showNav = allProjects.length > 1;
+    modalPrev.style.display = showNav ? 'flex' : 'none';
+    modalNext.style.display = showNav ? 'flex' : 'none';
 }
 
 // Initialize click handlers
@@ -104,7 +168,13 @@ function initializeModal() {
     allProjects = getAllProjects();
 
     allProjects.forEach((item, index) => {
-        item.addEventListener('click', () => {
+        // Remove existing listeners by checking for data attribute
+        if (item.dataset.modalInitialized) return;
+        item.dataset.modalInitialized = 'true';
+
+        item.addEventListener('click', (e) => {
+            // Don't open modal if clicking on a link inside the item
+            if (e.target.closest('a')) return;
             openModal(item, index);
         });
     });
@@ -135,20 +205,25 @@ if (modalNext) {
 }
 
 // Close modal
-const closeModalHandler = () => {
+function closeModal() {
     modal.classList.remove('active');
     document.body.style.overflow = '';
-};
 
-if (closeModal) {
-    closeModal.addEventListener('click', closeModalHandler);
+    // Update URL back to work section
+    if (window.location.hash.startsWith('#project/')) {
+        history.pushState(null, '', '#work');
+    }
+}
+
+if (closeModalBtn) {
+    closeModalBtn.addEventListener('click', closeModal);
 }
 
 // Close modal when clicking outside content
 if (modal) {
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
-            closeModalHandler();
+            closeModal();
         }
     });
 }
@@ -156,7 +231,7 @@ if (modal) {
 // Close modal with Escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-        closeModalHandler();
+        closeModal();
     }
 });
 
@@ -173,8 +248,31 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// Handle browser back/forward
+window.addEventListener('popstate', (e) => {
+    if (modal && modal.classList.contains('active')) {
+        if (!window.location.hash.startsWith('#project/')) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+});
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', initializeModal);
 
-// Expose reinitializeModal for dynamic content updates
-window.reinitializeModal = initializeModal;
+// Expose functions for external use
+window.reinitializeModal = function() {
+    // Reset and reinitialize
+    document.querySelectorAll('.work__item').forEach(item => {
+        delete item.dataset.modalInitialized;
+    });
+    initializeModal();
+};
+
+window.openModalWithProject = function(projectElement, index) {
+    allProjects = getAllProjects();
+    openModal(projectElement, index);
+};
+
+window.closeProjectModal = closeModal;

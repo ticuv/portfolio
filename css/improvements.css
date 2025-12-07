@@ -333,3 +333,302 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
+/* ==========================================
+   13. SEARCH FUNCTIONALITY
+   ========================================== */
+.work__search {
+    width: 100%;
+    margin-bottom: var(--space-md);
+}
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.75rem 1.25rem;
+    transition: all 0.3s ease;
+}
+
+.search-wrapper:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(232, 93, 4, 0.1);
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+    margin-right: 0.75rem;
+}
+
+.search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 0.9375rem;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+}
+
+.search-input::placeholder {
+    color: var(--text-tertiary);
+}
+
+.search-clear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+    margin-left: 0.5rem;
+}
+
+.search-clear:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.search-clear svg {
+    width: 14px;
+    height: 14px;
+}
+
+.search-shortcut {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    background: var(--bg);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    margin-left: 0.75rem;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .search-shortcut {
+        display: none;
+    }
+
+    .search-wrapper {
+        padding: 0.625rem 1rem;
+    }
+}
+
+/* ==========================================
+   14. NO RESULTS MESSAGE
+   ========================================== */
+.no-results {
+    text-align: center;
+    padding: var(--space-2xl) var(--space-lg);
+    color: var(--text-secondary);
+}
+
+.no-results__icon {
+    margin-bottom: var(--space-md);
+    color: var(--text-tertiary);
+}
+
+.no-results__icon svg {
+    opacity: 0.5;
+}
+
+.no-results__title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+}
+
+.no-results__text {
+    font-size: 1rem;
+    margin-bottom: var(--space-lg);
+}
+
+.no-results__btn {
+    padding: 0.75rem 2rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.no-results__btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+/* ==========================================
+   15. RESULTS COUNT
+   ========================================== */
+.results-count {
+    display: inline-block;
+    font-size: 0.875rem;
+    color: var(--accent);
+    margin-left: var(--space-sm);
+    font-weight: 500;
+}
+
+/* ==========================================
+   16. FILTER COUNT BADGES
+   ========================================== */
+.filter-count {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    font-weight: 400;
+}
+
+.filter-btn.active .filter-count {
+    opacity: 0.9;
+}
+
+/* ==========================================
+   17. RELATED PROJECTS IN MODAL
+   ========================================== */
+.modal__related {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border);
+}
+
+.modal__related h4 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+}
+
+.related-item {
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.related-item:hover {
+    transform: scale(1.02);
+}
+
+.related-item img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.related-item:hover img {
+    filter: grayscale(0%);
+}
+
+.related-item span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-xs) var(--space-sm);
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ==========================================
+   18. MODAL EXTERNAL LINK
+   ========================================== */
+.modal__external-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: var(--space-md);
+}
+
+.modal__external-link:hover {
+    background: var(--accent-hover);
+    transform: translateX(4px);
+}
+
+/* ==========================================
+   19. SERVICE TAG ENHANCEMENTS
+   ========================================== */
+.about__service-tag {
+    cursor: pointer;
+    user-select: none;
+}
+
+.about__service-tag:active {
+    transform: scale(0.95);
+}
+
+/* ==========================================
+   20. WORK CONTROLS LAYOUT
+   ========================================== */
+.work__controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.work__controls-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+@media (min-width: 768px) {
+    .work__controls {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .work__search {
+        flex: 1;
+        max-width: 400px;
+        margin-bottom: 0;
+    }
+}
