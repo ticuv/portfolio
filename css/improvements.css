@@ -965,30 +965,22 @@ body,
 }
 
 /* ==========================================
-   26. MODAL SWIPE ANIMATIONS
+   26. MODAL NAVIGATION TRANSITIONS
    ========================================== */
 .modal__content {
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: opacity 0.2s ease;
 }
 
-.modal__content.swipe-left {
-    animation: swipeLeft 0.3s ease;
-}
-
+/* Subtle fade transition when navigating */
+.modal__content.swipe-left,
 .modal__content.swipe-right {
-    animation: swipeRight 0.3s ease;
+    animation: modalFade 0.25s ease;
 }
 
-@keyframes swipeLeft {
-    0% { transform: translateX(0); opacity: 1; }
-    50% { transform: translateX(-30px); opacity: 0.5; }
-    100% { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes swipeRight {
-    0% { transform: translateX(0); opacity: 1; }
-    50% { transform: translateX(30px); opacity: 0.5; }
-    100% { transform: translateX(0); opacity: 1; }
+@keyframes modalFade {
+    0% { opacity: 1; }
+    40% { opacity: 0.4; }
+    100% { opacity: 1; }
 }
 
 /* Swipe hint for mobile */
