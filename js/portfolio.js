@@ -132,7 +132,7 @@ function renderAllProjects() {
 
 function createProjectCard(project) {
     const article = document.createElement('article');
-    article.className = `work__item ${project.layout || ''} visible`;
+    article.className = `work__item ${project.layout || ''} loading`;
     article.setAttribute('role', 'article');
     article.setAttribute('aria-label', project.title);
     article.setAttribute('data-project-id', project.id);
@@ -147,13 +147,25 @@ function createProjectCard(project) {
     article.setAttribute('data-client', project.client || '');
     article.setAttribute('data-link', project.link || '');
 
-    // Create image
+    // Create image with loading state
     const img = document.createElement('img');
     img.src = project.thumbnail || project.image;
     img.alt = project.title;
     img.className = 'work__item-image';
     img.loading = 'lazy';
     img.decoding = 'async';
+
+    // Remove loading state when image loads
+    img.onload = () => {
+        article.classList.remove('loading');
+        article.classList.add('visible');
+    };
+
+    // Fallback: remove loading after timeout
+    setTimeout(() => {
+        article.classList.remove('loading');
+        article.classList.add('visible');
+    }, 3000);
 
     // Create meta
     const meta = document.createElement('div');
@@ -190,11 +202,37 @@ function createProjectCard(project) {
     content.appendChild(title);
     content.appendChild(category);
 
+    // Create quick preview (visible on hover)
+    const preview = document.createElement('div');
+    preview.className = 'work__item-preview';
+
+    const previewTitle = document.createElement('h4');
+    previewTitle.className = 'work__item-preview__title';
+    previewTitle.textContent = project.title;
+
+    const previewTags = document.createElement('p');
+    previewTags.className = 'work__item-preview__tags';
+    previewTags.textContent = project.tags.join(' · ');
+
+    const previewDesc = document.createElement('p');
+    previewDesc.className = 'work__item-preview__description';
+    previewDesc.textContent = project.description;
+
+    const previewCta = document.createElement('span');
+    previewCta.className = 'work__item-preview__cta';
+    previewCta.innerHTML = 'View Project <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+
+    preview.appendChild(previewTitle);
+    preview.appendChild(previewTags);
+    preview.appendChild(previewDesc);
+    preview.appendChild(previewCta);
+
     // Assemble card
     article.appendChild(img);
     article.appendChild(meta);
     article.appendChild(overlay);
     article.appendChild(content);
+    article.appendChild(preview);
 
     // Note: Click handler is managed by modal.js
     // Don't add duplicate click handlers here

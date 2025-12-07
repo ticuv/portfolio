@@ -49,8 +49,13 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
+    <!-- Performance: Preconnect to external origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+    <!-- Fonts with display swap for faster rendering -->
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="preload" href="https://fonts.gstatic.com/s/spacegrotesk/v16/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj7aUXskPMA.woff2" as="font" type="font/woff2" crossorigin>
 
@@ -611,8 +616,12 @@
                     <div class="modal__link" id="modalLink"></div>
                 </div>
 
+                <div id="modalShare"></div>
                 <div class="modal__related" id="relatedProjects"></div>
             </div>
+        </div>
+        <div class="swipe-hint" id="swipeHint">
+            <span>← Swipe to navigate →</span>
         </div>
     </div>
 

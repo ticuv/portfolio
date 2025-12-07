@@ -632,3 +632,598 @@
         margin-bottom: 0;
     }
 }
+
+/* ==========================================
+   21. SKELETON LOADING STATES
+   ========================================== */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--bg-secondary) 25%,
+        var(--border) 50%,
+        var(--bg-secondary) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite ease-in-out;
+    border-radius: 8px;
+}
+
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.skeleton-card {
+    aspect-ratio: 4/3;
+    border-radius: 12px;
+}
+
+.skeleton-text {
+    height: 1em;
+    margin: 0.5em 0;
+}
+
+.skeleton-text--short {
+    width: 60%;
+}
+
+.skeleton-text--medium {
+    width: 80%;
+}
+
+/* Loading state for work items */
+.work__item.loading {
+    pointer-events: none;
+}
+
+.work__item.loading .work__item-image {
+    opacity: 0;
+}
+
+.work__item.loading::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        var(--bg-secondary) 25%,
+        var(--border) 50%,
+        var(--bg-secondary) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite ease-in-out;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+/* ==========================================
+   22. QUICK PREVIEW ON HOVER
+   ========================================== */
+.work__item {
+    position: relative;
+}
+
+.work__item-preview {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-md);
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.95));
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.work__item:hover .work__item-preview {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.work__item-preview__title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 0.25rem;
+}
+
+.work__item-preview__tags {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
+}
+
+.work__item-preview__description {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.work__item-preview__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--accent);
+}
+
+/* Hide preview on touch devices */
+@media (hover: none) {
+    .work__item-preview {
+        display: none;
+    }
+}
+
+/* ==========================================
+   23. SOCIAL SHARING BUTTONS
+   ========================================== */
+.modal__share {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) 0;
+    border-top: 1px solid var(--border);
+    margin-top: var(--space-md);
+}
+
+.share-label {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.share-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.share-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    position: relative;
+}
+
+.share-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.share-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.share-btn--copy:hover,
+.share-btn--copy.copied {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.share-btn--twitter:hover {
+    background: #1DA1F2;
+    border-color: #1DA1F2;
+    color: white;
+}
+
+.share-btn--linkedin:hover {
+    background: #0A66C2;
+    border-color: #0A66C2;
+    color: white;
+}
+
+.share-btn--whatsapp:hover {
+    background: #25D366;
+    border-color: #25D366;
+    color: white;
+}
+
+.share-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.25rem 0.5rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 0.6875rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    margin-bottom: 0.5rem;
+}
+
+.share-btn:hover .share-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ==========================================
+   24. SMOOTH PAGE TRANSITIONS
+   ========================================== */
+.section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for items */
+.work__item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.work__item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.work__item:nth-child(1) { transition-delay: 0.1s; }
+.work__item:nth-child(2) { transition-delay: 0.15s; }
+.work__item:nth-child(3) { transition-delay: 0.2s; }
+.work__item:nth-child(4) { transition-delay: 0.25s; }
+.work__item:nth-child(5) { transition-delay: 0.3s; }
+.work__item:nth-child(6) { transition-delay: 0.35s; }
+
+/* Page entry animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero__content {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.hero__headline {
+    animation: fadeInUp 0.8s ease 0.2s forwards;
+    opacity: 0;
+}
+
+.hero__description {
+    animation: fadeInUp 0.8s ease 0.3s forwards;
+    opacity: 0;
+}
+
+.hero__actions {
+    animation: fadeInUp 0.8s ease 0.4s forwards;
+    opacity: 0;
+}
+
+/* ==========================================
+   25. DARK/LIGHT MODE TRANSITIONS
+   ========================================== */
+html {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body,
+.nav,
+.modal,
+.modal__content,
+.work__item,
+.about__profile,
+.form__input,
+.form__textarea,
+.cookie-consent,
+.filter-btn,
+.sort-btn {
+    transition: background-color 0.3s ease,
+                border-color 0.3s ease,
+                color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* Theme toggle animation */
+.theme-toggle {
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:active {
+    transform: scale(0.9) rotate(180deg);
+}
+
+/* Smooth icon transitions */
+.theme-toggle svg,
+.theme-toggle span {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ==========================================
+   26. MODAL SWIPE ANIMATIONS
+   ========================================== */
+.modal__content {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal__content.swipe-left {
+    animation: swipeLeft 0.3s ease;
+}
+
+.modal__content.swipe-right {
+    animation: swipeRight 0.3s ease;
+}
+
+@keyframes swipeLeft {
+    0% { transform: translateX(0); opacity: 1; }
+    50% { transform: translateX(-30px); opacity: 0.5; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes swipeRight {
+    0% { transform: translateX(0); opacity: 1; }
+    50% { transform: translateX(30px); opacity: 0.5; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+/* Swipe hint for mobile */
+.swipe-hint {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    opacity: 0;
+    animation: swipeHintAnim 3s ease forwards;
+    pointer-events: none;
+    z-index: 100;
+}
+
+@keyframes swipeHintAnim {
+    0% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+    20% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    80% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+}
+
+/* Only show on mobile */
+@media (min-width: 769px) {
+    .swipe-hint {
+        display: none;
+    }
+}
+
+/* ==========================================
+   27. MOBILE IMPROVEMENTS
+   ========================================== */
+@media (max-width: 768px) {
+    /* Better touch targets */
+    .filter-btn,
+    .sort-btn {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 0.625rem 1rem;
+    }
+
+    /* Improved modal on mobile */
+    .modal__content {
+        width: 100%;
+        max-width: 100%;
+        height: 100%;
+        max-height: 100%;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .modal__image {
+        max-height: 50vh;
+        object-fit: contain;
+    }
+
+    .modal__body {
+        padding: var(--space-md);
+        padding-bottom: calc(var(--space-md) + 60px);
+    }
+
+    .modal__nav {
+        width: 44px;
+        height: 44px;
+        font-size: 1.5rem;
+    }
+
+    .modal__close {
+        width: 44px;
+        height: 44px;
+        font-size: 1.75rem;
+    }
+
+    /* Share buttons mobile */
+    .modal__share {
+        flex-wrap: wrap;
+    }
+
+    .share-label {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Better spacing for work section */
+    .work__controls {
+        padding: 0 var(--space-sm);
+    }
+
+    /* Filters scroll horizontally */
+    .work__filters {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding-bottom: 0.5rem;
+    }
+
+    .work__filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Better hero on mobile */
+    .hero {
+        padding-top: 5rem;
+    }
+
+    .hero__headline {
+        line-height: 1.1;
+    }
+
+    /* About section improvements */
+    .about__stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Footer mobile */
+    .footer__social {
+        justify-content: center;
+    }
+}
+
+/* Small phones */
+@media (max-width: 375px) {
+    .hero__headline {
+        font-size: clamp(1.5rem, 8vw, 2rem);
+    }
+
+    .filter-btn,
+    .sort-btn {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .about__stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================
+   28. PERFORMANCE OPTIMIZATIONS
+   ========================================== */
+/* GPU acceleration for animated elements */
+.work__item,
+.modal__content,
+.nav__links,
+.hero__content,
+.floating-cta,
+.back-to-top {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Optimize images */
+.work__item-image,
+.modal__image,
+.about__profile-image {
+    content-visibility: auto;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .section,
+    .work__item,
+    .hero__content,
+    .hero__headline,
+    .hero__description,
+    .hero__actions {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .modal__content.swipe-left,
+    .modal__content.swipe-right {
+        animation: none !important;
+    }
+
+    .swipe-hint {
+        display: none !important;
+    }
+}
+
+/* Optimize scroll performance */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Lazy load images below fold */
+.work__item-image[loading="lazy"],
+.about__profile-image[loading="lazy"] {
+    background: var(--bg-secondary);
+}
+
+/* ==========================================
+   29. HIDDEN UTILITIES
+   ========================================== */
+.work__item.hidden {
+    display: none !important;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ==========================================
+   30. LOADING STATE FOR PAGE
+   ========================================== */
+.page-loading {
+    overflow: hidden;
+}
+
+.page-loading .section {
+    opacity: 0;
+}
+
+/* Content loaded state */
+.content-loaded .section {
+    opacity: 1;
+    transform: translateY(0);
+}
