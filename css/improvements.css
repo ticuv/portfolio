@@ -703,6 +703,11 @@
     position: relative;
 }
 
+/* Hide existing content on hover to prevent overlap */
+.work__item:hover .work__item-content {
+    opacity: 0;
+}
+
 .work__item-preview {
     position: absolute;
     bottom: 0;
@@ -722,26 +727,19 @@
     transform: translateY(0);
 }
 
-.work__item-preview__title {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: white;
-    margin-bottom: 0.25rem;
-}
-
 .work__item-preview__tags {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8125rem;
+    color: var(--accent);
     margin-bottom: 0.5rem;
+    font-weight: 500;
 }
 
 .work__item-preview__description {
     font-size: 0.8125rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.85);
     line-height: 1.5;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -760,6 +758,10 @@
 @media (hover: none) {
     .work__item-preview {
         display: none;
+    }
+
+    .work__item:hover .work__item-content {
+        opacity: 1;
     }
 }
 
