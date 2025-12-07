@@ -5,6 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Critical CSS - Inlined for faster First Contentful Paint -->
+    <style>
+        :root{--bg:#0A0A0A;--bg-secondary:#151515;--text-primary:#F5F5F5;--text-secondary:#A0A0A0;--text-tertiary:#6B6B6B;--accent:#E85D04;--accent-hover:#FF6B1A;--border:#252525;--font-display:'Space Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;--font-body:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--space-xs:0.5rem;--space-sm:1rem;--space-md:2rem;--space-lg:4rem;--space-xl:8rem;--space-2xl:12rem;--ease-out:cubic-bezier(0.16,1,0.3,1);--grid-gap:1rem;--grid-row-height:200px}
+        [data-theme="light"]{--bg:#FAFAFA;--bg-secondary:#FFFFFF;--text-primary:#1A1A1A;--text-secondary:#4A4A4A;--text-tertiary:#8A8A8A;--border:#E5E5E5}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+        body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary);line-height:1.6;overflow-x:hidden}
+        a{color:inherit;text-decoration:none}
+        img{max-width:100%;height:auto;display:block}
+        .container{max-width:1400px;margin:0 auto;padding:0 var(--space-md)}
+        .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:var(--space-sm) var(--space-md);display:flex;justify-content:space-between;align-items:center}
+        .nav__right{display:flex;align-items:center;gap:var(--space-sm)}
+        .nav__links{display:flex;gap:var(--space-md);list-style:none}
+        .nav__link{font-size:0.875rem;font-weight:500;color:var(--text-primary);padding:var(--space-xs) 0}
+        .nav__toggle{display:none}
+        .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--space-xl) 0 var(--space-lg);position:relative}
+        .hero__content{display:grid;grid-template-columns:1fr;gap:var(--space-lg);align-items:end}
+        .hero__headline{font-family:var(--font-display);font-size:clamp(3rem,12vw,9rem);font-weight:700;line-height:0.95;letter-spacing:-0.03em;color:var(--text-primary)}
+        .hero__headline em{font-style:italic;color:var(--text-secondary)}
+        .hero__description{font-size:1.125rem;color:var(--text-secondary);max-width:32ch;line-height:1.7}
+        .skip-link{position:absolute;top:-40px;left:0;background:var(--accent);color:#fff;padding:8px 16px;z-index:10000;transition:top 0.3s}
+        .skip-link:focus{top:0}
+        .hero__headline,.hero__description,.hero__cta{opacity:0;transform:translateY(30px)}
+        @media(max-width:768px){.nav__links{display:none}.nav__toggle{display:flex}}
+    </style>
+
     <!-- Primary Meta Tags -->
     <title>Țicu Vlad (ticuv) — Visual Designer | 3D Art, Poster Design, Branding | Iași, Romania</title>
     <meta name="title" content="Țicu Vlad (ticuv) — Visual Designer | 3D Art, Poster Design, Branding | Romania">
@@ -55,9 +81,13 @@
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-    <!-- Fonts with display swap for faster rendering -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts with display swap and Latin subset for faster rendering -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap&subset=latin,latin-ext" rel="stylesheet">
     <link rel="preload" href="https://fonts.gstatic.com/s/spacegrotesk/v16/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj7aUXskPMA.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Preload key above-fold images -->
+    <link rel="preload" href="https://res.cloudinary.com/daisb58zx/image/upload/f_auto,q_auto,w_800/v1764325063/8da64b84-0eb8-4f5b-b19a-bd290fb87a07_rw_1920_kbbybl.jpg" as="image" fetchpriority="high">
+    <link rel="preload" href="logo.png" as="image">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7K503SBY5S"></script>
@@ -68,48 +98,76 @@
       gtag('config', 'G-7K503SBY5S');
     </script>
 
-    <!-- Structured Data for SEO -->
+    <!-- Structured Data for SEO - Person + Portfolio -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Țicu Vlad",
-      "alternateName": "ticuv",
-      "url": "https://ticuv.com",
-      "image": "https://ticuv.com/ticuv.jpg",
-      "sameAs": [
-        "https://instagram.com/ticuv.art",
-        "https://x.com/ticuv24"
-      ],
-      "jobTitle": "Visual Designer",
-      "worksFor": {
-        "@type": "Organization",
-        "name": "Freelance"
-      },
-      "nationality": {
-        "@type": "Country",
-        "name": "Romania"
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Iași",
-        "addressCountry": "RO"
-      },
-      "knowsAbout": [
-        "Poster Design",
-        "3D Art",
-        "Generative Design",
-        "Logo Design",
-        "Branding",
-        "Graphic Design"
-      ],
-      "description": "Romanian visual designer specializing in poster design, 3D art, generative design, and branding."
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://ticuv.com/#person",
+          "name": "Țicu Vlad",
+          "alternateName": "ticuv",
+          "url": "https://ticuv.com",
+          "image": "https://ticuv.com/ticuv.jpg",
+          "sameAs": [
+            "https://instagram.com/ticuv.art",
+            "https://x.com/ticuv24",
+            "https://linkedin.com/in/ticuv",
+            "https://dribbble.com/ticuv",
+            "https://behance.net/ticuv"
+          ],
+          "jobTitle": "Visual Designer",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Freelance"
+          },
+          "nationality": {
+            "@type": "Country",
+            "name": "Romania"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Iași",
+            "addressCountry": "RO"
+          },
+          "knowsAbout": ["Poster Design", "3D Art", "Generative Design", "Logo Design", "Branding", "Graphic Design"],
+          "description": "Romanian visual designer specializing in poster design, 3D art, generative design, and branding."
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://ticuv.com/#website",
+          "url": "https://ticuv.com",
+          "name": "Țicu Vlad Portfolio",
+          "description": "Portfolio of Țicu Vlad (ticuv), a visual designer from Romania",
+          "publisher": {"@id": "https://ticuv.com/#person"}
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": "https://ticuv.com/#portfolio",
+          "name": "Selected Work",
+          "description": "A curated collection of poster designs, 3D art, and visual projects",
+          "mainEntity": {
+            "@type": "ItemList",
+            "itemListElement": [
+              {"@type": "ListItem", "position": 1, "item": {"@type": "CreativeWork", "name": "Relax", "image": "https://res.cloudinary.com/daisb58zx/image/upload/f_auto,q_auto,w_1200/v1764325063/8da64b84-0eb8-4f5b-b19a-bd290fb87a07_rw_1920_kbbybl.jpg", "creator": {"@id": "https://ticuv.com/#person"}, "dateCreated": "2025"}},
+              {"@type": "ListItem", "position": 2, "item": {"@type": "CreativeWork", "name": "Primordial", "image": "https://res.cloudinary.com/daisb58zx/image/upload/f_auto,q_auto,w_1200/v1764325063/2a1e60b2-d293-4c80-820f-afe449a6c6a5_rw_1920_zqgeao.jpg", "creator": {"@id": "https://ticuv.com/#person"}, "dateCreated": "2025"}},
+              {"@type": "ListItem", "position": 3, "item": {"@type": "CreativeWork", "name": "Respect", "creator": {"@id": "https://ticuv.com/#person"}, "dateCreated": "2025"}},
+              {"@type": "ListItem", "position": 4, "item": {"@type": "CreativeWork", "name": "Bloom", "creator": {"@id": "https://ticuv.com/#person"}, "dateCreated": "2025"}},
+              {"@type": "ListItem", "position": 5, "item": {"@type": "CreativeWork", "name": "Zero", "creator": {"@id": "https://ticuv.com/#person"}, "dateCreated": "2025"}}
+            ]
+          }
+        }
+      ]
     }
     </script>
 
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#work" class="skip-link">Skip to main content</a>
+
     <!-- SEO-Rich Hidden Content (Crawlable by Google) -->
     <article style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
         <h1>Țicu Vlad (ticuv) - Professional Visual Designer from Iași, Romania</h1>
@@ -139,7 +197,7 @@
     <!-- Navigation -->
     <nav class="nav" aria-label="Main navigation">
         <a href="#" class="nav__logo">
-            <img id="logoImage" src="logo.png" alt="ticuv - Țicu Vlad designer logo" style="height: 2rem; width: auto;">
+            <img id="logoImage" src="logo.png" alt="ticuv - Țicu Vlad designer logo" width="80" height="32" style="height: 2rem; width: auto;">
         </a>
         <div class="nav__right">
             <button class="nav__theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -470,7 +528,7 @@
                         </div>
                     </div>
                     <div class="about__profile visible">
-                        <img src="ticuv.jpg" alt="Țicu Vlad (ticuv)" class="about__profile-image">
+                        <img src="ticuv.jpg" alt="Țicu Vlad (ticuv)" class="about__profile-image" width="400" height="500" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
@@ -657,14 +715,17 @@
         }
     </script>
 
+    <!-- Critical scripts first -->
     <script src="js/theme.js"></script>
-    <script src="js/portfolio.js"></script>
-    <script src="js/modal.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/forms.js"></script>
-    <script src="js/cookie.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/improvements.js"></script>
+
+    <!-- Non-critical scripts deferred -->
+    <script src="js/portfolio.js" defer></script>
+    <script src="js/modal.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+    <script src="js/animations.js" defer></script>
+    <script src="js/forms.js" defer></script>
+    <script src="js/cookie.js" defer></script>
+    <script src="js/ui.js" defer></script>
+    <script src="js/improvements.js" defer></script>
 </body>
 </html>
