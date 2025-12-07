@@ -120,11 +120,14 @@ function renderAllProjects() {
     updateResultsCount(projectsToShow.length);
 
     // Reinitialize modal handlers for new cards
-    setTimeout(() => {
-        if (window.reinitializeModal) {
-            window.reinitializeModal();
-        }
-    }, 50);
+    // Wait for DOM to settle before reinitializing modal
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            if (window.reinitializeModal) {
+                window.reinitializeModal();
+            }
+        }, 100);
+    });
 }
 
 function createProjectCard(project) {
@@ -193,10 +196,8 @@ function createProjectCard(project) {
     article.appendChild(overlay);
     article.appendChild(content);
 
-    // Add click handler for direct URL
-    article.addEventListener('click', () => {
-        updateURLForProject(project.id);
-    });
+    // Note: Click handler is managed by modal.js
+    // Don't add duplicate click handlers here
 
     return article;
 }

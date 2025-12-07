@@ -1,6 +1,6 @@
 /* ==========================================
    MODAL.JS - Project Modal System
-   Supports direct URLs and keyboard navigation
+   Uses event delegation for dynamic content
    ========================================== */
 
 const modal = document.getElementById('projectModal');
@@ -8,17 +8,20 @@ const closeModalBtn = document.getElementById('closeModal');
 const modalPrev = document.getElementById('modalPrev');
 const modalNext = document.getElementById('modalNext');
 
-let allProjects = [];
 let currentProjectIndex = 0;
 
-// Get all projects on page load
+// Get all projects currently in DOM
 function getAllProjects() {
     return Array.from(document.querySelectorAll('.work__item'));
 }
 
 // Open modal with specific project
 function openModal(projectElement, index) {
-    currentProjectIndex = index;
+    if (!modal) return;
+
+    const allProjects = getAllProjects();
+    currentProjectIndex = index >= 0 ? index : allProjects.indexOf(projectElement);
+    if (currentProjectIndex < 0) currentProjectIndex = 0;
 
     const projectId = projectElement.dataset.projectId;
     const title = projectElement.dataset.title;
@@ -35,26 +38,36 @@ function openModal(projectElement, index) {
     }
 
     // Populate modal content
-    document.getElementById('modalTitle').textContent = title;
-    document.getElementById('modalImage').src = image;
-    document.getElementById('modalImage').alt = title;
-    document.getElementById('modalDescription').textContent = description;
+    const modalTitle = document.getElementById('modalTitle');
+    const modalImage = document.getElementById('modalImage');
+    const modalDescription = document.getElementById('modalDescription');
+
+    if (modalTitle) modalTitle.textContent = title || '';
+    if (modalImage) {
+        modalImage.src = image || '';
+        modalImage.alt = title || '';
+    }
+    if (modalDescription) modalDescription.textContent = description || '';
 
     // Create tags
     const tagsContainer = document.getElementById('modalTags');
-    tagsContainer.innerHTML = '';
-    if (tags) {
-        tags.split(',').forEach(tag => {
-            const tagElement = document.createElement('span');
-            tagElement.className = 'modal__tag';
-            tagElement.textContent = tag.trim();
-            tagsContainer.appendChild(tagElement);
-        });
+    if (tagsContainer) {
+        tagsContainer.innerHTML = '';
+        if (tags) {
+            tags.split(',').forEach(tag => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'modal__tag';
+                tagElement.textContent = tag.trim();
+                tagsContainer.appendChild(tagElement);
+            });
+        }
     }
 
     // Handle tools
     const toolsContainer = document.getElementById('modalTools');
     if (toolsContainer) {
+        toolsContainer.innerHTML = '';
+        toolsContainer.style.display = 'none';
         if (tools) {
             try {
                 const toolsArray = JSON.parse(tools);
@@ -67,14 +80,10 @@ function openModal(projectElement, index) {
                         toolsContainer.appendChild(toolElement);
                     });
                     toolsContainer.style.display = 'block';
-                } else {
-                    toolsContainer.style.display = 'none';
                 }
             } catch (e) {
-                toolsContainer.style.display = 'none';
+                // Invalid JSON, keep hidden
             }
-        } else {
-            toolsContainer.style.display = 'none';
         }
     }
 
@@ -110,17 +119,18 @@ function openModal(projectElement, index) {
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 
-    // Focus trap for accessibility
-    closeModalBtn?.focus();
+    // Focus close button for accessibility
+    if (closeModalBtn) closeModalBtn.focus();
 }
 
-// Show related projects based on category/tags
+// Show related projects based on category
 function showRelatedProjects(currentProject) {
     const relatedContainer = document.getElementById('relatedProjects');
     if (!relatedContainer) return;
 
     const currentCategory = currentProject.dataset.category;
     const currentId = currentProject.dataset.projectId;
+    const allProjects = getAllProjects();
 
     // Find related projects (same category, different project)
     const related = allProjects.filter(p =>
@@ -144,8 +154,9 @@ function showRelatedProjects(currentProject) {
             <span>${project.dataset.title}</span>
         `;
         item.addEventListener('click', () => {
-            const index = allProjects.indexOf(project);
-            openModal(project, index);
+            const allProjs = getAllProjects();
+            const idx = allProjs.indexOf(project);
+            openModal(project, idx);
         });
         grid.appendChild(item);
     });
@@ -156,56 +167,40 @@ function showRelatedProjects(currentProject) {
 // Update navigation button visibility
 function updateNavButtons() {
     if (!modalPrev || !modalNext) return;
-
-    // Always show nav buttons if there are multiple projects
+    const allProjects = getAllProjects();
     const showNav = allProjects.length > 1;
     modalPrev.style.display = showNav ? 'flex' : 'none';
     modalNext.style.display = showNav ? 'flex' : 'none';
 }
 
-// Initialize click handlers
-function initializeModal() {
-    allProjects = getAllProjects();
+// Navigate to previous project
+function navigatePrev() {
+    const allProjects = getAllProjects();
+    if (allProjects.length === 0) return;
 
-    allProjects.forEach((item, index) => {
-        // Remove existing listeners by checking for data attribute
-        if (item.dataset.modalInitialized) return;
-        item.dataset.modalInitialized = 'true';
-
-        item.addEventListener('click', (e) => {
-            // Don't open modal if clicking on a link inside the item
-            if (e.target.closest('a')) return;
-            openModal(item, index);
-        });
-    });
+    currentProjectIndex--;
+    if (currentProjectIndex < 0) {
+        currentProjectIndex = allProjects.length - 1;
+    }
+    openModal(allProjects[currentProjectIndex], currentProjectIndex);
 }
 
-// Navigation: Previous project
-if (modalPrev) {
-    modalPrev.addEventListener('click', (e) => {
-        e.stopPropagation();
-        currentProjectIndex--;
-        if (currentProjectIndex < 0) {
-            currentProjectIndex = allProjects.length - 1;
-        }
-        openModal(allProjects[currentProjectIndex], currentProjectIndex);
-    });
-}
+// Navigate to next project
+function navigateNext() {
+    const allProjects = getAllProjects();
+    if (allProjects.length === 0) return;
 
-// Navigation: Next project
-if (modalNext) {
-    modalNext.addEventListener('click', (e) => {
-        e.stopPropagation();
-        currentProjectIndex++;
-        if (currentProjectIndex >= allProjects.length) {
-            currentProjectIndex = 0;
-        }
-        openModal(allProjects[currentProjectIndex], currentProjectIndex);
-    });
+    currentProjectIndex++;
+    if (currentProjectIndex >= allProjects.length) {
+        currentProjectIndex = 0;
+    }
+    openModal(allProjects[currentProjectIndex], currentProjectIndex);
 }
 
 // Close modal
 function closeModal() {
+    if (!modal) return;
+
     modal.classList.remove('active');
     document.body.style.overflow = '';
 
@@ -215,6 +210,40 @@ function closeModal() {
     }
 }
 
+// ==========================================
+// EVENT DELEGATION - Works with dynamic content
+// ==========================================
+document.addEventListener('click', (e) => {
+    // Check if clicked on a work item or its children
+    const workItem = e.target.closest('.work__item');
+
+    if (workItem) {
+        // Don't open modal if clicking on a link inside the item
+        if (e.target.closest('a')) return;
+
+        e.preventDefault();
+        const allProjects = getAllProjects();
+        const index = allProjects.indexOf(workItem);
+        openModal(workItem, index);
+    }
+});
+
+// Navigation buttons
+if (modalPrev) {
+    modalPrev.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navigatePrev();
+    });
+}
+
+if (modalNext) {
+    modalNext.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navigateNext();
+    });
+}
+
+// Close modal button
 if (closeModalBtn) {
     closeModalBtn.addEventListener('click', closeModal);
 }
@@ -228,28 +257,23 @@ if (modal) {
     });
 }
 
-// Close modal with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-        closeModal();
-    }
-});
-
-// Arrow key navigation
+// Keyboard navigation
 document.addEventListener('keydown', (e) => {
     if (!modal || !modal.classList.contains('active')) return;
 
-    if (e.key === 'ArrowLeft') {
+    if (e.key === 'Escape') {
+        closeModal();
+    } else if (e.key === 'ArrowLeft') {
         e.preventDefault();
-        if (modalPrev) modalPrev.click();
+        navigatePrev();
     } else if (e.key === 'ArrowRight') {
         e.preventDefault();
-        if (modalNext) modalNext.click();
+        navigateNext();
     }
 });
 
 // Handle browser back/forward
-window.addEventListener('popstate', (e) => {
+window.addEventListener('popstate', () => {
     if (modal && modal.classList.contains('active')) {
         if (!window.location.hash.startsWith('#project/')) {
             modal.classList.remove('active');
@@ -258,20 +282,14 @@ window.addEventListener('popstate', (e) => {
     }
 });
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', initializeModal);
-
 // Expose functions for external use
 window.reinitializeModal = function() {
-    // Reset and reinitialize
-    document.querySelectorAll('.work__item').forEach(item => {
-        delete item.dataset.modalInitialized;
-    });
-    initializeModal();
+    // With event delegation, no reinitialization needed
+    // But we keep this for compatibility
+    console.log('Modal: Using event delegation, no reinitialization needed');
 };
 
 window.openModalWithProject = function(projectElement, index) {
-    allProjects = getAllProjects();
     openModal(projectElement, index);
 };
 
