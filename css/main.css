@@ -17,5 +17,9 @@
 @import 'components/privacy.css';
 @import 'components/ui.css';
 
-/* 4. Responsive styles last */
+/* 4. Enhancements */
+@import 'enhancements.css';
+@import 'improvements.css';
+
+/* 5. Responsive styles last */
 @import 'responsive.css';
