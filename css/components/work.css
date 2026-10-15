@@ -198,8 +198,10 @@
     position: absolute;
     top: var(--space-md);
     left: var(--space-md);
+    right: var(--space-md);
     display: flex;
-    gap: var(--space-xs);
+    justify-content: space-between;
+    align-items: flex-start;
     z-index: 2;
 }
 
@@ -212,6 +214,7 @@
     font-size: 0.75rem;
     color: var(--text-secondary);
     font-weight: 500;
+    margin-left: auto; /* Push to right */
 }
 
 .work__item-featured {
